@@ -1,11 +1,16 @@
 part of 'strings.g.dart';
 
 // Path: <root>
-class _StringsEn implements BaseTranslations<AppLocale, _StringsEn> {
+class Translations implements BaseTranslations<AppLocale, Translations> {
+	/// Returns the current translations of the given [context].
+	///
+	/// Usage:
+	/// final t = Translations.of(context);
+	static Translations of(BuildContext context) => InheritedLocaleData.of<AppLocale, Translations>(context).translations;
 
 	/// You can call this constructor and build your own translation instance of this locale.
 	/// Constructing via the enum [AppLocale.build] is preferred.
-	_StringsEn.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
+	Translations.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
 		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
 		  $meta = TranslationMetadata(
 		    locale: AppLocale.en,
@@ -15,9 +20,9 @@ class _StringsEn implements BaseTranslations<AppLocale, _StringsEn> {
 		  );
 
 	/// Metadata for the translations of <en>.
-	@override final TranslationMetadata<AppLocale, _StringsEn> $meta;
+	@override final TranslationMetadata<AppLocale, Translations> $meta;
 
-	late final _StringsEn _root = this; // ignore: unused_field
+	late final Translations _root = this; // ignore: unused_field
 
 	// Translations
 	String get locale => 'English';
@@ -36,6 +41,7 @@ class _StringsEn implements BaseTranslations<AppLocale, _StringsEn> {
 	late final _StringsProgressPageEn progressPage = _StringsProgressPageEn._(_root);
 	late final _StringsWebSharePageEn webSharePage = _StringsWebSharePageEn._(_root);
 	late final _StringsAboutPageEn aboutPage = _StringsAboutPageEn._(_root);
+	late final _StringsDonationPageEn donationPage = _StringsDonationPageEn._(_root);
 	late final _StringsChangelogPageEn changelogPage = _StringsChangelogPageEn._(_root);
 	late final _StringsAliasGeneratorEn aliasGenerator = _StringsAliasGeneratorEn._(_root);
 	late final _StringsDialogsEn dialogs = _StringsDialogsEn._(_root);
@@ -48,7 +54,7 @@ class _StringsEn implements BaseTranslations<AppLocale, _StringsEn> {
 class _StringsGeneralEn {
 	_StringsGeneralEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get accept => 'Accept';
@@ -94,7 +100,7 @@ class _StringsGeneralEn {
 class _StringsReceiveTabEn {
 	_StringsReceiveTabEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Receive';
@@ -105,7 +111,7 @@ class _StringsReceiveTabEn {
 class _StringsSendTabEn {
 	_StringsSendTabEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Send';
@@ -126,13 +132,14 @@ class _StringsSendTabEn {
 class _StringsSettingsTabEn {
 	_StringsSettingsTabEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Settings';
 	late final _StringsSettingsTabGeneralEn general = _StringsSettingsTabGeneralEn._(_root);
 	late final _StringsSettingsTabReceiveEn receive = _StringsSettingsTabReceiveEn._(_root);
 	late final _StringsSettingsTabNetworkEn network = _StringsSettingsTabNetworkEn._(_root);
+	late final _StringsSettingsTabOtherEn other = _StringsSettingsTabOtherEn._(_root);
 	String get advancedSettings => 'Advanced settings';
 }
 
@@ -140,7 +147,7 @@ class _StringsSettingsTabEn {
 class _StringsTroubleshootPageEn {
 	_StringsTroubleshootPageEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Troubleshoot';
@@ -155,7 +162,7 @@ class _StringsTroubleshootPageEn {
 class _StringsReceiveHistoryPageEn {
 	_StringsReceiveHistoryPageEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'History';
@@ -169,7 +176,7 @@ class _StringsReceiveHistoryPageEn {
 class _StringsApkPickerPageEn {
 	_StringsApkPickerPageEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Apps (APK)';
@@ -182,7 +189,7 @@ class _StringsApkPickerPageEn {
 class _StringsSelectedFilesPageEn {
 	_StringsSelectedFilesPageEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get deleteAll => 'Delete all';
@@ -192,7 +199,7 @@ class _StringsSelectedFilesPageEn {
 class _StringsReceivePageEn {
 	_StringsReceivePageEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String subTitle({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
@@ -208,7 +215,7 @@ class _StringsReceivePageEn {
 class _StringsReceiveOptionsPageEn {
 	_StringsReceiveOptionsPageEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Options';
@@ -222,7 +229,7 @@ class _StringsReceiveOptionsPageEn {
 class _StringsSendPageEn {
 	_StringsSendPageEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get waiting => 'Waiting for response...';
@@ -234,7 +241,7 @@ class _StringsSendPageEn {
 class _StringsProgressPageEn {
 	_StringsProgressPageEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get titleSending => 'Sending files';
@@ -247,7 +254,7 @@ class _StringsProgressPageEn {
 class _StringsWebSharePageEn {
 	_StringsWebSharePageEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Share via link';
@@ -269,17 +276,38 @@ class _StringsWebSharePageEn {
 class _StringsAboutPageEn {
 	_StringsAboutPageEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'About LocalSend';
+	List<String> get description => [
+		'LocalSend is a free, open-source app that allows you to securely share files and messages with nearby devices over your local network without needing an internet connection.',
+		'This app is available on Android, iOS, macOS, Windows and Linux. You can find all download options on the official homepage.',
+	];
+	String get author => 'Author';
+	String get contributors => 'Contributors';
+	String get translators => 'Translators';
+}
+
+// Path: donationPage
+class _StringsDonationPageEn {
+	_StringsDonationPageEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Donate';
+	String get info => 'LocalSend is free, open-source and without any ads. If you like the app, you can support the development with a donation.';
+	String donate({required Object amount}) => 'Donate ${amount}';
+	String get thanks => 'Thank you very much!';
+	String get restore => 'Restore purchase';
 }
 
 // Path: changelogPage
 class _StringsChangelogPageEn {
 	_StringsChangelogPageEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Changelog';
@@ -289,7 +317,7 @@ class _StringsChangelogPageEn {
 class _StringsAliasGeneratorEn {
 	_StringsAliasGeneratorEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	List<String> get adjectives => [
@@ -369,7 +397,7 @@ class _StringsAliasGeneratorEn {
 class _StringsDialogsEn {
 	_StringsDialogsEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	late final _StringsDialogsAddFileEn addFile = _StringsDialogsAddFileEn._(_root);
@@ -383,6 +411,7 @@ class _StringsDialogsEn {
 	late final _StringsDialogsFavoriteEditDialogEn favoriteEditDialog = _StringsDialogsFavoriteEditDialogEn._(_root);
 	late final _StringsDialogsFileInfoEn fileInfo = _StringsDialogsFileInfoEn._(_root);
 	late final _StringsDialogsFileNameInputEn fileNameInput = _StringsDialogsFileNameInputEn._(_root);
+	late final _StringsDialogsHistoryClearDialogEn historyClearDialog = _StringsDialogsHistoryClearDialogEn._(_root);
 	late final _StringsDialogsLocalNetworkUnauthorizedEn localNetworkUnauthorized = _StringsDialogsLocalNetworkUnauthorizedEn._(_root);
 	late final _StringsDialogsMessageInputEn messageInput = _StringsDialogsMessageInputEn._(_root);
 	late final _StringsDialogsNoFilesEn noFiles = _StringsDialogsNoFilesEn._(_root);
@@ -398,7 +427,7 @@ class _StringsDialogsEn {
 class _StringsTrayEn {
 	_StringsTrayEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get open => '${_root.general.open}';
@@ -409,7 +438,7 @@ class _StringsTrayEn {
 class _StringsWebEn {
 	_StringsWebEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get waiting => '${_root.sendPage.waiting}';
@@ -423,7 +452,7 @@ class _StringsWebEn {
 class _StringsAssetPickerEn {
 	_StringsAssetPickerEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get confirm => 'Confirm';
@@ -460,19 +489,19 @@ class _StringsAssetPickerEn {
 class _StringsReceiveTabInfoBoxEn {
 	_StringsReceiveTabInfoBoxEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get ip => 'IP:';
 	String get port => 'Port:';
-	String get alias => 'Alias:';
+	String get alias => 'Device name:';
 }
 
 // Path: sendTab.selection
 class _StringsSendTabSelectionEn {
 	_StringsSendTabSelectionEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Selection';
@@ -484,7 +513,7 @@ class _StringsSendTabSelectionEn {
 class _StringsSendTabPickerEn {
 	_StringsSendTabPickerEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get file => 'File';
@@ -499,7 +528,7 @@ class _StringsSendTabPickerEn {
 class _StringsSendTabSendModesEn {
 	_StringsSendTabSendModesEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get single => 'Single recipient';
@@ -511,7 +540,7 @@ class _StringsSendTabSendModesEn {
 class _StringsSettingsTabGeneralEn {
 	_StringsSettingsTabGeneralEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'General';
@@ -532,11 +561,12 @@ class _StringsSettingsTabGeneralEn {
 class _StringsSettingsTabReceiveEn {
 	_StringsSettingsTabReceiveEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Receive';
 	String get quickSave => '${_root.general.quickSave}';
+	String get autoFinish => 'Auto Finish';
 	String get destination => 'Destination';
 	String get downloads => '(Downloads)';
 	String get saveToGallery => 'Save media to gallery';
@@ -547,13 +577,13 @@ class _StringsSettingsTabReceiveEn {
 class _StringsSettingsTabNetworkEn {
 	_StringsSettingsTabNetworkEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Network';
 	String get needRestart => 'Restart the server to apply the settings!';
 	String get server => 'Server';
-	String get alias => 'Alias';
+	String get alias => 'Device name';
 	String get deviceType => 'Device type';
 	String get deviceModel => 'Device model';
 	String get port => 'Port';
@@ -563,11 +593,25 @@ class _StringsSettingsTabNetworkEn {
 	String multicastGroupWarning({required Object defaultMulticast}) => 'You might not be detected by other devices because you are using a custom multicast address. (default: ${defaultMulticast})';
 }
 
+// Path: settingsTab.other
+class _StringsSettingsTabOtherEn {
+	_StringsSettingsTabOtherEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Other';
+	String get support => 'Support LocalSend';
+	String get donate => 'Donate';
+	String get privacyPolicy => 'Privacy Policy';
+	String get termsOfUse => 'Terms of Use';
+}
+
 // Path: troubleshootPage.firewall
 class _StringsTroubleshootPageFirewallEn {
 	_StringsTroubleshootPageFirewallEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get symptom => 'This app can send files to other devices but other devices cannot send files to this device.';
@@ -579,7 +623,7 @@ class _StringsTroubleshootPageFirewallEn {
 class _StringsTroubleshootPageNoConnectionEn {
 	_StringsTroubleshootPageNoConnectionEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get symptom => 'Both devices cannot discover each other nor can they share files.';
@@ -590,7 +634,7 @@ class _StringsTroubleshootPageNoConnectionEn {
 class _StringsReceiveHistoryPageEntryActionsEn {
 	_StringsReceiveHistoryPageEntryActionsEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get open => 'Open file';
@@ -602,7 +646,7 @@ class _StringsReceiveHistoryPageEntryActionsEn {
 class _StringsProgressPageTotalEn {
 	_StringsProgressPageTotalEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	late final _StringsProgressPageTotalTitleEn title = _StringsProgressPageTotalTitleEn._(_root);
@@ -615,7 +659,7 @@ class _StringsProgressPageTotalEn {
 class _StringsDialogsAddFileEn {
 	_StringsDialogsAddFileEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Add to selection';
@@ -626,7 +670,7 @@ class _StringsDialogsAddFileEn {
 class _StringsDialogsAddressInputEn {
 	_StringsDialogsAddressInputEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Enter address';
@@ -639,7 +683,7 @@ class _StringsDialogsAddressInputEn {
 class _StringsDialogsCancelSessionEn {
 	_StringsDialogsCancelSessionEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Cancel file transfer';
@@ -650,7 +694,7 @@ class _StringsDialogsCancelSessionEn {
 class _StringsDialogsCannotOpenFileEn {
 	_StringsDialogsCannotOpenFileEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Cannot open file';
@@ -661,7 +705,7 @@ class _StringsDialogsCannotOpenFileEn {
 class _StringsDialogsEncryptionDisabledNoticeEn {
 	_StringsDialogsEncryptionDisabledNoticeEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Encryption disabled';
@@ -672,7 +716,7 @@ class _StringsDialogsEncryptionDisabledNoticeEn {
 class _StringsDialogsErrorDialogEn {
 	_StringsDialogsErrorDialogEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => '${_root.general.error}';
@@ -682,7 +726,7 @@ class _StringsDialogsErrorDialogEn {
 class _StringsDialogsFavoriteDialogEn {
 	_StringsDialogsFavoriteDialogEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Favorites';
@@ -694,7 +738,7 @@ class _StringsDialogsFavoriteDialogEn {
 class _StringsDialogsFavoriteDeleteDialogEn {
 	_StringsDialogsFavoriteDeleteDialogEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Delete from favorites';
@@ -705,12 +749,12 @@ class _StringsDialogsFavoriteDeleteDialogEn {
 class _StringsDialogsFavoriteEditDialogEn {
 	_StringsDialogsFavoriteEditDialogEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get titleAdd => 'Add to favorites';
-	String get titleEdit => 'Adjust';
-	String get name => 'Alias';
+	String get titleEdit => 'Settings';
+	String get name => 'Device name';
 	String get auto => '(auto)';
 	String get ip => 'IP Address';
 	String get port => 'Port';
@@ -720,7 +764,7 @@ class _StringsDialogsFavoriteEditDialogEn {
 class _StringsDialogsFileInfoEn {
 	_StringsDialogsFileInfoEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'File information';
@@ -735,18 +779,29 @@ class _StringsDialogsFileInfoEn {
 class _StringsDialogsFileNameInputEn {
 	_StringsDialogsFileNameInputEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Enter file name';
 	String original({required Object original}) => 'Original: ${original}';
 }
 
+// Path: dialogs.historyClearDialog
+class _StringsDialogsHistoryClearDialogEn {
+	_StringsDialogsHistoryClearDialogEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Clear history';
+	String get content => 'Do you really want to delete the entire history?';
+}
+
 // Path: dialogs.localNetworkUnauthorized
 class _StringsDialogsLocalNetworkUnauthorizedEn {
 	_StringsDialogsLocalNetworkUnauthorizedEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => '${_root.dialogs.noPermission.title}';
@@ -758,7 +813,7 @@ class _StringsDialogsLocalNetworkUnauthorizedEn {
 class _StringsDialogsMessageInputEn {
 	_StringsDialogsMessageInputEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Type message';
@@ -769,7 +824,7 @@ class _StringsDialogsMessageInputEn {
 class _StringsDialogsNoFilesEn {
 	_StringsDialogsNoFilesEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'No file selected';
@@ -780,7 +835,7 @@ class _StringsDialogsNoFilesEn {
 class _StringsDialogsNoPermissionEn {
 	_StringsDialogsNoPermissionEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'No permission';
@@ -791,7 +846,7 @@ class _StringsDialogsNoPermissionEn {
 class _StringsDialogsNotAvailableOnPlatformEn {
 	_StringsDialogsNotAvailableOnPlatformEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Not available';
@@ -802,7 +857,7 @@ class _StringsDialogsNotAvailableOnPlatformEn {
 class _StringsDialogsQrEn {
 	_StringsDialogsQrEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'QR Code';
@@ -812,7 +867,7 @@ class _StringsDialogsQrEn {
 class _StringsDialogsQuickActionsEn {
 	_StringsDialogsQuickActionsEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Quick Actions';
@@ -827,7 +882,7 @@ class _StringsDialogsQuickActionsEn {
 class _StringsDialogsQuickSaveNoticeEn {
 	_StringsDialogsQuickSaveNoticeEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => '${_root.general.quickSave}';
@@ -838,7 +893,7 @@ class _StringsDialogsQuickSaveNoticeEn {
 class _StringsDialogsSendModeHelpEn {
 	_StringsDialogsSendModeHelpEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Send modes';
@@ -851,7 +906,7 @@ class _StringsDialogsSendModeHelpEn {
 class _StringsSettingsTabGeneralBrightnessOptionsEn {
 	_StringsSettingsTabGeneralBrightnessOptionsEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get system => 'System';
@@ -863,7 +918,7 @@ class _StringsSettingsTabGeneralBrightnessOptionsEn {
 class _StringsSettingsTabGeneralColorOptionsEn {
 	_StringsSettingsTabGeneralColorOptionsEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get system => 'System';
@@ -874,7 +929,7 @@ class _StringsSettingsTabGeneralColorOptionsEn {
 class _StringsSettingsTabGeneralLanguageOptionsEn {
 	_StringsSettingsTabGeneralLanguageOptionsEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get system => 'System';
@@ -884,7 +939,7 @@ class _StringsSettingsTabGeneralLanguageOptionsEn {
 class _StringsProgressPageTotalTitleEn {
 	_StringsProgressPageTotalTitleEn._(this._root);
 
-	final _StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String sending({required Object time}) => 'Total progress (${time})';

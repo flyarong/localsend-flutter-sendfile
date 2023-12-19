@@ -14,6 +14,7 @@
     "copiedToClipboard": "Skopiowane do Schowka",
     "decline": "Odrzuć",
     "done": "Gotowe",
+    "delete": "Usuń",
     "edit": "Edytuj",
     "error": "Błąd",
     "example": "Przykład",
@@ -36,7 +37,8 @@
     "stop": "Zatrzymaj",
     "save": "Zapisz",
     "unchanged": "Bez Zmian",
-    "unknown": "Nieznany"
+    "unknown": "Nieznany",
+    "noItemInClipboard": "Schowek jest pusty"
   },
   "receiveTab": {
     "title": "Odbierz",
@@ -58,7 +60,8 @@
       "folder": "Folder",
       "media": "Media",
       "text": "Tekst",
-      "app": "Aplikacja"
+      "app": "Aplikacja",
+      "clipboard": "Wklej"
     },
     "shareIntentInfo": "Możesz także skorzystać z funkcji „Udostępnij” swojego urządzenia mobilnego, aby łatwiej wybierać pliki.",
     "nearbyDevices": "Urządzenia w pobliżu",
@@ -78,7 +81,7 @@
     "title": "Ustawienia",
     "general": {
       "title": "Ogólne",
-      "brightness": "Jasność",
+      "brightness": "Motyw",
       "brightnessOptions": {
         "system": "System",
         "dark": "Ciemny",
@@ -86,14 +89,15 @@
       },
       "color": "Kolor",
       "colorOptions": {
-        "system": "System"
+        "system": "System",
+        "oled": "OLED"
       },
       "language": "Język",
       "languageOptions": {
         "system": "System"
       },
       "saveWindowPlacement": "Zamknij: Zapisz położenie okna",
-      "minimizeToTray": "Quit: Minimize to tray",
+      "minimizeToTray": "Wyjdź: zminimalizuj do menu ukrytych ikon",
       "launchAtStartup": "Autostart po zalogowaniu",
       "launchMinimized": "Autostart: Start ukryty",
       "animations": "Animacje"
@@ -101,6 +105,7 @@
     "receive": {
       "title": "Odbierz",
       "quickSave": "@:general.quickSave",
+      "autoFinish": "Zakończ automatycznie",
       "destination": "Miejsce docelowe",
       "downloads": "(Pobrane)",
       "saveToGallery": "Zapisz multimedia w galerii",
@@ -118,6 +123,13 @@
       "encryption": "Szyfrowanie",
       "multicastGroup": "Multicast",
       "multicastGroupWarning": "Inne urządzenia mogą nie wykryć Twojego urządzenia, ponieważ używasz niestandardowego adresu multicast. (domyślnie: {defaultMulticast})"
+    },
+    "other": {
+      "title": "Inne",
+      "support": "Wesprzyj LocalSend",
+      "donate": "Przekaż darowiznę",
+      "privacyPolicy": "Polityka prywatności",
+      "termsOfUse": "Warunki korzystania"
     },
     "advancedSettings": "Zaawansowane ustawienia"
   },
@@ -158,8 +170,8 @@
   },
   "receivePage": {
     "subTitle": {
-      "one": "chce wysłać ci plik.",
-      "other": "chce wysłać ci {n} plików."
+      "one": "chce wysłać ci plik",
+      "other": "chce wysłać ci {n} plików"
     },
     "subTitleMessage": "wysłał ci wiadomość:",
     "subTitleLink": "wysłał ci link:",
@@ -209,12 +221,26 @@
     "pendingRequests": "Oczekujące żądania: {n}"
   },
   "aboutPage": {
-    "title": "O LocalSend"
+    "title": "O LocalSend",
+    "description": [
+      "LocalSend jest darmową, otwarto-źródłową aplikacją, która pozwala na bezpieczne udostępnianie plików i wiadomości urządzeniom w pobliżu poprzez twoją sieć lokalną, bez konieczności połączenia z internetem.",
+      "Ta aplikacja jest dostępna na systemach Android, iOS, macOS, Windows i Linux. Możesz znaleźć wszystkie opcje pobierania na oficjalnej stronie głównej."
+    ],
+    "author": "Autor",
+    "contributors": "Współautorzy",
+    "translators": "Tłumacze"
+  },
+  "donationPage": {
+    "title": "Przekaż darowiznę",
+    "info": "LocalSend jest darmową, otwarto-źródłową aplikacją bez żadnych reklam. Jeśli podoba Ci się aplikacja, możesz wesprzec jej rozwój przekazując darowiznę.",
+    "donate": "Przekaż {amount}",
+    "thanks": "Bardzo Ci dziękuję!",
+    "restore": "Przywróć zakupy"
   },
   "changelogPage": {
     "title": "Dziennik Zmian"
   },
-  "aliasGenerator(ignoreMissing)": {
+  "aliasGenerator(ignoreMissing, ignoreGpt)": {
     "@info": "Inherits from the English version"
   },
   "dialogs": {
@@ -243,6 +269,23 @@
     "errorDialog": {
       "title": "@:general.error"
     },
+    "favoriteDialog": {
+      "title": "Ulubione",
+      "noFavorites": "Brak ulubionych urządzeń.",
+      "addFavorite": "Dodaj"
+    },
+    "favoriteDeleteDialog": {
+      "title": "Usuń z ulubionych",
+      "content": "Czy na pewno chcesz usunąć z ulubionych \"{name}\"?"
+    },
+    "favoriteEditDialog": {
+      "titleAdd": "Dodaj do ulubionych",
+      "titleEdit": "Dostosuj",
+      "name": "Alias",
+      "auto": "(auto)",
+      "ip": "Adres IP",
+      "port": "Port"
+    },
     "fileInfo": {
       "title": "Informacje o pliku",
       "fileName": "Nazwa pliku:",
@@ -254,6 +297,10 @@
     "fileNameInput": {
       "title": "Wpisz imię",
       "original": "Oryginalny: {original}"
+    },
+    "historyClearDialog": {
+      "title": "Wyczyść historię",
+      "content": "Czy na pewno chcesz usunąć całą historię?"
     },
     "localNetworkUnauthorized": {
       "title": "@:dialogs.noPermission.title",

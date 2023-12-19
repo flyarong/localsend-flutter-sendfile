@@ -1,8 +1,7 @@
 part of 'strings.g.dart';
 
 // Path: <root>
-class _StringsDe extends _StringsEn {
-
+class _StringsDe extends Translations {
 	/// You can call this constructor and build your own translation instance of this locale.
 	/// Constructing via the enum [AppLocale.build] is preferred.
 	_StringsDe.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
@@ -16,7 +15,7 @@ class _StringsDe extends _StringsEn {
 		  super.build(cardinalResolver: cardinalResolver, ordinalResolver: ordinalResolver);
 
 	/// Metadata for the translations of <de>.
-	@override final TranslationMetadata<AppLocale, _StringsEn> $meta;
+	@override final TranslationMetadata<AppLocale, Translations> $meta;
 
 	@override late final _StringsDe _root = this; // ignore: unused_field
 
@@ -37,6 +36,7 @@ class _StringsDe extends _StringsEn {
 	@override late final _StringsProgressPageDe progressPage = _StringsProgressPageDe._(_root);
 	@override late final _StringsWebSharePageDe webSharePage = _StringsWebSharePageDe._(_root);
 	@override late final _StringsAboutPageDe aboutPage = _StringsAboutPageDe._(_root);
+	@override late final _StringsDonationPageDe donationPage = _StringsDonationPageDe._(_root);
 	@override late final _StringsChangelogPageDe changelogPage = _StringsChangelogPageDe._(_root);
 	@override late final _StringsAliasGeneratorDe aliasGenerator = _StringsAliasGeneratorDe._(_root);
 	@override late final _StringsDialogsDe dialogs = _StringsDialogsDe._(_root);
@@ -134,6 +134,7 @@ class _StringsSettingsTabDe extends _StringsSettingsTabEn {
 	@override late final _StringsSettingsTabGeneralDe general = _StringsSettingsTabGeneralDe._(_root);
 	@override late final _StringsSettingsTabReceiveDe receive = _StringsSettingsTabReceiveDe._(_root);
 	@override late final _StringsSettingsTabNetworkDe network = _StringsSettingsTabNetworkDe._(_root);
+	@override late final _StringsSettingsTabOtherDe other = _StringsSettingsTabOtherDe._(_root);
 	@override String get advancedSettings => 'Erweiterte Einstellungen';
 }
 
@@ -274,6 +275,27 @@ class _StringsAboutPageDe extends _StringsAboutPageEn {
 
 	// Translations
 	@override String get title => 'Über LocalSend';
+	@override List<String> get description => [
+		'LocalSend ist eine kostenlose Open-Source-App, mit der du Dateien und Nachrichten sicher über dein lokales Netzwerk mit Geräten in der Nähe teilen kannst, ohne dass eine Internetverbindung erforderlich ist.',
+		'Diese App ist für Android, iOS, macOS, Windows und Linux verfügbar. Alle Downloadmöglichkeiten findest du auf der offiziellen Homepage.',
+	];
+	@override String get author => 'Autor';
+	@override String get contributors => 'Mitwirkende';
+	@override String get translators => 'Übersetzer:innen';
+}
+
+// Path: donationPage
+class _StringsDonationPageDe extends _StringsDonationPageEn {
+	_StringsDonationPageDe._(_StringsDe root) : this._root = root, super._(root);
+
+	@override final _StringsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Spenden';
+	@override String get info => 'LocalSend ist kostenlos, open-source und frei von Werbung. Wenn dir diese App gefällt, kannst du die Entwicklung mit einer Spende unterstützen.';
+	@override String donate({required Object amount}) => 'Spende ${amount}';
+	@override String get thanks => 'Vielen Dank für deine Unterstützung!';
+	@override String get restore => 'Käufe Wiederherstellen';
 }
 
 // Path: changelogPage
@@ -313,6 +335,7 @@ class _StringsDialogsDe extends _StringsDialogsEn {
 	@override late final _StringsDialogsFavoriteEditDialogDe favoriteEditDialog = _StringsDialogsFavoriteEditDialogDe._(_root);
 	@override late final _StringsDialogsFileInfoDe fileInfo = _StringsDialogsFileInfoDe._(_root);
 	@override late final _StringsDialogsFileNameInputDe fileNameInput = _StringsDialogsFileNameInputDe._(_root);
+	@override late final _StringsDialogsHistoryClearDialogDe historyClearDialog = _StringsDialogsHistoryClearDialogDe._(_root);
 	@override late final _StringsDialogsLocalNetworkUnauthorizedDe localNetworkUnauthorized = _StringsDialogsLocalNetworkUnauthorizedDe._(_root);
 	@override late final _StringsDialogsMessageInputDe messageInput = _StringsDialogsMessageInputDe._(_root);
 	@override late final _StringsDialogsNoFilesDe noFiles = _StringsDialogsNoFilesDe._(_root);
@@ -467,6 +490,7 @@ class _StringsSettingsTabReceiveDe extends _StringsSettingsTabReceiveEn {
 	// Translations
 	@override String get title => 'Empfangen';
 	@override String get quickSave => '${_root.general.quickSave}';
+	@override String get autoFinish => 'Autom. beenden';
 	@override String get destination => 'Ziel-Ordner';
 	@override String get downloads => '(Downloads)';
 	@override String get saveToGallery => 'Medien in die Gallerie speichern';
@@ -491,6 +515,20 @@ class _StringsSettingsTabNetworkDe extends _StringsSettingsTabNetworkEn {
 	@override String get encryption => 'Verschlüsselung';
 	@override String get multicastGroup => 'Multicast';
 	@override String multicastGroupWarning({required Object defaultMulticast}) => 'Möglicherweise wirst du von anderen Geräten nicht erkannt, weil du eine benutzerdefinierte Multicast-Adresse verwendest. (Standard: ${defaultMulticast})';
+}
+
+// Path: settingsTab.other
+class _StringsSettingsTabOtherDe extends _StringsSettingsTabOtherEn {
+	_StringsSettingsTabOtherDe._(_StringsDe root) : this._root = root, super._(root);
+
+	@override final _StringsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Weitere';
+	@override String get support => 'LocalSend unterstützen';
+	@override String get donate => 'Spenden';
+	@override String get privacyPolicy => 'Datenschutzerklärung';
+	@override String get termsOfUse => 'Nutzungsbedingungen';
 }
 
 // Path: troubleshootPage.firewall
@@ -670,6 +708,17 @@ class _StringsDialogsFileNameInputDe extends _StringsDialogsFileNameInputEn {
 	// Translations
 	@override String get title => 'Dateiname eingeben';
 	@override String original({required Object original}) => 'Original: ${original}';
+}
+
+// Path: dialogs.historyClearDialog
+class _StringsDialogsHistoryClearDialogDe extends _StringsDialogsHistoryClearDialogEn {
+	_StringsDialogsHistoryClearDialogDe._(_StringsDe root) : this._root = root, super._(root);
+
+	@override final _StringsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Verlauf löschen';
+	@override String get content => 'Möchtest du wirklich den gesamten Verlauf löschen?';
 }
 
 // Path: dialogs.localNetworkUnauthorized

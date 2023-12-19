@@ -21,7 +21,7 @@ enum _QuickAction {
 }
 
 class QuickActionsDialog extends StatefulWidget {
-  const QuickActionsDialog({Key? key}) : super(key: key);
+  const QuickActionsDialog({super.key});
 
   @override
   State<QuickActionsDialog> createState() => _QuickActionsDialogState();
@@ -112,8 +112,8 @@ class _QuickActionsDialogState extends State<QuickActionsDialog> with Refena {
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Theme.of(context).buttonTheme.colorScheme!.primary,
-            foregroundColor: Theme.of(context).buttonTheme.colorScheme!.onPrimary,
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            foregroundColor: Theme.of(context).colorScheme.onPrimary,
           ),
           onPressed: () {
             switch (_action) {

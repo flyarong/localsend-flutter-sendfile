@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:localsend_app/constants.dart';
 import 'package:localsend_app/model/dto/info_dto.dart';
 import 'package:localsend_app/model/dto/info_register_dto.dart';
@@ -15,10 +16,12 @@ import 'package:localsend_app/model/session_status.dart';
 import 'package:localsend_app/model/state/send/send_session_state.dart';
 import 'package:localsend_app/model/state/server/receive_session_state.dart';
 import 'package:localsend_app/model/state/server/receiving_file.dart';
+import 'package:localsend_app/pages/home_page.dart';
 import 'package:localsend_app/pages/progress_page.dart';
 import 'package:localsend_app/pages/receive_page.dart';
 import 'package:localsend_app/provider/device_info_provider.dart';
 import 'package:localsend_app/provider/dio_provider.dart';
+import 'package:localsend_app/provider/favorites_provider.dart';
 import 'package:localsend_app/provider/logging/discovery_logs_provider.dart';
 import 'package:localsend_app/provider/network/nearby_devices_provider.dart';
 import 'package:localsend_app/provider/network/send_provider.dart';
@@ -34,6 +37,7 @@ import 'package:localsend_app/util/native/platform_check.dart';
 import 'package:localsend_app/util/native/tray_helper.dart';
 import 'package:logging/logging.dart';
 import 'package:path/path.dart' as p;
+import 'package:permission_handler/permission_handler.dart';
 import 'package:routerino/routerino.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
@@ -155,8 +159,8 @@ class ReceiveController {
     }
 
     // Save device information
-    server.ref.notifier(nearbyDevicesProvider).registerDevice(requestDto.toDevice(request.ip, port, https));
-    server.ref.notifier(discoveryLogsProvider).addLog('[DISCOVER/TCP] Received "/register" HTTP request: ${requestDto.alias} (${request.ip})');
+    await server.ref.redux(nearbyDevicesProvider).dispatchAsync(RegisterDeviceAction(requestDto.toDevice(request.ip, port, https)));
+    server.ref.notifier(discoveryLoggerProvider).addLog('[DISCOVER/TCP] Received "/register" HTTP request: ${requestDto.alias} (${request.ip})');
 
     final deviceInfo = server.ref.read(deviceInfoProvider);
 
@@ -210,6 +214,7 @@ class ReceiveController {
           sessionId: sessionId,
           status: SessionStatus.waiting,
           sender: dto.info.toDevice(request.ip, port, https),
+          senderAlias: server.ref.read(favoritesProvider).firstWhereOrNull((e) => e.fingerprint == dto.info.fingerprint)?.alias ?? dto.info.alias,
           files: {
             for (final file in dto.files.values)
               file.id: ReceivingFile(
@@ -308,6 +313,23 @@ class ReceiveController {
     final files = {
       for (final file in server.getState().session!.files.values.where((f) => f.token != null)) file.file.id: file.token,
     };
+
+    if (checkPlatform([TargetPlatform.android, TargetPlatform.iOS])) {
+      if (checkPlatform([TargetPlatform.android]) && !server.getState().session!.destinationDirectory.startsWith('/storage/emulated/0/Download')) {
+        // Android requires manageExternalStorage permission to save files outside of the Download directory
+        try {
+          final result = await Permission.manageExternalStorage.request();
+          _logger.info('manageExternalStorage permission: $result');
+        } catch (e) {
+          _logger.warning('Could not request manageExternalStorage permission', e);
+        }
+      }
+      try {
+        await Permission.storage.request();
+      } catch (e) {
+        _logger.warning('Could not request storage permission', e);
+      }
+    }
 
     if (v2) {
       return server.responseJson(200,
@@ -418,16 +440,16 @@ class ReceiveController {
       );
 
       // Track it in history
-      await server.ref.notifier(receiveHistoryProvider).addEntry(
-            id: fileId,
+      await server.ref.redux(receiveHistoryProvider).dispatchAsync(AddHistoryEntryAction(
+            entryId: fileId,
             fileName: receivingFile.desiredName!,
             fileType: receivingFile.file.fileType,
             path: saveToGallery ? null : destinationPath,
             savedToGallery: saveToGallery,
             fileSize: receivingFile.file.size,
-            senderAlias: receiveState.sender.alias,
+            senderAlias: receiveState.senderAlias,
             timestamp: DateTime.now().toUtc(),
-          );
+          ));
 
       _logger.info('Saved ${receivingFile.file.fileName}.');
     } catch (e, st) {
@@ -464,11 +486,11 @@ class ReceiveController {
         ),
       );
       if (server.ref.read(settingsProvider).quickSave && server.getState().session?.message == null) {
-        // close the session after return of the response
+        // close the session **after** return of the response
         Future.delayed(Duration.zero, () {
           closeSession();
           // ignore: use_build_context_synchronously
-          Routerino.context.popUntilRoot();
+          Routerino.context.pushRootImmediately(() => const HomePage(initialTab: HomeTab.receive, appStart: false));
         });
       }
       _logger.info('Received all files.');
@@ -575,7 +597,7 @@ class ReceiveController {
 
   void acceptFileRequest(Map<String, String> fileNameMap) {
     final controller = server.getState().session?.responseHandler;
-    if (controller == null) {
+    if (controller == null || controller.isClosed) {
       return;
     }
 
@@ -585,7 +607,7 @@ class ReceiveController {
 
   void declineFileRequest() {
     final controller = server.getState().session?.responseHandler;
-    if (controller == null) {
+    if (controller == null || controller.isClosed) {
       return;
     }
 

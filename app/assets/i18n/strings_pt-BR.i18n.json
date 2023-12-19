@@ -105,6 +105,7 @@
     "receive": {
       "title": "Recebimento",
       "quickSave": "@:general.quickSave",
+      "autoFinish": "Concluir Automaticamente",
       "destination": "Destino",
       "downloads": "(Downloads)",
       "saveToGallery": "Salvar mídia na Galeria",
@@ -122,6 +123,13 @@
       "encryption": "Criptografia",
       "multicastGroup": "Multicast",
       "multicastGroupWarning": "Você pode estar indetectável para outros dispositivos por estar usando um endereço multicast customizado. (Padrão: {defaultMulticast})"
+    },
+    "other": {
+      "title": "Outros",
+      "support": "Suporte o LocalSend",
+      "donate": "Doar",
+      "privacyPolicy": "Política de Privacidade",
+      "termsOfUse": "Termos de Uso"
     },
     "advancedSettings": "Configurações avançadas"
   },
@@ -162,8 +170,8 @@
   },
   "receivePage": {
     "subTitle": {
-      "one": "quer enviar um arquivo.",
-      "other": "quer enviar {n} arquivos."
+      "one": "quer enviar um arquivo",
+      "other": "quer enviar {n} arquivos"
     },
     "subTitleMessage": "enviou uma mensagem:",
     "subTitleLink": "enviou um link:",
@@ -213,12 +221,26 @@
     "pendingRequests": "Solicitações pendentes: {n}"
   },
   "aboutPage": {
-    "title": "Sobre LocalSend"
+    "title": "Sobre LocalSend",
+    "description": [
+      "LocalSend é um aplicativo gratuito e de código aberto que permite compartilhar arquivos e mensagens de forma segura com dispositivos próximos através da sua rede local, sem a necessidade de uma conexão com a internet.",
+      "Este aplicativo está disponível para Android, iOS, macOS, Windows e Linux. Você pode encontrar todas as opções de download na página oficial."
+    ],
+    "author": "Autor",
+    "contributors": "Contribuidores",
+    "translators": "Tradutores"
+  },
+  "donationPage": {
+    "title": "Doar",
+    "info": "LocalSend é gratuito, de código aberto e sem nenhum anúncio. Se tu curte o app, então considere apoiar o desenvolvimento com uma doação!",
+    "donate": "Doar {amount}",
+    "thanks": "Muito obrigado!",
+    "restore": "Restaurar compra"
   },
   "changelogPage": {
     "title": "Histórico de alterações"
   },
-  "aliasGenerator(ignoreMissing)": {
+  "aliasGenerator(ignoreMissing, ignoreGpt)": {
     "@info": "Different locales may have different words, it may not match 1:1",
     "adjectives": [
       "Adorável",
@@ -335,6 +357,10 @@
     "fileNameInput": {
       "title": "Digite o nome do arquivo",
       "original": "Original: {original}"
+    },
+    "historyClearDialog": {
+      "title": "Limpar histórico",
+      "content": "Você realmente deseja deletar todo o histórico?"
     },
     "localNetworkUnauthorized": {
       "title": "@:dialogs.noPermission.title",

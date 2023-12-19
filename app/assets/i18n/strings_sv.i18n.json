@@ -158,8 +158,8 @@
   },
   "receivePage": {
     "subTitle": {
-      "one": "vill skicka en fil till dig.",
-      "other": "Vill skick {n} filer till dig."
+      "one": "vill skicka en fil till dig",
+      "other": "Vill skick {n} filer till dig"
     },
     "subTitleMessage": "skickade ett meddelande till dig:",
     "subTitleLink": "skickade en länk till dig:",
@@ -214,7 +214,7 @@
   "changelogPage": {
     "title": "Ändringslog"
   },
-  "aliasGenerator(ignoreMissing)": {
+  "aliasGenerator(ignoreMissing, ignoreGpt)": {
     "@info": "Different locales may have different words, it may not match 1:1",
     "adjectives": [
       "Bedårande",

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -6,10 +7,10 @@ import 'package:localsend_app/gen/strings.g.dart';
 import 'package:localsend_app/model/dto/file_dto.dart';
 import 'package:localsend_app/model/file_status.dart';
 import 'package:localsend_app/model/session_status.dart';
-import 'package:localsend_app/pages/home_page.dart';
 import 'package:localsend_app/provider/network/send_provider.dart';
 import 'package:localsend_app/provider/network/server/server_provider.dart';
 import 'package:localsend_app/provider/progress_provider.dart';
+import 'package:localsend_app/provider/settings_provider.dart';
 import 'package:localsend_app/theme.dart';
 import 'package:localsend_app/util/file_size_helper.dart';
 import 'package:localsend_app/util/file_speed_helper.dart';
@@ -24,6 +25,7 @@ import 'package:localsend_app/widget/file_thumbnail.dart';
 import 'package:refena_flutter/refena_flutter.dart';
 import 'package:routerino/routerino.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
+import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 class ProgressPage extends StatefulWidget {
   final bool showAppBar;
@@ -47,6 +49,10 @@ class _ProgressPageState extends State<ProgressPage> with Refena {
   List<FileDto> _files = []; // also contains declined files (files without token)
   Set<String> _selectedFiles = {};
 
+  // If [autoFinish] is enabled, we wait a few seconds before automatically closing the session.
+  int _finishCounter = 3;
+  Timer? _finishTimer;
+
   bool _advanced = false;
 
   @override
@@ -58,6 +64,21 @@ class _ProgressPageState extends State<ProgressPage> with Refena {
       try {
         WakelockPlus.enable(); // ignore: discarded_futures
       } catch (_) {}
+
+      if (ref.read(settingsProvider).autoFinish) {
+        _finishTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+          if (ref.read(progressProvider).getFinishedCount(widget.sessionId) == _selectedFiles.length) {
+            if (_finishCounter == 1) {
+              timer.cancel();
+              exit();
+            } else {
+              setState(() {
+                _finishCounter--;
+              });
+            }
+          }
+        });
+      }
 
       setState(() {
         final receiveSession = ref.read(serverProvider)?.session;
@@ -79,17 +100,30 @@ class _ProgressPageState extends State<ProgressPage> with Refena {
     });
   }
 
+  void exit() async {
+    final receiveSession = ref.read(serverProvider.select((s) => s?.session));
+    final sendSession = ref.read(sendProvider)[widget.sessionId];
+    final SessionStatus? status = receiveSession?.status ?? sendSession?.status;
+    final result = status == null || await _askCancelConfirmation(status);
+
+    if (result && mounted) {
+      // ignore: unawaited_futures
+      context.popUntilRoot();
+    }
+  }
+
   @override
   void dispose() {
     super.dispose();
+    _finishTimer?.cancel();
     try {
       unawaited(WakelockPlus.disable());
     } catch (_) {}
   }
 
   Future<bool> _onWillPop() async {
-    final receiveSession = ref.watch(serverProvider.select((s) => s?.session));
-    final sendSession = ref.watch(sendProvider)[widget.sessionId];
+    final receiveSession = ref.read(serverProvider.select((s) => s?.session));
+    final sendSession = ref.read(sendProvider)[widget.sessionId];
     final SessionStatus? status = receiveSession?.status ?? sendSession?.status;
     if (status == null) {
       return true;
@@ -108,9 +142,17 @@ class _ProgressPageState extends State<ProgressPage> with Refena {
       final sendState = ref.read(sendProvider)[widget.sessionId];
 
       if (receiveSession != null) {
-        ref.notifier(serverProvider).cancelSession();
+        if (receiveSession.status == SessionStatus.sending) {
+          ref.notifier(serverProvider).cancelSession();
+        } else {
+          ref.notifier(serverProvider).closeSession();
+        }
       } else if (sendState != null) {
-        ref.notifier(sendProvider).cancelSession(widget.sessionId);
+        if (sendState.status == SessionStatus.sending) {
+          ref.notifier(sendProvider).cancelSession(widget.sessionId);
+        } else {
+          ref.notifier(sendProvider).closeSession(widget.sessionId);
+        }
       }
     }
     return result;
@@ -149,7 +191,12 @@ class _ProgressPageState extends State<ProgressPage> with Refena {
     }
 
     return WillPopScope(
-      onWillPop: _onWillPop,
+      onWillPop: () async {
+        if (await _onWillPop() && mounted) {
+          return true;
+        }
+        return false;
+      },
       child: Scaffold(
         appBar: widget.showAppBar
             ? AppBar(
@@ -244,6 +291,16 @@ class _ProgressPageState extends State<ProgressPage> with Refena {
                   errorMessage = null;
                 }
 
+                final Uint8List? thumbnail;
+                final AssetEntity? asset;
+                if (sendSession != null) {
+                  thumbnail = sendSession.files[file.id]!.thumbnail;
+                  asset = sendSession.files[file.id]!.asset;
+                } else {
+                  thumbnail = null;
+                  asset = null;
+                }
+
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: InkWell(
@@ -255,17 +312,12 @@ class _ProgressPageState extends State<ProgressPage> with Refena {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        if (sendSession != null && sendSession.files[file.id]?.asset != null)
-                          // Special handling for assets
-                          AssetThumbnail(
-                            asset: sendSession.files[file.id]!.asset!,
-                            fileType: file.fileType,
-                          )
-                        else
-                          FilePathThumbnail(
-                            path: filePath,
-                            fileType: file.fileType,
-                          ),
+                        SmartFileThumbnail(
+                          bytes: thumbnail,
+                          asset: asset,
+                          path: filePath,
+                          fileType: file.fileType,
+                        ),
                         const SizedBox(width: 10),
                         Expanded(
                           child: Column(
@@ -391,15 +443,13 @@ class _ProgressPageState extends State<ProgressPage> with Refena {
                               ),
                               TextButton.icon(
                                 style: TextButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.onSurface),
-                                onPressed: () async {
-                                  final result = await _askCancelConfirmation(status);
-                                  if (result && mounted) {
-                                    final homeTab = receiveSession != null ? HomeTab.receive : HomeTab.send;
-                                    await context.pushRootImmediately(() => HomePage(initialTab: homeTab, appStart: false));
-                                  }
-                                },
+                                onPressed: exit,
                                 icon: Icon(status == SessionStatus.sending ? Icons.close : Icons.check_circle),
-                                label: Text(status == SessionStatus.sending ? t.general.cancel : t.general.done),
+                                label: Text(status == SessionStatus.sending
+                                    ? t.general.cancel
+                                    : _finishTimer != null
+                                        ? '${t.general.done} ($_finishCounter)'
+                                        : t.general.done),
                               ),
                             ],
                           )

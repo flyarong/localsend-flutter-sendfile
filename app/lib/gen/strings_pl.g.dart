@@ -1,8 +1,7 @@
 part of 'strings.g.dart';
 
 // Path: <root>
-class _StringsPl extends _StringsEn {
-
+class _StringsPl extends Translations {
 	/// You can call this constructor and build your own translation instance of this locale.
 	/// Constructing via the enum [AppLocale.build] is preferred.
 	_StringsPl.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
@@ -16,7 +15,7 @@ class _StringsPl extends _StringsEn {
 		  super.build(cardinalResolver: cardinalResolver, ordinalResolver: ordinalResolver);
 
 	/// Metadata for the translations of <pl>.
-	@override final TranslationMetadata<AppLocale, _StringsEn> $meta;
+	@override final TranslationMetadata<AppLocale, Translations> $meta;
 
 	@override late final _StringsPl _root = this; // ignore: unused_field
 
@@ -37,6 +36,7 @@ class _StringsPl extends _StringsEn {
 	@override late final _StringsProgressPagePl progressPage = _StringsProgressPagePl._(_root);
 	@override late final _StringsWebSharePagePl webSharePage = _StringsWebSharePagePl._(_root);
 	@override late final _StringsAboutPagePl aboutPage = _StringsAboutPagePl._(_root);
+	@override late final _StringsDonationPagePl donationPage = _StringsDonationPagePl._(_root);
 	@override late final _StringsChangelogPagePl changelogPage = _StringsChangelogPagePl._(_root);
 	@override late final _StringsAliasGeneratorPl aliasGenerator = _StringsAliasGeneratorPl._(_root);
 	@override late final _StringsDialogsPl dialogs = _StringsDialogsPl._(_root);
@@ -64,6 +64,7 @@ class _StringsGeneralPl extends _StringsGeneralEn {
 	@override String get copiedToClipboard => 'Skopiowane do Schowka';
 	@override String get decline => 'Odrzuć';
 	@override String get done => 'Gotowe';
+	@override String get delete => 'Usuń';
 	@override String get edit => 'Edytuj';
 	@override String get error => 'Błąd';
 	@override String get example => 'Przykład';
@@ -87,6 +88,7 @@ class _StringsGeneralPl extends _StringsGeneralEn {
 	@override String get save => 'Zapisz';
 	@override String get unchanged => 'Bez Zmian';
 	@override String get unknown => 'Nieznany';
+	@override String get noItemInClipboard => 'Schowek jest pusty';
 }
 
 // Path: receiveTab
@@ -132,6 +134,7 @@ class _StringsSettingsTabPl extends _StringsSettingsTabEn {
 	@override late final _StringsSettingsTabGeneralPl general = _StringsSettingsTabGeneralPl._(_root);
 	@override late final _StringsSettingsTabReceivePl receive = _StringsSettingsTabReceivePl._(_root);
 	@override late final _StringsSettingsTabNetworkPl network = _StringsSettingsTabNetworkPl._(_root);
+	@override late final _StringsSettingsTabOtherPl other = _StringsSettingsTabOtherPl._(_root);
 	@override String get advancedSettings => 'Zaawansowane ustawienia';
 }
 
@@ -272,6 +275,27 @@ class _StringsAboutPagePl extends _StringsAboutPageEn {
 
 	// Translations
 	@override String get title => 'O LocalSend';
+	@override List<String> get description => [
+		'LocalSend jest darmową, otwarto-źródłową aplikacją, która pozwala na bezpieczne udostępnianie plików i wiadomości urządzeniom w pobliżu poprzez twoją sieć lokalną, bez konieczności połączenia z internetem.',
+		'Ta aplikacja jest dostępna na systemach Android, iOS, macOS, Windows i Linux. Możesz znaleźć wszystkie opcje pobierania na oficjalnej stronie głównej.',
+	];
+	@override String get author => 'Autor';
+	@override String get contributors => 'Współautorzy';
+	@override String get translators => 'Tłumacze';
+}
+
+// Path: donationPage
+class _StringsDonationPagePl extends _StringsDonationPageEn {
+	_StringsDonationPagePl._(_StringsPl root) : this._root = root, super._(root);
+
+	@override final _StringsPl _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Przekaż darowiznę';
+	@override String get info => 'LocalSend jest darmową, otwarto-źródłową aplikacją bez żadnych reklam. Jeśli podoba Ci się aplikacja, możesz wesprzec jej rozwój przekazując darowiznę.';
+	@override String donate({required Object amount}) => 'Przekaż ${amount}';
+	@override String get thanks => 'Bardzo Ci dziękuję!';
+	@override String get restore => 'Przywróć zakupy';
 }
 
 // Path: changelogPage
@@ -306,8 +330,12 @@ class _StringsDialogsPl extends _StringsDialogsEn {
 	@override late final _StringsDialogsCannotOpenFilePl cannotOpenFile = _StringsDialogsCannotOpenFilePl._(_root);
 	@override late final _StringsDialogsEncryptionDisabledNoticePl encryptionDisabledNotice = _StringsDialogsEncryptionDisabledNoticePl._(_root);
 	@override late final _StringsDialogsErrorDialogPl errorDialog = _StringsDialogsErrorDialogPl._(_root);
+	@override late final _StringsDialogsFavoriteDialogPl favoriteDialog = _StringsDialogsFavoriteDialogPl._(_root);
+	@override late final _StringsDialogsFavoriteDeleteDialogPl favoriteDeleteDialog = _StringsDialogsFavoriteDeleteDialogPl._(_root);
+	@override late final _StringsDialogsFavoriteEditDialogPl favoriteEditDialog = _StringsDialogsFavoriteEditDialogPl._(_root);
 	@override late final _StringsDialogsFileInfoPl fileInfo = _StringsDialogsFileInfoPl._(_root);
 	@override late final _StringsDialogsFileNameInputPl fileNameInput = _StringsDialogsFileNameInputPl._(_root);
+	@override late final _StringsDialogsHistoryClearDialogPl historyClearDialog = _StringsDialogsHistoryClearDialogPl._(_root);
 	@override late final _StringsDialogsLocalNetworkUnauthorizedPl localNetworkUnauthorized = _StringsDialogsLocalNetworkUnauthorizedPl._(_root);
 	@override late final _StringsDialogsMessageInputPl messageInput = _StringsDialogsMessageInputPl._(_root);
 	@override late final _StringsDialogsNoFilesPl noFiles = _StringsDialogsNoFilesPl._(_root);
@@ -417,6 +445,7 @@ class _StringsSendTabPickerPl extends _StringsSendTabPickerEn {
 	@override String get media => 'Media';
 	@override String get text => 'Tekst';
 	@override String get app => 'Aplikacja';
+	@override String get clipboard => 'Wklej';
 }
 
 // Path: sendTab.sendModes
@@ -439,7 +468,7 @@ class _StringsSettingsTabGeneralPl extends _StringsSettingsTabGeneralEn {
 
 	// Translations
 	@override String get title => 'Ogólne';
-	@override String get brightness => 'Jasność';
+	@override String get brightness => 'Motyw';
 	@override late final _StringsSettingsTabGeneralBrightnessOptionsPl brightnessOptions = _StringsSettingsTabGeneralBrightnessOptionsPl._(_root);
 	@override String get color => 'Kolor';
 	@override late final _StringsSettingsTabGeneralColorOptionsPl colorOptions = _StringsSettingsTabGeneralColorOptionsPl._(_root);
@@ -461,6 +490,7 @@ class _StringsSettingsTabReceivePl extends _StringsSettingsTabReceiveEn {
 	// Translations
 	@override String get title => 'Odbierz';
 	@override String get quickSave => '${_root.general.quickSave}';
+	@override String get autoFinish => 'Zakończ automatycznie';
 	@override String get destination => 'Miejsce docelowe';
 	@override String get downloads => '(Pobrane)';
 	@override String get saveToGallery => 'Zapisz multimedia w galerii';
@@ -485,6 +515,20 @@ class _StringsSettingsTabNetworkPl extends _StringsSettingsTabNetworkEn {
 	@override String get encryption => 'Szyfrowanie';
 	@override String get multicastGroup => 'Multicast';
 	@override String multicastGroupWarning({required Object defaultMulticast}) => 'Inne urządzenia mogą nie wykryć Twojego urządzenia, ponieważ używasz niestandardowego adresu multicast. (domyślnie: ${defaultMulticast})';
+}
+
+// Path: settingsTab.other
+class _StringsSettingsTabOtherPl extends _StringsSettingsTabOtherEn {
+	_StringsSettingsTabOtherPl._(_StringsPl root) : this._root = root, super._(root);
+
+	@override final _StringsPl _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Inne';
+	@override String get support => 'Wesprzyj LocalSend';
+	@override String get donate => 'Przekaż darowiznę';
+	@override String get privacyPolicy => 'Polityka prywatności';
+	@override String get termsOfUse => 'Warunki korzystania';
 }
 
 // Path: troubleshootPage.firewall
@@ -602,6 +646,44 @@ class _StringsDialogsErrorDialogPl extends _StringsDialogsErrorDialogEn {
 	@override String get title => '${_root.general.error}';
 }
 
+// Path: dialogs.favoriteDialog
+class _StringsDialogsFavoriteDialogPl extends _StringsDialogsFavoriteDialogEn {
+	_StringsDialogsFavoriteDialogPl._(_StringsPl root) : this._root = root, super._(root);
+
+	@override final _StringsPl _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ulubione';
+	@override String get noFavorites => 'Brak ulubionych urządzeń.';
+	@override String get addFavorite => 'Dodaj';
+}
+
+// Path: dialogs.favoriteDeleteDialog
+class _StringsDialogsFavoriteDeleteDialogPl extends _StringsDialogsFavoriteDeleteDialogEn {
+	_StringsDialogsFavoriteDeleteDialogPl._(_StringsPl root) : this._root = root, super._(root);
+
+	@override final _StringsPl _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Usuń z ulubionych';
+	@override String content({required Object name}) => 'Czy na pewno chcesz usunąć z ulubionych "${name}"?';
+}
+
+// Path: dialogs.favoriteEditDialog
+class _StringsDialogsFavoriteEditDialogPl extends _StringsDialogsFavoriteEditDialogEn {
+	_StringsDialogsFavoriteEditDialogPl._(_StringsPl root) : this._root = root, super._(root);
+
+	@override final _StringsPl _root; // ignore: unused_field
+
+	// Translations
+	@override String get titleAdd => 'Dodaj do ulubionych';
+	@override String get titleEdit => 'Dostosuj';
+	@override String get name => 'Alias';
+	@override String get auto => '(auto)';
+	@override String get ip => 'Adres IP';
+	@override String get port => 'Port';
+}
+
 // Path: dialogs.fileInfo
 class _StringsDialogsFileInfoPl extends _StringsDialogsFileInfoEn {
 	_StringsDialogsFileInfoPl._(_StringsPl root) : this._root = root, super._(root);
@@ -626,6 +708,17 @@ class _StringsDialogsFileNameInputPl extends _StringsDialogsFileNameInputEn {
 	// Translations
 	@override String get title => 'Wpisz imię';
 	@override String original({required Object original}) => 'Oryginalny: ${original}';
+}
+
+// Path: dialogs.historyClearDialog
+class _StringsDialogsHistoryClearDialogPl extends _StringsDialogsHistoryClearDialogEn {
+	_StringsDialogsHistoryClearDialogPl._(_StringsPl root) : this._root = root, super._(root);
+
+	@override final _StringsPl _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Wyczyść historię';
+	@override String get content => 'Czy na pewno chcesz usunąć całą historię?';
 }
 
 // Path: dialogs.localNetworkUnauthorized
@@ -753,6 +846,7 @@ class _StringsSettingsTabGeneralColorOptionsPl extends _StringsSettingsTabGenera
 
 	// Translations
 	@override String get system => 'System';
+	@override String get oled => 'OLED';
 }
 
 // Path: settingsTab.general.languageOptions

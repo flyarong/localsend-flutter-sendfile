@@ -1,10 +1,12 @@
 import 'dart:convert' show utf8;
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:localsend_app/model/cross_file.dart';
 import 'package:localsend_app/model/file_type.dart';
 import 'package:localsend_app/util/file_path_helper.dart';
 import 'package:localsend_app/util/native/cache_helper.dart';
+import 'package:localsend_app/util/native/cross_file_converters.dart';
 import 'package:logging/logging.dart';
 import 'package:path/path.dart' as p;
 import 'package:refena_flutter/refena_flutter.dart';
@@ -24,6 +26,7 @@ class SelectedSendingFilesNotifier extends ReduxNotifier<List<CrossFile>> {
   List<CrossFile> init() => [];
 }
 
+/// Adds a message.
 class AddMessageAction extends ReduxAction<SelectedSendingFilesNotifier, List<CrossFile>> {
   final String message;
   final int? index;
@@ -52,6 +55,7 @@ class AddMessageAction extends ReduxAction<SelectedSendingFilesNotifier, List<Cr
   }
 }
 
+/// Updates a message.
 class UpdateMessageAction extends ReduxAction<SelectedSendingFilesNotifier, List<CrossFile>> {
   final String message;
   final int index;
@@ -69,6 +73,39 @@ class UpdateMessageAction extends ReduxAction<SelectedSendingFilesNotifier, List
   }
 }
 
+/// Adds a binary file to the list.
+/// During the sending process, the file will be read from the memory.
+class AddBinaryAction extends ReduxAction<SelectedSendingFilesNotifier, List<CrossFile>> {
+  final Uint8List bytes;
+  final FileType fileType;
+  final String fileName;
+
+  AddBinaryAction({
+    required this.bytes,
+    required this.fileType,
+    required this.fileName,
+  });
+
+  @override
+  List<CrossFile> reduce() {
+    final file = CrossFile(
+      name: fileName,
+      fileType: fileType,
+      size: bytes.length,
+      thumbnail: fileType == FileType.image ? bytes : null,
+      asset: null,
+      path: null,
+      bytes: bytes,
+    );
+
+    return List.unmodifiable([
+      ...state,
+      file,
+    ]);
+  }
+}
+
+/// Adds one or more files to the list.
 class AddFilesAction<T> extends AsyncReduxAction<SelectedSendingFilesNotifier, List<CrossFile>> {
   final Iterable<T> files;
   final Future<CrossFile> Function(T) converter;
@@ -83,8 +120,13 @@ class AddFilesAction<T> extends AsyncReduxAction<SelectedSendingFilesNotifier, L
     final newFiles = <CrossFile>[];
     for (final file in files) {
       // we do it sequential because there are bugs
-      // https://github.com/fluttercandies/flutter_photo_manager/issues/589
-      newFiles.add(await converter(file));
+      //  https://github.com/fluttercandies/flutter_photo_manager/issues/589
+
+      final crossFile = await converter(file);
+      final isAlreadySelect = state.any((element) => element.isSameFile(otherFile: crossFile));
+      if (!isAlreadySelect) {
+        newFiles.add(crossFile);
+      }
     }
     return List.unmodifiable([
       ...state,
@@ -117,7 +159,11 @@ class AddDirectoryAction extends AsyncReduxAction<SelectedSendingFilesNotifier, 
           path: entity.path,
           bytes: null,
         );
-        newFiles.add(file);
+
+        final isAlreadySelect = state.any((element) => element.isSameFile(otherFile: file));
+        if (!isAlreadySelect) {
+          newFiles.add(file);
+        }
       }
     }
 
@@ -128,6 +174,7 @@ class AddDirectoryAction extends AsyncReduxAction<SelectedSendingFilesNotifier, 
   }
 }
 
+/// Removes a file at the given [index].
 class RemoveSelectedFileAction extends ReduxAction<SelectedSendingFilesNotifier, List<CrossFile>> with GlobalActions {
   final int index;
 
@@ -141,11 +188,12 @@ class RemoveSelectedFileAction extends ReduxAction<SelectedSendingFilesNotifier,
   @override
   void after() {
     if (state.isEmpty) {
-      global.dispatch(ClearCacheAction());
+      global.dispatchAsync(ClearCacheAction()); // ignore: discarded_futures
     }
   }
 }
 
+/// Removes all files from the list.
 class ClearSelectionAction extends ReduxAction<SelectedSendingFilesNotifier, List<CrossFile>> with GlobalActions {
   @override
   List<CrossFile> reduce() {
@@ -154,6 +202,6 @@ class ClearSelectionAction extends ReduxAction<SelectedSendingFilesNotifier, Lis
 
   @override
   void after() {
-    global.dispatch(ClearCacheAction());
+    global.dispatchAsync(ClearCacheAction()); // ignore: discarded_futures
   }
 }

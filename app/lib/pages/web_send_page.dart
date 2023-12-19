@@ -80,7 +80,7 @@ class _WebSendPageState extends State<WebSendPage> with Refena {
         await sleepAsync(250);
         await _revertServerState();
         await sleepAsync(250);
-        return Future.value(true);
+        return true;
       },
       child: Scaffold(
         appBar: AppBar(
@@ -118,9 +118,9 @@ class _WebSendPageState extends State<WebSendPage> with Refena {
               );
             }
 
-            final serverState = ref.watch(serverProvider)!;
+            final serverState = context.watch(serverProvider)!;
             final webSendState = serverState.webSendState!;
-            final networkState = ref.watch(localIpProvider);
+            final networkState = context.watch(localIpProvider);
 
             return ResponsiveListView(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),

@@ -1,8 +1,7 @@
 part of 'strings.g.dart';
 
 // Path: <root>
-class _StringsKo extends _StringsEn {
-
+class _StringsKo extends Translations {
 	/// You can call this constructor and build your own translation instance of this locale.
 	/// Constructing via the enum [AppLocale.build] is preferred.
 	_StringsKo.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
@@ -16,7 +15,7 @@ class _StringsKo extends _StringsEn {
 		  super.build(cardinalResolver: cardinalResolver, ordinalResolver: ordinalResolver);
 
 	/// Metadata for the translations of <ko>.
-	@override final TranslationMetadata<AppLocale, _StringsEn> $meta;
+	@override final TranslationMetadata<AppLocale, Translations> $meta;
 
 	@override late final _StringsKo _root = this; // ignore: unused_field
 
@@ -313,6 +312,7 @@ class _StringsDialogsKo extends _StringsDialogsEn {
 	@override late final _StringsDialogsFavoriteEditDialogKo favoriteEditDialog = _StringsDialogsFavoriteEditDialogKo._(_root);
 	@override late final _StringsDialogsFileInfoKo fileInfo = _StringsDialogsFileInfoKo._(_root);
 	@override late final _StringsDialogsFileNameInputKo fileNameInput = _StringsDialogsFileNameInputKo._(_root);
+	@override late final _StringsDialogsHistoryClearDialogKo historyClearDialog = _StringsDialogsHistoryClearDialogKo._(_root);
 	@override late final _StringsDialogsLocalNetworkUnauthorizedKo localNetworkUnauthorized = _StringsDialogsLocalNetworkUnauthorizedKo._(_root);
 	@override late final _StringsDialogsMessageInputKo messageInput = _StringsDialogsMessageInputKo._(_root);
 	@override late final _StringsDialogsNoFilesKo noFiles = _StringsDialogsNoFilesKo._(_root);
@@ -670,6 +670,17 @@ class _StringsDialogsFileNameInputKo extends _StringsDialogsFileNameInputEn {
 	// Translations
 	@override String get title => '파일 이름을 입력하세요';
 	@override String original({required Object original}) => '기존 이름: ${original}';
+}
+
+// Path: dialogs.historyClearDialog
+class _StringsDialogsHistoryClearDialogKo extends _StringsDialogsHistoryClearDialogEn {
+	_StringsDialogsHistoryClearDialogKo._(_StringsKo root) : this._root = root, super._(root);
+
+	@override final _StringsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '기록 지우기';
+	@override String get content => '정말 모든 기록을 삭제하시겠습니까?';
 }
 
 // Path: dialogs.localNetworkUnauthorized

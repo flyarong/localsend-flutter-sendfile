@@ -6,10 +6,15 @@ import 'package:localsend_app/provider/device_info_provider.dart';
 import 'package:localsend_app/util/native/platform_check.dart';
 import 'package:localsend_app/util/ui/dynamic_colors.dart';
 import 'package:refena_flutter/refena_flutter.dart';
+import 'package:yaru/yaru.dart' as yaru;
 
 final _borderRadius = BorderRadius.circular(5);
 
 ThemeData getTheme(ColorMode colorMode, Brightness brightness, DynamicColors? dynamicColors) {
+  if (colorMode == ColorMode.yaru) {
+    return _getYaruTheme(brightness);
+  }
+
   final colorScheme = _determineColorScheme(colorMode, brightness, dynamicColors);
 
   final lightInputBorder = OutlineInputBorder(
@@ -25,23 +30,13 @@ ThemeData getTheme(ColorMode colorMode, Brightness brightness, DynamicColors? dy
   // https://github.com/localsend/localsend/issues/52
   final String? fontFamily;
   if (checkPlatform([TargetPlatform.windows])) {
-    switch (LocaleSettings.currentLocale) {
-      case AppLocale.ja:
-        fontFamily = 'Yu Gothic UI';
-        break;
-      case AppLocale.ko:
-        fontFamily = 'Malgun Gothic';
-        break;
-      case AppLocale.zhCn:
-        fontFamily = 'Microsoft YaHei UI';
-        break;
-      case AppLocale.zhHk:
-      case AppLocale.zhTw:
-        fontFamily = 'Microsoft JhengHei UI';
-        break;
-      default:
-        fontFamily = 'Segoe UI Variable Display';
-    }
+    fontFamily = switch (LocaleSettings.currentLocale) {
+      AppLocale.ja => 'Yu Gothic UI',
+      AppLocale.ko => 'Malgun Gothic',
+      AppLocale.zhCn => 'Microsoft YaHei UI',
+      AppLocale.zhHk || AppLocale.zhTw => 'Microsoft JhengHei UI',
+      _ => 'Segoe UI Variable Display',
+    };
   } else {
     fontFamily = null;
   }
@@ -132,21 +127,62 @@ extension InputDecorationThemeExt on InputDecorationTheme {
 }
 
 ColorScheme _determineColorScheme(ColorMode mode, Brightness brightness, DynamicColors? dynamicColors) {
+  final defaultColorScheme = ColorScheme.fromSeed(
+    seedColor: Colors.teal,
+    brightness: brightness,
+  );
+
   final colorScheme = switch (mode) {
     ColorMode.system => brightness == Brightness.light ? dynamicColors?.light : dynamicColors?.dark,
     ColorMode.localsend => null,
-    ColorMode.oled => ColorScheme.fromSeed(
-        seedColor: Colors.teal,
-        brightness: brightness,
-      ).copyWith(
+    ColorMode.oled => (dynamicColors?.dark ?? defaultColorScheme).copyWith(
         background: Colors.black,
         surface: Colors.black,
       ),
+    ColorMode.yaru => throw 'Should reach here',
   };
 
-  return colorScheme ??
-      ColorScheme.fromSeed(
-        seedColor: Colors.teal,
-        brightness: brightness,
-      );
+  return colorScheme ?? defaultColorScheme;
+}
+
+ThemeData _getYaruTheme(Brightness brightness) {
+  final baseTheme = brightness == Brightness.light ? yaru.yaruLight : yaru.yaruDark;
+  final colorScheme = baseTheme.colorScheme;
+
+  final lightInputBorder = OutlineInputBorder(
+    borderSide: BorderSide(color: colorScheme.secondaryContainer),
+    borderRadius: _borderRadius,
+  );
+
+  final darkInputBorder = OutlineInputBorder(
+    borderSide: BorderSide(color: colorScheme.secondaryContainer),
+    borderRadius: _borderRadius,
+  );
+
+  return baseTheme.copyWith(
+    navigationBarTheme: colorScheme.brightness == Brightness.dark
+        ? NavigationBarThemeData(
+            iconTheme: MaterialStateProperty.all(const IconThemeData(color: Colors.white)),
+          )
+        : null,
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: colorScheme.secondaryContainer,
+      border: colorScheme.brightness == Brightness.light ? lightInputBorder : darkInputBorder,
+      focusedBorder: colorScheme.brightness == Brightness.light ? lightInputBorder : darkInputBorder,
+      enabledBorder: colorScheme.brightness == Brightness.light ? lightInputBorder : darkInputBorder,
+      contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: colorScheme.brightness == Brightness.dark ? Colors.white : null,
+        padding: checkPlatformIsDesktop() ? const EdgeInsets.all(16) : const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        padding: checkPlatformIsDesktop() ? const EdgeInsets.all(16) : const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      ),
+    ),
+  );
 }

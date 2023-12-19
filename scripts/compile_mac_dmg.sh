@@ -2,9 +2,9 @@
 # git reset --hard origin/main
 # git pull
 
+cd app
 fvm flutter clean
 fvm flutter pub get
-fvm flutter pub run build_runner build -d
 fvm flutter build macos
 
 # sign the app
@@ -22,7 +22,7 @@ echo
 create-dmg \
   --volname "LocalSend" \
   --window-size 500 300 \
-  --background "scripts/dmg/background.png" \
+  --background "../scripts/dmg/background.png" \
   --icon LocalSend.app 130 110 \
   --app-drop-link 360 110 \
   LocalSend.dmg \
@@ -49,3 +49,4 @@ echo
 echo "Run stapler..."
 echo
 xcrun stapler staple LocalSend.dmg
+cd ..

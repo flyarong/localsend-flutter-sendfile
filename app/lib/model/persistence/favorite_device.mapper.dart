@@ -1,7 +1,8 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element
+// ignore_for_file: unused_element, unnecessary_cast
+// ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
 
 part of 'favorite_device.dart';
 
@@ -14,11 +15,6 @@ class FavoriteDeviceMapper extends ClassMapperBase<FavoriteDevice> {
       MapperContainer.globals.use(_instance = FavoriteDeviceMapper._());
     }
     return _instance!;
-  }
-
-  static T _guard<T>(T Function(MapperContainer) fn) {
-    ensureInitialized();
-    return fn(MapperContainer.globals);
   }
 
   @override
@@ -35,6 +31,9 @@ class FavoriteDeviceMapper extends ClassMapperBase<FavoriteDevice> {
   static const Field<FavoriteDevice, int> _f$port = Field('port', _$port);
   static String _$alias(FavoriteDevice v) => v.alias;
   static const Field<FavoriteDevice, String> _f$alias = Field('alias', _$alias);
+  static bool _$customAlias(FavoriteDevice v) => v.customAlias;
+  static const Field<FavoriteDevice, bool> _f$customAlias =
+      Field('customAlias', _$customAlias, opt: true, def: false);
 
   @override
   final Map<Symbol, Field<FavoriteDevice, dynamic>> fields = const {
@@ -43,6 +42,7 @@ class FavoriteDeviceMapper extends ClassMapperBase<FavoriteDevice> {
     #ip: _f$ip,
     #port: _f$port,
     #alias: _f$alias,
+    #customAlias: _f$customAlias,
   };
 
   static FavoriteDevice _instantiate(DecodingData data) {
@@ -51,28 +51,31 @@ class FavoriteDeviceMapper extends ClassMapperBase<FavoriteDevice> {
         fingerprint: data.dec(_f$fingerprint),
         ip: data.dec(_f$ip),
         port: data.dec(_f$port),
-        alias: data.dec(_f$alias));
+        alias: data.dec(_f$alias),
+        customAlias: data.dec(_f$customAlias));
   }
 
   @override
   final Function instantiate = _instantiate;
 
   static FavoriteDevice fromJson(Map<String, dynamic> map) {
-    return _guard((c) => c.fromMap<FavoriteDevice>(map));
+    return ensureInitialized().decodeMap<FavoriteDevice>(map);
   }
 
   static FavoriteDevice deserialize(String json) {
-    return _guard((c) => c.fromJson<FavoriteDevice>(json));
+    return ensureInitialized().decodeJson<FavoriteDevice>(json);
   }
 }
 
 mixin FavoriteDeviceMappable {
   String serialize() {
-    return FavoriteDeviceMapper._guard((c) => c.toJson(this as FavoriteDevice));
+    return FavoriteDeviceMapper.ensureInitialized()
+        .encodeJson<FavoriteDevice>(this as FavoriteDevice);
   }
 
   Map<String, dynamic> toJson() {
-    return FavoriteDeviceMapper._guard((c) => c.toMap(this as FavoriteDevice));
+    return FavoriteDeviceMapper.ensureInitialized()
+        .encodeMap<FavoriteDevice>(this as FavoriteDevice);
   }
 
   FavoriteDeviceCopyWith<FavoriteDevice, FavoriteDevice, FavoriteDevice>
@@ -80,19 +83,22 @@ mixin FavoriteDeviceMappable {
           this as FavoriteDevice, $identity, $identity);
   @override
   String toString() {
-    return FavoriteDeviceMapper._guard((c) => c.asString(this));
+    return FavoriteDeviceMapper.ensureInitialized()
+        .stringifyValue(this as FavoriteDevice);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (runtimeType == other.runtimeType &&
-            FavoriteDeviceMapper._guard((c) => c.isEqual(this, other)));
+            FavoriteDeviceMapper.ensureInitialized()
+                .isValueEqual(this as FavoriteDevice, other));
   }
 
   @override
   int get hashCode {
-    return FavoriteDeviceMapper._guard((c) => c.hash(this));
+    return FavoriteDeviceMapper.ensureInitialized()
+        .hashValue(this as FavoriteDevice);
   }
 }
 
@@ -105,7 +111,12 @@ extension FavoriteDeviceValueCopy<$R, $Out>
 abstract class FavoriteDeviceCopyWith<$R, $In extends FavoriteDevice, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   $R call(
-      {String? id, String? fingerprint, String? ip, int? port, String? alias});
+      {String? id,
+      String? fingerprint,
+      String? ip,
+      int? port,
+      String? alias,
+      bool? customAlias});
   FavoriteDeviceCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -124,13 +135,15 @@ class _FavoriteDeviceCopyWithImpl<$R, $Out>
           String? fingerprint,
           String? ip,
           int? port,
-          String? alias}) =>
+          String? alias,
+          bool? customAlias}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (fingerprint != null) #fingerprint: fingerprint,
         if (ip != null) #ip: ip,
         if (port != null) #port: port,
-        if (alias != null) #alias: alias
+        if (alias != null) #alias: alias,
+        if (customAlias != null) #customAlias: customAlias
       }));
   @override
   FavoriteDevice $make(CopyWithData data) => FavoriteDevice(
@@ -138,7 +151,8 @@ class _FavoriteDeviceCopyWithImpl<$R, $Out>
       fingerprint: data.get(#fingerprint, or: $value.fingerprint),
       ip: data.get(#ip, or: $value.ip),
       port: data.get(#port, or: $value.port),
-      alias: data.get(#alias, or: $value.alias));
+      alias: data.get(#alias, or: $value.alias),
+      customAlias: data.get(#customAlias, or: $value.customAlias));
 
   @override
   FavoriteDeviceCopyWith<$R2, FavoriteDevice, $Out2> $chain<$R2, $Out2>(

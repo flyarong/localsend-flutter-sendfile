@@ -1,8 +1,7 @@
 part of 'strings.g.dart';
 
 // Path: <root>
-class _StringsZhTw extends _StringsEn {
-
+class _StringsZhTw extends Translations {
 	/// You can call this constructor and build your own translation instance of this locale.
 	/// Constructing via the enum [AppLocale.build] is preferred.
 	_StringsZhTw.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
@@ -16,7 +15,7 @@ class _StringsZhTw extends _StringsEn {
 		  super.build(cardinalResolver: cardinalResolver, ordinalResolver: ordinalResolver);
 
 	/// Metadata for the translations of <zh-TW>.
-	@override final TranslationMetadata<AppLocale, _StringsEn> $meta;
+	@override final TranslationMetadata<AppLocale, Translations> $meta;
 
 	@override late final _StringsZhTw _root = this; // ignore: unused_field
 
@@ -37,6 +36,7 @@ class _StringsZhTw extends _StringsEn {
 	@override late final _StringsProgressPageZhTw progressPage = _StringsProgressPageZhTw._(_root);
 	@override late final _StringsWebSharePageZhTw webSharePage = _StringsWebSharePageZhTw._(_root);
 	@override late final _StringsAboutPageZhTw aboutPage = _StringsAboutPageZhTw._(_root);
+	@override late final _StringsDonationPageZhTw donationPage = _StringsDonationPageZhTw._(_root);
 	@override late final _StringsChangelogPageZhTw changelogPage = _StringsChangelogPageZhTw._(_root);
 	@override late final _StringsAliasGeneratorZhTw aliasGenerator = _StringsAliasGeneratorZhTw._(_root);
 	@override late final _StringsDialogsZhTw dialogs = _StringsDialogsZhTw._(_root);
@@ -64,6 +64,7 @@ class _StringsGeneralZhTw extends _StringsGeneralEn {
 	@override String get copiedToClipboard => '已複製到剪貼簿';
 	@override String get decline => '拒絕';
 	@override String get done => '完成';
+	@override String get delete => '刪除';
 	@override String get edit => '編輯';
 	@override String get error => '錯誤';
 	@override String get example => '範例';
@@ -87,6 +88,7 @@ class _StringsGeneralZhTw extends _StringsGeneralEn {
 	@override String get save => '儲存';
 	@override String get unchanged => '未變更';
 	@override String get unknown => '未知';
+	@override String get noItemInClipboard => '剪貼簿中沒有項目';
 }
 
 // Path: receiveTab
@@ -132,6 +134,7 @@ class _StringsSettingsTabZhTw extends _StringsSettingsTabEn {
 	@override late final _StringsSettingsTabGeneralZhTw general = _StringsSettingsTabGeneralZhTw._(_root);
 	@override late final _StringsSettingsTabReceiveZhTw receive = _StringsSettingsTabReceiveZhTw._(_root);
 	@override late final _StringsSettingsTabNetworkZhTw network = _StringsSettingsTabNetworkZhTw._(_root);
+	@override late final _StringsSettingsTabOtherZhTw other = _StringsSettingsTabOtherZhTw._(_root);
 	@override String get advancedSettings => '進階設定';
 }
 
@@ -272,6 +275,27 @@ class _StringsAboutPageZhTw extends _StringsAboutPageEn {
 
 	// Translations
 	@override String get title => '關於 LocalSend';
+	@override List<String> get description => [
+		'LocalSend 是一款免費的開源應用程式，可讓您透過區域網路與鄰近的裝置安全的共享檔案和訊息，無需網際網路連線。',
+		'此應用程式可在 Android、iOS、macOS、Windows 和 Linux 上使用。 您可以在官網首頁上找到所有下載選項。',
+	];
+	@override String get author => '作者';
+	@override String get contributors => '貢獻者';
+	@override String get translators => '翻譯者';
+}
+
+// Path: donationPage
+class _StringsDonationPageZhTw extends _StringsDonationPageEn {
+	_StringsDonationPageZhTw._(_StringsZhTw root) : this._root = root, super._(root);
+
+	@override final _StringsZhTw _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '贊助';
+	@override String get info => 'LocalSend 是免費、開源且沒有任何廣告的。如果您喜歡此應用程式，您可以透過捐贈來支持開發。';
+	@override String donate({required Object amount}) => '贊助 ${amount}';
+	@override String get thanks => '非常感謝您!';
+	@override String get restore => '回復購買';
 }
 
 // Path: changelogPage
@@ -306,8 +330,12 @@ class _StringsDialogsZhTw extends _StringsDialogsEn {
 	@override late final _StringsDialogsCannotOpenFileZhTw cannotOpenFile = _StringsDialogsCannotOpenFileZhTw._(_root);
 	@override late final _StringsDialogsEncryptionDisabledNoticeZhTw encryptionDisabledNotice = _StringsDialogsEncryptionDisabledNoticeZhTw._(_root);
 	@override late final _StringsDialogsErrorDialogZhTw errorDialog = _StringsDialogsErrorDialogZhTw._(_root);
+	@override late final _StringsDialogsFavoriteDialogZhTw favoriteDialog = _StringsDialogsFavoriteDialogZhTw._(_root);
+	@override late final _StringsDialogsFavoriteDeleteDialogZhTw favoriteDeleteDialog = _StringsDialogsFavoriteDeleteDialogZhTw._(_root);
+	@override late final _StringsDialogsFavoriteEditDialogZhTw favoriteEditDialog = _StringsDialogsFavoriteEditDialogZhTw._(_root);
 	@override late final _StringsDialogsFileInfoZhTw fileInfo = _StringsDialogsFileInfoZhTw._(_root);
 	@override late final _StringsDialogsFileNameInputZhTw fileNameInput = _StringsDialogsFileNameInputZhTw._(_root);
+	@override late final _StringsDialogsHistoryClearDialogZhTw historyClearDialog = _StringsDialogsHistoryClearDialogZhTw._(_root);
 	@override late final _StringsDialogsLocalNetworkUnauthorizedZhTw localNetworkUnauthorized = _StringsDialogsLocalNetworkUnauthorizedZhTw._(_root);
 	@override late final _StringsDialogsMessageInputZhTw messageInput = _StringsDialogsMessageInputZhTw._(_root);
 	@override late final _StringsDialogsNoFilesZhTw noFiles = _StringsDialogsNoFilesZhTw._(_root);
@@ -417,6 +445,7 @@ class _StringsSendTabPickerZhTw extends _StringsSendTabPickerEn {
 	@override String get media => '媒體';
 	@override String get text => '文字';
 	@override String get app => '應用程式';
+	@override String get clipboard => '貼上';
 }
 
 // Path: sendTab.sendModes
@@ -461,6 +490,7 @@ class _StringsSettingsTabReceiveZhTw extends _StringsSettingsTabReceiveEn {
 	// Translations
 	@override String get title => '接收';
 	@override String get quickSave => '${_root.general.quickSave}';
+	@override String get autoFinish => '自動完成';
 	@override String get destination => '儲存目錄';
 	@override String get downloads => '(下載)';
 	@override String get saveToGallery => '儲存媒體至相簿';
@@ -485,6 +515,20 @@ class _StringsSettingsTabNetworkZhTw extends _StringsSettingsTabNetworkEn {
 	@override String get encryption => '加密';
 	@override String get multicastGroup => '多點傳送';
 	@override String multicastGroupWarning({required Object defaultMulticast}) => '您可能無法被其他裝置偵測，因為您正在使用自訂多點傳送位址。(預設：${defaultMulticast})';
+}
+
+// Path: settingsTab.other
+class _StringsSettingsTabOtherZhTw extends _StringsSettingsTabOtherEn {
+	_StringsSettingsTabOtherZhTw._(_StringsZhTw root) : this._root = root, super._(root);
+
+	@override final _StringsZhTw _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '其它';
+	@override String get support => '支持LocalSend';
+	@override String get donate => '贊助';
+	@override String get privacyPolicy => '隱私權政策';
+	@override String get termsOfUse => '使用條款';
 }
 
 // Path: troubleshootPage.firewall
@@ -602,6 +646,44 @@ class _StringsDialogsErrorDialogZhTw extends _StringsDialogsErrorDialogEn {
 	@override String get title => '${_root.general.error}';
 }
 
+// Path: dialogs.favoriteDialog
+class _StringsDialogsFavoriteDialogZhTw extends _StringsDialogsFavoriteDialogEn {
+	_StringsDialogsFavoriteDialogZhTw._(_StringsZhTw root) : this._root = root, super._(root);
+
+	@override final _StringsZhTw _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '收藏';
+	@override String get noFavorites => '還沒有收藏的裝置。';
+	@override String get addFavorite => '新增';
+}
+
+// Path: dialogs.favoriteDeleteDialog
+class _StringsDialogsFavoriteDeleteDialogZhTw extends _StringsDialogsFavoriteDeleteDialogEn {
+	_StringsDialogsFavoriteDeleteDialogZhTw._(_StringsZhTw root) : this._root = root, super._(root);
+
+	@override final _StringsZhTw _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '從收藏中刪除';
+	@override String content({required Object name}) => '您確定要從收藏中刪除 "${name}" 嗎?';
+}
+
+// Path: dialogs.favoriteEditDialog
+class _StringsDialogsFavoriteEditDialogZhTw extends _StringsDialogsFavoriteEditDialogEn {
+	_StringsDialogsFavoriteEditDialogZhTw._(_StringsZhTw root) : this._root = root, super._(root);
+
+	@override final _StringsZhTw _root; // ignore: unused_field
+
+	// Translations
+	@override String get titleAdd => '新增收藏';
+	@override String get titleEdit => '調整';
+	@override String get name => '別名';
+	@override String get auto => '(自動)';
+	@override String get ip => 'IP位址';
+	@override String get port => '連接埠';
+}
+
 // Path: dialogs.fileInfo
 class _StringsDialogsFileInfoZhTw extends _StringsDialogsFileInfoEn {
 	_StringsDialogsFileInfoZhTw._(_StringsZhTw root) : this._root = root, super._(root);
@@ -626,6 +708,17 @@ class _StringsDialogsFileNameInputZhTw extends _StringsDialogsFileNameInputEn {
 	// Translations
 	@override String get title => '輸入檔案名稱';
 	@override String original({required Object original}) => '原始檔案名稱：${original}';
+}
+
+// Path: dialogs.historyClearDialog
+class _StringsDialogsHistoryClearDialogZhTw extends _StringsDialogsHistoryClearDialogEn {
+	_StringsDialogsHistoryClearDialogZhTw._(_StringsZhTw root) : this._root = root, super._(root);
+
+	@override final _StringsZhTw _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '清除紀錄';
+	@override String get content => '您真的要刪除整個歷史記錄嗎?';
 }
 
 // Path: dialogs.localNetworkUnauthorized
@@ -753,6 +846,7 @@ class _StringsSettingsTabGeneralColorOptionsZhTw extends _StringsSettingsTabGene
 
 	// Translations
 	@override String get system => '系統';
+	@override String get oled => 'OLED';
 }
 
 // Path: settingsTab.general.languageOptions

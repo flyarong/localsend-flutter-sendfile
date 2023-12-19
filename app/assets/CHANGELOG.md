@@ -1,14 +1,40 @@
-## 1.12.0 (2023-)
+## 1.13.1 (2023-12-08)
+
+- feat: add a short delay when "Auto Finish" is enabled (@Tienisto)
+- feat: automatically update the device name of favorite devices when they were unchanged by the user (@Tienisto)
+- feat: expand file picker buttons if the button text is too long (@Tienisto)
+- fix: various crash issues by downgrading Flutter from 3.16 to 3.13 (@Tienisto)
+
+## 1.13.0 (2023-12-04)
+
+- feat: add option to automatically finish after successful transfer (@Tienisto)
+- feat: show favorite name in the device list if marked as favorite (@Tienisto)
+- feat: ignore duplicate files when selected from file picker (@programmermager)
+- feat: add donation options (@Tienisto)
+- feat: add Yaru theme (@Tienisto)
+- feat(desktop): uses `settings.json` located next to the executable if available for portable mode (@Tienisto)
+- feat(windows): make windows icon sharper (@Tienisto, @sergd88)
+- feat(macos): add Command+W shortcut to close the window (@Q1CHENL)
+- fix: also show an OLED color mode option when dynamic colors are not supported by OS (@dhruvanbhalara)
+- fix: sync button should spin right away when clicked (@Tienisto)
+- fix(android): request permission when saving files outside of downloads folder (@Tienisto)
+- fix(ios): fix permission error when picking directory (@Tienisto)
+- fix(ios): clear cache when file is shared from another app (@Tienisto)
+- i18n: add Greek (@multipetros), Khmer (@nidexingg)
+
+## 1.12.0 (2023-10-25)
 
 - feat: add favorites (@Tienisto)
-- feat: drastically improve GPU usage by optimizing the spin animation (@Tienisto)
 - feat: add OLED color mode (@Tienisto)
+- feat: show dialog before clearing history (@pantshaswat, @Tienisto)
+- feat: show clear button in apk picker search bar (@Tienisto)
 - feat: use better colors for the toggle switches in the settings (@gitstart)
+- feat: drastically improve GPU usage by optimizing the spin animation (@Tienisto)
 - feat(desktop): support pasting from clipboard (@gitstart, @Tienisto)
 - feat(linux): allow disabling client side decorations on Wayland (@I-Want-ToBelieve)
 - feat(android): use high framerate on devices that lock at 60 Hz like on some OnePlus phones (@Tienisto)
 - fix(desktop): fallback to "$HOME/Downloads" when default downloads folder is unavailable (@Sqbika)
-- i18n: add Vietnamese (@faea726), Basque (@xezpeleta)
+- i18n: add Vietnamese (@faea726), Thai (@watchakorn-18k), Basque (@xezpeleta)
 
 ## 1.11.1 (2023-09-04)
 

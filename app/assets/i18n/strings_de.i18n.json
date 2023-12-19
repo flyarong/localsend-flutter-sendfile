@@ -105,6 +105,7 @@
     "receive": {
       "title": "Empfangen",
       "quickSave": "@:general.quickSave",
+      "autoFinish": "Autom. beenden",
       "destination": "Ziel-Ordner",
       "downloads": "(Downloads)",
       "saveToGallery": "Medien in die Gallerie speichern",
@@ -122,6 +123,13 @@
       "encryption": "Verschlüsselung",
       "multicastGroup": "Multicast",
       "multicastGroupWarning": "Möglicherweise wirst du von anderen Geräten nicht erkannt, weil du eine benutzerdefinierte Multicast-Adresse verwendest. (Standard: {defaultMulticast})"
+    },
+    "other": {
+      "title": "Weitere",
+      "support": "LocalSend unterstützen",
+      "donate": "Spenden",
+      "privacyPolicy": "Datenschutzerklärung",
+      "termsOfUse": "Nutzungsbedingungen"
     },
     "advancedSettings": "Erweiterte Einstellungen"
   },
@@ -162,8 +170,8 @@
   },
   "receivePage": {
     "subTitle": {
-      "one": "möchte dir eine Datei senden.",
-      "other": "möchte dir {n} Dateien senden."
+      "one": "möchte dir eine Datei senden",
+      "other": "möchte dir {n} Dateien senden"
     },
     "subTitleMessage": "sendet dir eine Nachricht:",
     "subTitleLink": "sendet dir einen Link:",
@@ -213,12 +221,26 @@
     "pendingRequests": "Offene Anfragen: {n}"
   },
   "aboutPage": {
-    "title": "Über LocalSend"
+    "title": "Über LocalSend",
+    "description": [
+      "LocalSend ist eine kostenlose Open-Source-App, mit der du Dateien und Nachrichten sicher über dein lokales Netzwerk mit Geräten in der Nähe teilen kannst, ohne dass eine Internetverbindung erforderlich ist.",
+      "Diese App ist für Android, iOS, macOS, Windows und Linux verfügbar. Alle Downloadmöglichkeiten findest du auf der offiziellen Homepage."
+    ],
+    "author": "Autor",
+    "contributors": "Mitwirkende",
+    "translators": "Übersetzer:innen"
+  },
+  "donationPage": {
+    "title": "Spenden",
+    "info": "LocalSend ist kostenlos, open-source und frei von Werbung. Wenn dir diese App gefällt, kannst du die Entwicklung mit einer Spende unterstützen.",
+    "donate": "Spende {amount}",
+    "thanks": "Vielen Dank für deine Unterstützung!",
+    "restore": "Käufe Wiederherstellen"
   },
   "changelogPage": {
     "title": "Changelog"
   },
-  "aliasGenerator(ignoreMissing)": {
+  "aliasGenerator(ignoreMissing, ignoreGpt)": {
     "@info": "Inherits from the English version"
   },
   "dialogs": {
@@ -275,6 +297,10 @@
     "fileNameInput": {
       "title": "Dateiname eingeben",
       "original": "Original: {original}"
+    },
+    "historyClearDialog": {
+      "title": "Verlauf löschen",
+      "content": "Möchtest du wirklich den gesamten Verlauf löschen?"
     },
     "localNetworkUnauthorized": {
       "title": "@:dialogs.noPermission.title",

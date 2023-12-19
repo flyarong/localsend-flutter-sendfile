@@ -105,6 +105,7 @@
     "receive": {
       "title": "Fogadás",
       "quickSave": "@:general.quickSave",
+      "autoFinish": "Autom. befejezés",
       "destination": "Mentés helye",
       "downloads": "(Letöltések)",
       "saveToGallery": "Média mentése a galériába",
@@ -122,6 +123,13 @@
       "encryption": "Titkosítás",
       "multicastGroup": "Multicast",
       "multicastGroupWarning": "Előfordulhat, hogy más eszközök nem észlelik eszközét, mert egyéni multicast címet használ. (alapérték: {defaultMulticast})"
+    },
+    "other": {
+      "title": "Egyéb",
+      "support": "LocalSend támogatás",
+      "donate": "Adomány",
+      "privacyPolicy": "Adatvédelmi irányelvek",
+      "termsOfUse": "Használati feltételek"
     },
     "advancedSettings": "Haladó beállítások"
   },
@@ -162,8 +170,8 @@
   },
   "receivePage": {
     "subTitle": {
-      "one": "fájlt szeretne küldeni.",
-      "other": "{n} fájlt szeretne küldeni."
+      "one": "fájlt szeretne küldeni",
+      "other": "{n} fájlt szeretne küldeni"
     },
     "subTitleMessage": "üzenetet küldött:",
     "subTitleLink": "Linket küldött:",
@@ -213,12 +221,26 @@
     "pendingRequests": "Függőben lévő kérések: {n}"
   },
   "aboutPage": {
-    "title": "A LocalSendről"
+    "title": "A LocalSend",
+    "description": [
+      "A LocalSend egy ingyenes, nyílt forráskódú alkalmazás, amely lehetővé teszi a fájlok és üzenetek biztonságos megosztását a közeli eszközökkel a helyi hálózaton keresztül, internet kapcsolat nélkül.",
+      "Ez az alkalmazás Android, iOS, macOS, Windows és Linux rendszereken érhető el. Az összes letöltési lehetőséget megtalálja a hivatalos honlapon."
+    ],
+    "author": "Szerző",
+    "contributors": "Közreműködők",
+    "translators": "Fordítók"
+  },
+  "donationPage": {
+    "title": "Adomány",
+    "info": "A LocalSend ingyenes, nyílt forráskódú és hirdetések nélküli. Ha megtetszett az alkalmazás, adományával támogathatja a fejlesztést.",
+    "donate": "Adomány {amount}",
+    "thanks": "Köszönöm szépen!",
+    "restore": "Vásárlás visszaállítása"
   },
   "changelogPage": {
     "title": "Változásnapló"
   },
-  "aliasGenerator(ignoreMissing)": {
+  "aliasGenerator(ignoreMissing, ignoreGpt)": {
     "@info": "Az angol változatból örökölve"
   },
   "dialogs": {
@@ -275,6 +297,10 @@
     "fileNameInput": {
       "title": "Írja be a fájl nevét",
       "original": "Eredeti: {original}"
+    },
+    "historyClearDialog": {
+      "title": "Előzmény törlése",
+      "content": "Biztosan törölni szeretné a teljes előzményt?"
     },
     "localNetworkUnauthorized": {
       "title": "@:dialogs.noPermission.title",

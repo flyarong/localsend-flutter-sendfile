@@ -1,8 +1,7 @@
 part of 'strings.g.dart';
 
 // Path: <root>
-class _StringsUk extends _StringsEn {
-
+class _StringsUk extends Translations {
 	/// You can call this constructor and build your own translation instance of this locale.
 	/// Constructing via the enum [AppLocale.build] is preferred.
 	_StringsUk.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
@@ -16,7 +15,7 @@ class _StringsUk extends _StringsEn {
 		  super.build(cardinalResolver: cardinalResolver, ordinalResolver: ordinalResolver);
 
 	/// Metadata for the translations of <uk>.
-	@override final TranslationMetadata<AppLocale, _StringsEn> $meta;
+	@override final TranslationMetadata<AppLocale, Translations> $meta;
 
 	@override late final _StringsUk _root = this; // ignore: unused_field
 
@@ -37,6 +36,7 @@ class _StringsUk extends _StringsEn {
 	@override late final _StringsProgressPageUk progressPage = _StringsProgressPageUk._(_root);
 	@override late final _StringsWebSharePageUk webSharePage = _StringsWebSharePageUk._(_root);
 	@override late final _StringsAboutPageUk aboutPage = _StringsAboutPageUk._(_root);
+	@override late final _StringsDonationPageUk donationPage = _StringsDonationPageUk._(_root);
 	@override late final _StringsChangelogPageUk changelogPage = _StringsChangelogPageUk._(_root);
 	@override late final _StringsAliasGeneratorUk aliasGenerator = _StringsAliasGeneratorUk._(_root);
 	@override late final _StringsDialogsUk dialogs = _StringsDialogsUk._(_root);
@@ -98,7 +98,7 @@ class _StringsReceiveTabUk extends _StringsReceiveTabEn {
 	@override final _StringsUk _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Отримання';
+	@override String get title => 'Отримати';
 	@override late final _StringsReceiveTabInfoBoxUk infoBox = _StringsReceiveTabInfoBoxUk._(_root);
 }
 
@@ -109,7 +109,7 @@ class _StringsSendTabUk extends _StringsSendTabEn {
 	@override final _StringsUk _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Надсилання';
+	@override String get title => 'Надіслати';
 	@override late final _StringsSendTabSelectionUk selection = _StringsSendTabSelectionUk._(_root);
 	@override late final _StringsSendTabPickerUk picker = _StringsSendTabPickerUk._(_root);
 	@override String get shareIntentInfo => 'Ви також можете використовувати кнопку "Поділитися" на своєму мобільному пристрої для швидкого вибору файлів.';
@@ -134,6 +134,7 @@ class _StringsSettingsTabUk extends _StringsSettingsTabEn {
 	@override late final _StringsSettingsTabGeneralUk general = _StringsSettingsTabGeneralUk._(_root);
 	@override late final _StringsSettingsTabReceiveUk receive = _StringsSettingsTabReceiveUk._(_root);
 	@override late final _StringsSettingsTabNetworkUk network = _StringsSettingsTabNetworkUk._(_root);
+	@override late final _StringsSettingsTabOtherUk other = _StringsSettingsTabOtherUk._(_root);
 	@override String get advancedSettings => 'Розширені налаштування';
 }
 
@@ -274,6 +275,27 @@ class _StringsAboutPageUk extends _StringsAboutPageEn {
 
 	// Translations
 	@override String get title => 'Про LocalSend';
+	@override List<String> get description => [
+		'LocalSend — це безкоштовний додаток з відкритим вихідним кодом, який дозволяє безпечно обмінюватися файлами та повідомленнями з пристроями поблизу через локальну мережу без підключення до Інтернету.',
+		'Цей додаток доступний для Android, iOS, macOS, Windows і Linux. Ви можете знайти всі варіанти завантаження на офіційній домашній сторінці.',
+	];
+	@override String get author => 'Автор';
+	@override String get contributors => 'Учасники';
+	@override String get translators => 'Перекладачі';
+}
+
+// Path: donationPage
+class _StringsDonationPageUk extends _StringsDonationPageEn {
+	_StringsDonationPageUk._(_StringsUk root) : this._root = root, super._(root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Пожертвувати';
+	@override String get info => 'LocalSend є безкоштовним, із відкритим вихідним кодом і без реклами. Якщо вам подобається додаток, ви можете підтримати його розробку пожертвою.';
+	@override String donate({required Object amount}) => 'Пожертвувати ${amount}';
+	@override String get thanks => 'Велике спасибі!';
+	@override String get restore => 'Відновити покупку';
 }
 
 // Path: changelogPage
@@ -313,6 +335,7 @@ class _StringsDialogsUk extends _StringsDialogsEn {
 	@override late final _StringsDialogsFavoriteEditDialogUk favoriteEditDialog = _StringsDialogsFavoriteEditDialogUk._(_root);
 	@override late final _StringsDialogsFileInfoUk fileInfo = _StringsDialogsFileInfoUk._(_root);
 	@override late final _StringsDialogsFileNameInputUk fileNameInput = _StringsDialogsFileNameInputUk._(_root);
+	@override late final _StringsDialogsHistoryClearDialogUk historyClearDialog = _StringsDialogsHistoryClearDialogUk._(_root);
 	@override late final _StringsDialogsLocalNetworkUnauthorizedUk localNetworkUnauthorized = _StringsDialogsLocalNetworkUnauthorizedUk._(_root);
 	@override late final _StringsDialogsMessageInputUk messageInput = _StringsDialogsMessageInputUk._(_root);
 	@override late final _StringsDialogsNoFilesUk noFiles = _StringsDialogsNoFilesUk._(_root);
@@ -451,7 +474,7 @@ class _StringsSettingsTabGeneralUk extends _StringsSettingsTabGeneralEn {
 	@override late final _StringsSettingsTabGeneralColorOptionsUk colorOptions = _StringsSettingsTabGeneralColorOptionsUk._(_root);
 	@override String get language => 'Мова';
 	@override late final _StringsSettingsTabGeneralLanguageOptionsUk languageOptions = _StringsSettingsTabGeneralLanguageOptionsUk._(_root);
-	@override String get saveWindowPlacement => 'Зберегти розташування вікна після закриття програми';
+	@override String get saveWindowPlacement => 'Зберегти розташування вікна після закриття';
 	@override String get minimizeToTray => 'Закрити: згорнути в системний трей/смугу меню';
 	@override String get launchAtStartup => 'Автозапуск';
 	@override String get launchMinimized => 'Прихований автозапуск';
@@ -467,6 +490,7 @@ class _StringsSettingsTabReceiveUk extends _StringsSettingsTabReceiveEn {
 	// Translations
 	@override String get title => 'Отримання';
 	@override String get quickSave => '${_root.general.quickSave}';
+	@override String get autoFinish => 'Автозавершення';
 	@override String get destination => 'Зберігати в теку';
 	@override String get downloads => '(Завантаження)';
 	@override String get saveToGallery => 'Зберігати медіафайли до галереї';
@@ -491,6 +515,20 @@ class _StringsSettingsTabNetworkUk extends _StringsSettingsTabNetworkEn {
 	@override String get encryption => 'Шифрування';
 	@override String get multicastGroup => 'Групова передача';
 	@override String multicastGroupWarning({required Object defaultMulticast}) => 'Інші пристрої можуть вас не виявити, оскільки ви використовуєте іншу, власну групову адресу. (default: ${defaultMulticast})';
+}
+
+// Path: settingsTab.other
+class _StringsSettingsTabOtherUk extends _StringsSettingsTabOtherEn {
+	_StringsSettingsTabOtherUk._(_StringsUk root) : this._root = root, super._(root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Інше';
+	@override String get support => 'Підтримати LocalSend';
+	@override String get donate => 'Пожертвувати';
+	@override String get privacyPolicy => 'Політика конфіденційності';
+	@override String get termsOfUse => 'Умови використання';
 }
 
 // Path: troubleshootPage.firewall
@@ -573,7 +611,7 @@ class _StringsDialogsCancelSessionUk extends _StringsDialogsCancelSessionEn {
 
 	// Translations
 	@override String get title => 'Скасувати надсилання файлів';
-	@override String get content => 'Ви дійсно хочете скасувати надсилання файлів?';
+	@override String get content => 'Ви справді хочете скасувати надсилання файлів?';
 }
 
 // Path: dialogs.cannotOpenFile
@@ -628,7 +666,7 @@ class _StringsDialogsFavoriteDeleteDialogUk extends _StringsDialogsFavoriteDelet
 
 	// Translations
 	@override String get title => 'Видалити з вибраних';
-	@override String content({required Object name}) => 'Ви дійсно хочете видалити з вибраних "${name}"?';
+	@override String content({required Object name}) => 'Ви справді хочете видалити з вибраних "${name}"?';
 }
 
 // Path: dialogs.favoriteEditDialog
@@ -639,7 +677,7 @@ class _StringsDialogsFavoriteEditDialogUk extends _StringsDialogsFavoriteEditDia
 
 	// Translations
 	@override String get titleAdd => 'Додати до вибраних';
-	@override String get titleEdit => 'Налаштувати';
+	@override String get titleEdit => 'Налаштування';
 	@override String get name => 'Ім\'я пристрою';
 	@override String get auto => '(автоматично)';
 	@override String get ip => 'IP-адреса';
@@ -670,6 +708,17 @@ class _StringsDialogsFileNameInputUk extends _StringsDialogsFileNameInputEn {
 	// Translations
 	@override String get title => 'Введіть ім\'я файлу';
 	@override String original({required Object original}) => 'Оригінальне ім\'я файлу: ${original}';
+}
+
+// Path: dialogs.historyClearDialog
+class _StringsDialogsHistoryClearDialogUk extends _StringsDialogsHistoryClearDialogEn {
+	_StringsDialogsHistoryClearDialogUk._(_StringsUk root) : this._root = root, super._(root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Очистити історію';
+	@override String get content => 'Ви справді хочете видалити всю історію?';
 }
 
 // Path: dialogs.localNetworkUnauthorized
@@ -761,7 +810,7 @@ class _StringsDialogsQuickSaveNoticeUk extends _StringsDialogsQuickSaveNoticeEn 
 
 	// Translations
 	@override String get title => '${_root.general.quickSave}';
-	@override String get content => 'Запити на передачу файлів прийматимуться автоматично. Будьте обережні – кожен усередині цієї мережі зможе надсилати вам файли.';
+	@override String get content => 'Запити на отримання файлів відтепер приймаються автоматично. Будьте обережні, всі користувачі цієї локальної мережі можуть надсилати вам файли.';
 }
 
 // Path: dialogs.sendModeHelp

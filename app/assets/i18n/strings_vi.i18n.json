@@ -1,5 +1,5 @@
 {
-  "locale": "Vietnam",
+  "locale": "Tiếng Việt",
   "appName": "LocalSend",
   "general": {
     "accept": "Đồng ý",
@@ -80,7 +80,7 @@
   "settingsTab": {
     "title": "Cài đặt",
     "general": {
-      "title": "Tổng",
+      "title": "Chung",
       "brightness": "Chủ đề",
       "brightnessOptions": {
         "system": "Hệ thống",
@@ -105,8 +105,9 @@
     "receive": {
       "title": "Nhận",
       "quickSave": "@:general.quickSave",
+      "autoFinish": "Tự động hoàn thành",
       "destination": "Đích đến",
-      "downloads": "(Tải xuống)",
+      "downloads": "(Downloads)",
       "saveToGallery": "Lưu media vào thư viện",
       "saveToHistory": "Lưu vào lịch sử"
     },
@@ -123,16 +124,23 @@
       "multicastGroup": "Đa phương tiện",
       "multicastGroupWarning": "Các thiết bị khác có thể không nhận diện được thiết bị của bạn, vì bạn đang dùng địa chỉ multicast tuỳ chỉnh. (mặc định: {defaultMulticast})"
     },
+    "other": {
+      "title": "Khác",
+      "support": "Hỗ trợ LocalSend",
+      "donate": "Ủng hộ",
+      "privacyPolicy": "Chính sách bảo mật",
+      "termsOfUse": "Điều khoản sử dụng"
+    },
     "advancedSettings": "Cài đặt nâng cao"
   },
   "troubleshootPage": {
     "title": "Gỡ lỗi",
-    "subTitle": "Ứng dụng không hoạt động như dự kiến? Bạn có thể tìm giải pháp thông thường tại đây.",
+    "subTitle": "Ứng dụng không hoạt động như dự kiến? Bạn có thể tìm giải pháp cho những vấn đề thường gặp tại đây.",
     "solution": "Giải pháp:",
     "fixButton": "Sửa lỗi tự động",
     "firewall": {
       "symptom": "Ứng dụng có thể gửi tập tin tới các thiết bị khác, nhưng các thiết bị khác không thể gửi tập tin đến thiết bị này.",
-      "solution": "Có vẻ như đây là vấn đề của tường lửa (firewall). Bạn có thể khắc phục bằng cách chấp thuận các kết nối đến (UDP và TCP) trên port {port}.",
+      "solution": "Có vẻ như đây là một vấn đề với tường lửa (firewall). Bạn có thể khắc phục bằng cách chấp thuận các kết nối đến (UDP và TCP) trên port {port}.",
       "openFirewall": "Mở tường lửa(Firewall)"
     },
     "noConnection": {
@@ -162,8 +170,8 @@
   },
   "receivePage": {
     "subTitle": {
-      "one": "muốn gửi cho bạn một tập tin.",
-      "other": "muốn gửi cho bạn {n} tập tin."
+      "one": "muốn gửi cho bạn một tập tin",
+      "other": "muốn gửi cho bạn {n} tập tin"
     },
     "subTitleMessage": "đã gửi cho bạn một tin nhắn:",
     "subTitleLink": "đã gửi cho bạn một liên kết:",
@@ -213,12 +221,26 @@
     "pendingRequests": "Yêu cầu chờ: {n}"
   },
   "aboutPage": {
-    "title": "Thông tin về LocalSend"
+    "title": "Thông tin về LocalSend",
+    "description": [
+      "LocalSend là một phần mềm miễn phí mã nguồn mở, giúp bạn chia sẻ tập tin cũng như tin nhắn đến các thiết bị phụ cận một cách bảo mật thông qua mạng nội bộ mà không cần kết nối mạng đến bên ngoài.",
+      "Ứng dụng có trên Android, iOS, macOS, Windows và Linux. Bạn có thể tìm thấy các tuỳ chọn tải ở trang chủ."
+    ],
+    "author": "Tác giả",
+    "contributors": "Người đóng góp",
+    "translators": "Người dịch"
+  },
+  "donationPage": {
+    "title": "Ủng hộ",
+    "info": "LocalSend là ứng dụng miễn phí, mã nguồn mở, không chứa quảng cáo. Nếu bạn yêu thích ứng dụng này, bạn có thể hỗ trợ việc phát triển bằng việc ủng hộ.",
+    "donate": "Ủng hộ {amount}",
+    "thanks": "Xin chân thành cảm ơn!",
+    "restore": "Khôi phục lịch sử ủng hộ"
   },
   "changelogPage": {
     "title": "Changelog"
   },
-  "aliasGenerator(ignoreMissing)": {
+  "aliasGenerator(ignoreMissing, ignoreGpt)": {
     "@info": "Inherits from the English version"
   },
   "dialogs": {
@@ -275,6 +297,10 @@
     "fileNameInput": {
       "title": "Nhập tên",
       "original": "Ban đầu: {original}"
+    },
+    "historyClearDialog": {
+      "title": "Xoá lịch sử",
+      "content": "Bạn có chắc chắn muốn xoá toàn bộ lịch sử?"
     },
     "localNetworkUnauthorized": {
       "title": "@:dialogs.noPermission.title",

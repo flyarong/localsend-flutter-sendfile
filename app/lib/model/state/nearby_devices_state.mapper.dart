@@ -1,7 +1,8 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element
+// ignore_for_file: unused_element, unnecessary_cast
+// ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
 
 part of 'nearby_devices_state.dart';
 
@@ -17,14 +18,13 @@ class NearbyDevicesStateMapper extends ClassMapperBase<NearbyDevicesState> {
     return _instance!;
   }
 
-  static T _guard<T>(T Function(MapperContainer) fn) {
-    ensureInitialized();
-    return fn(MapperContainer.globals);
-  }
-
   @override
   final String id = 'NearbyDevicesState';
 
+  static bool _$runningFavoriteScan(NearbyDevicesState v) =>
+      v.runningFavoriteScan;
+  static const Field<NearbyDevicesState, bool> _f$runningFavoriteScan =
+      Field('runningFavoriteScan', _$runningFavoriteScan);
   static Set<String> _$runningIps(NearbyDevicesState v) => v.runningIps;
   static const Field<NearbyDevicesState, Set<String>> _f$runningIps =
       Field('runningIps', _$runningIps);
@@ -34,36 +34,39 @@ class NearbyDevicesStateMapper extends ClassMapperBase<NearbyDevicesState> {
 
   @override
   final Map<Symbol, Field<NearbyDevicesState, dynamic>> fields = const {
+    #runningFavoriteScan: _f$runningFavoriteScan,
     #runningIps: _f$runningIps,
     #devices: _f$devices,
   };
 
   static NearbyDevicesState _instantiate(DecodingData data) {
     return NearbyDevicesState(
-        runningIps: data.dec(_f$runningIps), devices: data.dec(_f$devices));
+        runningFavoriteScan: data.dec(_f$runningFavoriteScan),
+        runningIps: data.dec(_f$runningIps),
+        devices: data.dec(_f$devices));
   }
 
   @override
   final Function instantiate = _instantiate;
 
   static NearbyDevicesState fromJson(Map<String, dynamic> map) {
-    return _guard((c) => c.fromMap<NearbyDevicesState>(map));
+    return ensureInitialized().decodeMap<NearbyDevicesState>(map);
   }
 
   static NearbyDevicesState deserialize(String json) {
-    return _guard((c) => c.fromJson<NearbyDevicesState>(json));
+    return ensureInitialized().decodeJson<NearbyDevicesState>(json);
   }
 }
 
 mixin NearbyDevicesStateMappable {
   String serialize() {
-    return NearbyDevicesStateMapper._guard(
-        (c) => c.toJson(this as NearbyDevicesState));
+    return NearbyDevicesStateMapper.ensureInitialized()
+        .encodeJson<NearbyDevicesState>(this as NearbyDevicesState);
   }
 
   Map<String, dynamic> toJson() {
-    return NearbyDevicesStateMapper._guard(
-        (c) => c.toMap(this as NearbyDevicesState));
+    return NearbyDevicesStateMapper.ensureInitialized()
+        .encodeMap<NearbyDevicesState>(this as NearbyDevicesState);
   }
 
   NearbyDevicesStateCopyWith<NearbyDevicesState, NearbyDevicesState,
@@ -72,19 +75,22 @@ mixin NearbyDevicesStateMappable {
           this as NearbyDevicesState, $identity, $identity);
   @override
   String toString() {
-    return NearbyDevicesStateMapper._guard((c) => c.asString(this));
+    return NearbyDevicesStateMapper.ensureInitialized()
+        .stringifyValue(this as NearbyDevicesState);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (runtimeType == other.runtimeType &&
-            NearbyDevicesStateMapper._guard((c) => c.isEqual(this, other)));
+            NearbyDevicesStateMapper.ensureInitialized()
+                .isValueEqual(this as NearbyDevicesState, other));
   }
 
   @override
   int get hashCode {
-    return NearbyDevicesStateMapper._guard((c) => c.hash(this));
+    return NearbyDevicesStateMapper.ensureInitialized()
+        .hashValue(this as NearbyDevicesState);
   }
 }
 
@@ -99,7 +105,10 @@ abstract class NearbyDevicesStateCopyWith<$R, $In extends NearbyDevicesState,
     $Out> implements ClassCopyWith<$R, $In, $Out> {
   MapCopyWith<$R, String, Device, DeviceCopyWith<$R, Device, Device>>
       get devices;
-  $R call({Set<String>? runningIps, Map<String, Device>? devices});
+  $R call(
+      {bool? runningFavoriteScan,
+      Set<String>? runningIps,
+      Map<String, Device>? devices});
   NearbyDevicesStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -117,13 +126,20 @@ class _NearbyDevicesStateCopyWithImpl<$R, $Out>
       get devices => MapCopyWith($value.devices, (v, t) => v.copyWith.$chain(t),
           (v) => call(devices: v));
   @override
-  $R call({Set<String>? runningIps, Map<String, Device>? devices}) =>
+  $R call(
+          {bool? runningFavoriteScan,
+          Set<String>? runningIps,
+          Map<String, Device>? devices}) =>
       $apply(FieldCopyWithData({
+        if (runningFavoriteScan != null)
+          #runningFavoriteScan: runningFavoriteScan,
         if (runningIps != null) #runningIps: runningIps,
         if (devices != null) #devices: devices
       }));
   @override
   NearbyDevicesState $make(CopyWithData data) => NearbyDevicesState(
+      runningFavoriteScan:
+          data.get(#runningFavoriteScan, or: $value.runningFavoriteScan),
       runningIps: data.get(#runningIps, or: $value.runningIps),
       devices: data.get(#devices, or: $value.devices));
 

@@ -1,8 +1,7 @@
 part of 'strings.g.dart';
 
 // Path: <root>
-class _StringsVi extends _StringsEn {
-
+class _StringsVi extends Translations {
 	/// You can call this constructor and build your own translation instance of this locale.
 	/// Constructing via the enum [AppLocale.build] is preferred.
 	_StringsVi.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
@@ -16,12 +15,12 @@ class _StringsVi extends _StringsEn {
 		  super.build(cardinalResolver: cardinalResolver, ordinalResolver: ordinalResolver);
 
 	/// Metadata for the translations of <vi>.
-	@override final TranslationMetadata<AppLocale, _StringsEn> $meta;
+	@override final TranslationMetadata<AppLocale, Translations> $meta;
 
 	@override late final _StringsVi _root = this; // ignore: unused_field
 
 	// Translations
-	@override String get locale => 'Vietnam';
+	@override String get locale => 'Tiếng Việt';
 	@override String get appName => 'LocalSend';
 	@override late final _StringsGeneralVi general = _StringsGeneralVi._(_root);
 	@override late final _StringsReceiveTabVi receiveTab = _StringsReceiveTabVi._(_root);
@@ -37,6 +36,7 @@ class _StringsVi extends _StringsEn {
 	@override late final _StringsProgressPageVi progressPage = _StringsProgressPageVi._(_root);
 	@override late final _StringsWebSharePageVi webSharePage = _StringsWebSharePageVi._(_root);
 	@override late final _StringsAboutPageVi aboutPage = _StringsAboutPageVi._(_root);
+	@override late final _StringsDonationPageVi donationPage = _StringsDonationPageVi._(_root);
 	@override late final _StringsChangelogPageVi changelogPage = _StringsChangelogPageVi._(_root);
 	@override late final _StringsAliasGeneratorVi aliasGenerator = _StringsAliasGeneratorVi._(_root);
 	@override late final _StringsDialogsVi dialogs = _StringsDialogsVi._(_root);
@@ -134,6 +134,7 @@ class _StringsSettingsTabVi extends _StringsSettingsTabEn {
 	@override late final _StringsSettingsTabGeneralVi general = _StringsSettingsTabGeneralVi._(_root);
 	@override late final _StringsSettingsTabReceiveVi receive = _StringsSettingsTabReceiveVi._(_root);
 	@override late final _StringsSettingsTabNetworkVi network = _StringsSettingsTabNetworkVi._(_root);
+	@override late final _StringsSettingsTabOtherVi other = _StringsSettingsTabOtherVi._(_root);
 	@override String get advancedSettings => 'Cài đặt nâng cao';
 }
 
@@ -145,7 +146,7 @@ class _StringsTroubleshootPageVi extends _StringsTroubleshootPageEn {
 
 	// Translations
 	@override String get title => 'Gỡ lỗi';
-	@override String get subTitle => 'Ứng dụng không hoạt động như dự kiến? Bạn có thể tìm giải pháp thông thường tại đây.';
+	@override String get subTitle => 'Ứng dụng không hoạt động như dự kiến? Bạn có thể tìm giải pháp cho những vấn đề thường gặp tại đây.';
 	@override String get solution => 'Giải pháp:';
 	@override String get fixButton => 'Sửa lỗi tự động';
 	@override late final _StringsTroubleshootPageFirewallVi firewall = _StringsTroubleshootPageFirewallVi._(_root);
@@ -274,6 +275,27 @@ class _StringsAboutPageVi extends _StringsAboutPageEn {
 
 	// Translations
 	@override String get title => 'Thông tin về LocalSend';
+	@override List<String> get description => [
+		'LocalSend là một phần mềm miễn phí mã nguồn mở, giúp bạn chia sẻ tập tin cũng như tin nhắn đến các thiết bị phụ cận một cách bảo mật thông qua mạng nội bộ mà không cần kết nối mạng đến bên ngoài.',
+		'Ứng dụng có trên Android, iOS, macOS, Windows và Linux. Bạn có thể tìm thấy các tuỳ chọn tải ở trang chủ.',
+	];
+	@override String get author => 'Tác giả';
+	@override String get contributors => 'Người đóng góp';
+	@override String get translators => 'Người dịch';
+}
+
+// Path: donationPage
+class _StringsDonationPageVi extends _StringsDonationPageEn {
+	_StringsDonationPageVi._(_StringsVi root) : this._root = root, super._(root);
+
+	@override final _StringsVi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ủng hộ';
+	@override String get info => 'LocalSend là ứng dụng miễn phí, mã nguồn mở, không chứa quảng cáo. Nếu bạn yêu thích ứng dụng này, bạn có thể hỗ trợ việc phát triển bằng việc ủng hộ.';
+	@override String donate({required Object amount}) => 'Ủng hộ ${amount}';
+	@override String get thanks => 'Xin chân thành cảm ơn!';
+	@override String get restore => 'Khôi phục lịch sử ủng hộ';
 }
 
 // Path: changelogPage
@@ -313,6 +335,7 @@ class _StringsDialogsVi extends _StringsDialogsEn {
 	@override late final _StringsDialogsFavoriteEditDialogVi favoriteEditDialog = _StringsDialogsFavoriteEditDialogVi._(_root);
 	@override late final _StringsDialogsFileInfoVi fileInfo = _StringsDialogsFileInfoVi._(_root);
 	@override late final _StringsDialogsFileNameInputVi fileNameInput = _StringsDialogsFileNameInputVi._(_root);
+	@override late final _StringsDialogsHistoryClearDialogVi historyClearDialog = _StringsDialogsHistoryClearDialogVi._(_root);
 	@override late final _StringsDialogsLocalNetworkUnauthorizedVi localNetworkUnauthorized = _StringsDialogsLocalNetworkUnauthorizedVi._(_root);
 	@override late final _StringsDialogsMessageInputVi messageInput = _StringsDialogsMessageInputVi._(_root);
 	@override late final _StringsDialogsNoFilesVi noFiles = _StringsDialogsNoFilesVi._(_root);
@@ -444,7 +467,7 @@ class _StringsSettingsTabGeneralVi extends _StringsSettingsTabGeneralEn {
 	@override final _StringsVi _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Tổng';
+	@override String get title => 'Chung';
 	@override String get brightness => 'Chủ đề';
 	@override late final _StringsSettingsTabGeneralBrightnessOptionsVi brightnessOptions = _StringsSettingsTabGeneralBrightnessOptionsVi._(_root);
 	@override String get color => 'Màu sắc';
@@ -467,8 +490,9 @@ class _StringsSettingsTabReceiveVi extends _StringsSettingsTabReceiveEn {
 	// Translations
 	@override String get title => 'Nhận';
 	@override String get quickSave => '${_root.general.quickSave}';
+	@override String get autoFinish => 'Tự động hoàn thành';
 	@override String get destination => 'Đích đến';
-	@override String get downloads => '(Tải xuống)';
+	@override String get downloads => '(Downloads)';
 	@override String get saveToGallery => 'Lưu media vào thư viện';
 	@override String get saveToHistory => 'Lưu vào lịch sử';
 }
@@ -493,6 +517,20 @@ class _StringsSettingsTabNetworkVi extends _StringsSettingsTabNetworkEn {
 	@override String multicastGroupWarning({required Object defaultMulticast}) => 'Các thiết bị khác có thể không nhận diện được thiết bị của bạn, vì bạn đang dùng địa chỉ multicast tuỳ chỉnh. (mặc định: ${defaultMulticast})';
 }
 
+// Path: settingsTab.other
+class _StringsSettingsTabOtherVi extends _StringsSettingsTabOtherEn {
+	_StringsSettingsTabOtherVi._(_StringsVi root) : this._root = root, super._(root);
+
+	@override final _StringsVi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Khác';
+	@override String get support => 'Hỗ trợ LocalSend';
+	@override String get donate => 'Ủng hộ';
+	@override String get privacyPolicy => 'Chính sách bảo mật';
+	@override String get termsOfUse => 'Điều khoản sử dụng';
+}
+
 // Path: troubleshootPage.firewall
 class _StringsTroubleshootPageFirewallVi extends _StringsTroubleshootPageFirewallEn {
 	_StringsTroubleshootPageFirewallVi._(_StringsVi root) : this._root = root, super._(root);
@@ -501,7 +539,7 @@ class _StringsTroubleshootPageFirewallVi extends _StringsTroubleshootPageFirewal
 
 	// Translations
 	@override String get symptom => 'Ứng dụng có thể gửi tập tin tới các thiết bị khác, nhưng các thiết bị khác không thể gửi tập tin đến thiết bị này.';
-	@override String solution({required Object port}) => 'Có vẻ như đây là vấn đề của tường lửa (firewall). Bạn có thể khắc phục bằng cách chấp thuận các kết nối đến (UDP và TCP) trên port ${port}.';
+	@override String solution({required Object port}) => 'Có vẻ như đây là một vấn đề với tường lửa (firewall). Bạn có thể khắc phục bằng cách chấp thuận các kết nối đến (UDP và TCP) trên port ${port}.';
 	@override String get openFirewall => 'Mở tường lửa(Firewall)';
 }
 
@@ -670,6 +708,17 @@ class _StringsDialogsFileNameInputVi extends _StringsDialogsFileNameInputEn {
 	// Translations
 	@override String get title => 'Nhập tên';
 	@override String original({required Object original}) => 'Ban đầu: ${original}';
+}
+
+// Path: dialogs.historyClearDialog
+class _StringsDialogsHistoryClearDialogVi extends _StringsDialogsHistoryClearDialogEn {
+	_StringsDialogsHistoryClearDialogVi._(_StringsVi root) : this._root = root, super._(root);
+
+	@override final _StringsVi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Xoá lịch sử';
+	@override String get content => 'Bạn có chắc chắn muốn xoá toàn bộ lịch sử?';
 }
 
 // Path: dialogs.localNetworkUnauthorized

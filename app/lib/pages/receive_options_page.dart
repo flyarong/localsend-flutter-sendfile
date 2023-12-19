@@ -13,7 +13,7 @@ import 'package:localsend_app/widget/responsive_list_view.dart';
 import 'package:refena_flutter/refena_flutter.dart';
 
 class ReceiveOptionsPage extends StatelessWidget {
-  const ReceiveOptionsPage({Key? key}) : super(key: key);
+  const ReceiveOptionsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -78,11 +78,7 @@ class ReceiveOptionsPage extends StatelessWidget {
                           ),
                         );
                       }).toList(),
-                      onChanged: (b) {
-                        if (b != null) {
-                          ref.notifier(serverProvider).setSessionSaveToGallery(b);
-                        }
-                      },
+                      onChanged: (b) => ref.notifier(serverProvider).setSessionSaveToGallery(b),
                     ),
                     if (receiveSession.containsDirectories && !receiveSession.saveToGallery) ...[
                       const SizedBox(width: 10),

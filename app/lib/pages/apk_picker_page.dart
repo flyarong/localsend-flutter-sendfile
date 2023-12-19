@@ -14,17 +14,26 @@ import 'package:refena_flutter/refena_flutter.dart';
 import 'package:routerino/routerino.dart';
 
 class ApkPickerPage extends StatefulWidget {
-  const ApkPickerPage({Key? key}) : super(key: key);
+  const ApkPickerPage({super.key});
 
   @override
   State<ApkPickerPage> createState() => _ApkPickerPageState();
 }
 
 class _ApkPickerPageState extends State<ApkPickerPage> with Refena {
+  final _textController = TextEditingController();
+
   void _pickApp(Application app) {
     // ignore: discarded_futures
     ref.redux(selectedSendingFilesProvider).dispatchAsync(AddFilesAction(files: [app], converter: CrossFileConverters.convertApplication));
     context.pop();
+  }
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    ref.dispose(apkSearchParamProvider);
+    super.dispose();
   }
 
   @override
@@ -73,10 +82,12 @@ class _ApkPickerPageState extends State<ApkPickerPage> with Refena {
               height: 80,
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
-                child: TextField(
+                child: TextFormField(
+                  controller: _textController,
                   autofocus: true,
                   onChanged: (s) {
                     ref.notifier(apkSearchParamProvider).setState((old) => old.copyWith(query: s));
+                    setState(() {});
                   },
                   decoration: InputDecoration(
                     fillColor: ElevationOverlay.applySurfaceTint(
@@ -84,7 +95,16 @@ class _ApkPickerPageState extends State<ApkPickerPage> with Refena {
                       Theme.of(context).colorScheme.surfaceTint,
                       3,
                     ),
-                    suffixIcon: const Icon(Icons.search),
+                    prefixIcon: const Icon(Icons.search),
+                    suffixIcon: apkParams.query.isNotEmpty
+                        ? IconButton(
+                            onPressed: () {
+                              ref.notifier(apkSearchParamProvider).setState((old) => old.copyWith(query: ''));
+                              _textController.clear();
+                            },
+                            icon: const Icon(Icons.clear),
+                          )
+                        : Text(apkParams.query),
                   ),
                 ),
               ),
