@@ -3,32 +3,70 @@
     "Here are translations that exist in <en> but not in <el>.",
     "After editing this file, you can run 'dart run slang apply --locale=el' to quickly apply the newly added translations."
   ],
+  "general": {
+    "quickSaveFromFavorites": "Quick Save for \"Favorites\""
+  },
+  "sendTab": {
+    "manualSending": "Manual sending"
+  },
   "settingsTab": {
-    "receive": {
-      "autoFinish": "Auto Finish"
+    "general": {
+      "saveWindowPlacementWindows": "Save window position after exit",
+      "showInContextMenu": "Show LocalSend in context menu"
     },
-    "other": {
-      "title": "Other",
-      "support": "Support LocalSend",
-      "donate": "Donate",
-      "privacyPolicy": "Privacy Policy",
-      "termsOfUse": "Terms of Use"
+    "receive": {
+      "quickSaveFromFavorites": "@:general.quickSaveFromFavorites",
+      "requirePin": "@:webSharePage.requirePin"
+    },
+    "network": {
+      "discoveryTimeout": "Discovery Timeout",
+      "useSystemName": "Use system name",
+      "generateRandomAlias": "Generate random alias"
     }
   },
-  "aboutPage": {
-    "description": [
-      "LocalSend is a free, open-source app that allows you to securely share files and messages with nearby devices over your local network without needing an internet connection.",
-      "This app is available on Android, iOS, macOS, Windows and Linux. You can find all download options on the official homepage."
-    ],
-    "author": "Author",
-    "contributors": "Contributors",
-    "translators": "Translators"
+  "troubleshootPage": {
+    "noDiscovery": {
+      "symptom": "This device cannot discover other devices.",
+      "solution": "Please make sure that all devices are on the same Wi-Fi network and share the same configuration (port, multicast address, encryption). You can try to type the IP address of the target device manually. If this works, consider adding this device to the favorites so it can be automatically discovered in the future."
+    }
   },
-  "donationPage": {
-    "title": "Donate",
-    "info": "LocalSend is free, open-source and without any ads. If you like the app, you can support the development with a donation.",
-    "donate": "Donate {amount}",
-    "thanks": "Thank you very much!",
-    "restore": "Restore purchase"
+  "receiveHistoryPage": {
+    "entryActions": {
+      "showInFolder": "Show in folder"
+    }
+  },
+  "sendPage": {
+    "tooManyAttempts": "@:web.tooManyAttempts"
+  },
+  "webSharePage": {
+    "requirePin": "Require PIN",
+    "pinHint": "The PIN is \"{pin}\""
+  },
+  "aboutPage": {
+    "packagers": "Packagers"
+  },
+  "dialogs": {
+    "quickSaveFromFavoritesNotice": {
+      "title": "@:general.quickSaveFromFavorites",
+      "content": "File requests are now accepted automatically from devices in your favorites list."
+    },
+    "pin": {
+      "title": "Enter PIN"
+    },
+    "zoom": {
+      "title": "URL"
+    }
+  },
+  "sanitization": {
+    "empty": "Filename cannot be empty",
+    "invalid": "Filename contains invalid characters"
+  },
+  "tray": {
+    "closeWindows": "Exit"
+  },
+  "web": {
+    "enterPin": "Enter PIN",
+    "invalidPin": "Invalid PIN",
+    "tooManyAttempts": "Too many attempts"
   }
 }

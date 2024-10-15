@@ -4,68 +4,61 @@
     "After editing this file, you can run 'dart run slang apply --locale=id' to quickly apply the newly added translations."
   ],
   "general": {
-    "delete": "Delete",
-    "noItemInClipboard": "No item in Clipboard"
+    "quickSaveFromFavorites": "Simpan Cepat untuk \"Favorites\""
   },
   "sendTab": {
-    "picker": {
-      "clipboard": "Paste"
-    }
+    "manualSending": "Kirim Manual"
   },
   "settingsTab": {
     "general": {
-      "colorOptions": {
-        "oled": "OLED"
-      }
+      "saveWindowPlacementWindows": "Simpan posisi jendela setelah keluar",
+      "showInContextMenu": "Tampilkan LocalSend di menu konteks"
     },
     "receive": {
-      "autoFinish": "Auto Finish"
+      "quickSaveFromFavorites": "@:general.quickSaveFromFavorites",
+      "requirePin": "@:webSharePage.requirePin"
     },
-    "other": {
-      "title": "Other",
-      "support": "Support LocalSend",
-      "donate": "Donate",
-      "privacyPolicy": "Privacy Policy",
-      "termsOfUse": "Terms of Use"
+    "network": {
+      "useSystemName": "Gunakan nama sistem",
+      "generateRandomAlias": "Hasilkan alias acak"
     }
+  },
+  "troubleshootPage": {
+    "noDiscovery": {
+      "symptom": "Perangkat ini tidak dapat menemukan perangkat lain.",
+      "solution": "Pastikan semua perangkat berada di jaringan Wi-Fi yang sama dan menggunakan konfigurasi yang sama (port, alamat multicast, enkripsi). Anda dapat mencoba mengetik alamat IP perangkat target secara manual. Jika ini berhasil, pertimbangkan untuk menambahkan perangkat ini ke daftar favorit sehingga bisa ditemukan secara otomatis di masa depan."
+    }
+  },
+  "receiveHistoryPage": {
+    "entryActions": {
+      "showInFolder": "Tampilkan di folder"
+    }
+  },
+  "sendPage": {
+    "tooManyAttempts": "@:web.tooManyAttempts"
+  },
+  "webSharePage": {
+    "requirePin": "Memerlukan PIN",
+    "pinHint": "PIN-nya adalah \"{pin}\""
   },
   "aboutPage": {
-    "description": [
-      "LocalSend is a free, open-source app that allows you to securely share files and messages with nearby devices over your local network without needing an internet connection.",
-      "This app is available on Android, iOS, macOS, Windows and Linux. You can find all download options on the official homepage."
-    ],
-    "author": "Author",
-    "contributors": "Contributors",
-    "translators": "Translators"
-  },
-  "donationPage": {
-    "title": "Donate",
-    "info": "LocalSend is free, open-source and without any ads. If you like the app, you can support the development with a donation.",
-    "donate": "Donate {amount}",
-    "thanks": "Thank you very much!",
-    "restore": "Restore purchase"
+    "packagers": "Pengemas"
   },
   "dialogs": {
-    "favoriteDialog": {
-      "title": "Favorites",
-      "noFavorites": "No favorites devices yet.",
-      "addFavorite": "Add"
+    "quickSaveFromFavoritesNotice": {
+      "title": "@:general.quickSaveFromFavorites",
+      "content": "Permintaan file sekarang diterima secara otomatis dari perangkat di daftar favorit Anda."
     },
-    "favoriteDeleteDialog": {
-      "title": "Delete from favorites",
-      "content": "Do you really want to delete from favorites \"{name}\"?"
-    },
-    "favoriteEditDialog": {
-      "titleAdd": "Add to favorites",
-      "titleEdit": "Settings",
-      "name": "Device name",
-      "auto": "(auto)",
-      "ip": "IP Address",
-      "port": "Port"
-    },
-    "historyClearDialog": {
-      "title": "Clear history",
-      "content": "Do you really want to delete the entire history?"
+    "pin": {
+      "title": "Masukkan PIN"
     }
+  },
+  "tray": {
+    "closeWindows": "Keluar"
+  },
+  "web": {
+    "enterPin": "Masukkan PIN",
+    "invalidPin": "PIN Salah",
+    "tooManyAttempts": "Terlalu banyak percobaan"
   }
 }

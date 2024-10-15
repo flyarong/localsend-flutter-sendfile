@@ -1,3 +1,9 @@
+///
+/// Generated file. Do not edit.
+///
+// coverage:ignore-file
+// ignore_for_file: type=lint
+
 part of 'strings.g.dart';
 
 // Path: <root>
@@ -40,6 +46,7 @@ class _StringsPtBr extends Translations {
 	@override late final _StringsChangelogPagePtBr changelogPage = _StringsChangelogPagePtBr._(_root);
 	@override late final _StringsAliasGeneratorPtBr aliasGenerator = _StringsAliasGeneratorPtBr._(_root);
 	@override late final _StringsDialogsPtBr dialogs = _StringsDialogsPtBr._(_root);
+	@override late final _StringsSanitizationPtBr sanitization = _StringsSanitizationPtBr._(_root);
 	@override late final _StringsTrayPtBr tray = _StringsTrayPtBr._(_root);
 	@override late final _StringsWebPtBr web = _StringsWebPtBr._(_root);
 	@override late final _StringsAssetPickerPtBr assetPicker = _StringsAssetPickerPtBr._(_root);
@@ -64,7 +71,7 @@ class _StringsGeneralPtBr extends _StringsGeneralEn {
 	@override String get copiedToClipboard => 'Copiado para a Área de Transferência';
 	@override String get decline => 'Rejeitar';
 	@override String get done => 'Completo';
-	@override String get delete => 'Deletar';
+	@override String get delete => 'Excluir';
 	@override String get edit => 'Editar';
 	@override String get error => 'Erro';
 	@override String get example => 'Exemplo';
@@ -78,6 +85,7 @@ class _StringsGeneralPtBr extends _StringsGeneralEn {
 	@override String get open => 'Abrir';
 	@override String get queue => 'Fila';
 	@override String get quickSave => 'Salvamento Rápido';
+	@override String get quickSaveFromFavorites => 'salvar rapidamente dos "Favoritos"';
 	@override String get renamed => 'Renomeado';
 	@override String get reset => 'Redefinir';
 	@override String get restart => 'Reiniciar';
@@ -116,10 +124,11 @@ class _StringsSendTabPtBr extends _StringsSendTabEn {
 	@override String get nearbyDevices => 'Dispositivos próximos';
 	@override String get thisDevice => 'Este dispositivo';
 	@override String get scan => 'Procurar dispositivos';
+	@override String get manualSending => 'Envio manual';
 	@override String get sendMode => 'Modo de envio';
 	@override late final _StringsSendTabSendModesPtBr sendModes = _StringsSendTabSendModesPtBr._(_root);
 	@override String get sendModeHelp => 'Explicação';
-	@override String get help => 'Por favor, certifique-se de que ambos os dispositivos estejam na mesma rede wifi.';
+	@override String get help => 'Por favor, certifique-se de que ambos os dispositivos estejam na mesma rede Wi-Fi.';
 	@override String get placeItems => 'Coloque os itens para compartilhar.';
 }
 
@@ -133,6 +142,7 @@ class _StringsSettingsTabPtBr extends _StringsSettingsTabEn {
 	@override String get title => 'Configurações';
 	@override late final _StringsSettingsTabGeneralPtBr general = _StringsSettingsTabGeneralPtBr._(_root);
 	@override late final _StringsSettingsTabReceivePtBr receive = _StringsSettingsTabReceivePtBr._(_root);
+	@override late final _StringsSettingsTabSendPtBr send = _StringsSettingsTabSendPtBr._(_root);
 	@override late final _StringsSettingsTabNetworkPtBr network = _StringsSettingsTabNetworkPtBr._(_root);
 	@override late final _StringsSettingsTabOtherPtBr other = _StringsSettingsTabOtherPtBr._(_root);
 	@override String get advancedSettings => 'Configurações avançadas';
@@ -150,6 +160,7 @@ class _StringsTroubleshootPagePtBr extends _StringsTroubleshootPageEn {
 	@override String get solution => 'Solução:';
 	@override String get fixButton => 'Consertar automaticamente';
 	@override late final _StringsTroubleshootPageFirewallPtBr firewall = _StringsTroubleshootPageFirewallPtBr._(_root);
+	@override late final _StringsTroubleshootPageNoDiscoveryPtBr noDiscovery = _StringsTroubleshootPageNoDiscoveryPtBr._(_root);
 	@override late final _StringsTroubleshootPageNoConnectionPtBr noConnection = _StringsTroubleshootPageNoConnectionPtBr._(_root);
 }
 
@@ -162,7 +173,7 @@ class _StringsReceiveHistoryPagePtBr extends _StringsReceiveHistoryPageEn {
 	// Translations
 	@override String get title => 'Histórico';
 	@override String get openFolder => 'Abrir pasta';
-	@override String get deleteHistory => 'Deletar histórico';
+	@override String get deleteHistory => 'Excluir histórico';
 	@override String get empty => 'O histórico está vazio.';
 	@override late final _StringsReceiveHistoryPageEntryActionsPtBr entryActions = _StringsReceiveHistoryPageEntryActionsPtBr._(_root);
 }
@@ -198,8 +209,8 @@ class _StringsReceivePagePtBr extends _StringsReceivePageEn {
 
 	// Translations
 	@override String subTitle({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(n,
-		one: 'quer enviar um arquivo.',
-		other: 'quer enviar ${n} arquivos.',
+		one: 'quer enviar um arquivo',
+		other: 'quer enviar ${n} arquivos',
 	);
 	@override String get subTitleMessage => 'enviou uma mensagem:';
 	@override String get subTitleLink => 'enviou um link:';
@@ -214,9 +225,9 @@ class _StringsReceiveOptionsPagePtBr extends _StringsReceiveOptionsPageEn {
 
 	// Translations
 	@override String get title => 'Opções';
-	@override String get destination => '${_root.settingsTab.receive.destination}';
+	@override String get destination => _root.settingsTab.receive.destination;
 	@override String get appDirectory => '(pasta LocalSend)';
-	@override String get saveToGallery => '${_root.settingsTab.receive.saveToGallery}';
+	@override String get saveToGallery => _root.settingsTab.receive.saveToGallery;
 	@override String get saveToGalleryOff => 'Opção desligada automaticamente pois uma pasta está sendo transferida.';
 }
 
@@ -229,6 +240,7 @@ class _StringsSendPagePtBr extends _StringsSendPageEn {
 	// Translations
 	@override String get waiting => 'Aguardando resposta...';
 	@override String get rejected => 'O destinatário rejeitou a solicitação.';
+	@override String get tooManyAttempts => _root.web.tooManyAttempts;
 	@override String get busy => 'O destinatário está ocupado com outra solicitação de transferência.';
 }
 
@@ -262,7 +274,10 @@ class _StringsWebSharePagePtBr extends _StringsWebSharePageEn {
 	);
 	@override String get requests => 'Solicitações';
 	@override String get noRequests => 'Nenhuma solicitação ainda.';
-	@override String get encryption => '${_root.settingsTab.network.encryption}';
+	@override String get encryption => _root.settingsTab.network.encryption;
+	@override String get autoAccept => 'Aceitar pedidos automaticamente';
+	@override String get requirePin => 'Solicitar PIN';
+	@override String pinHint({required Object pin}) => 'O PIN é "${pin}"';
 	@override String get encryptionHint => 'LocalSend utiliza um certificado autoassinado. Você precisa aceitá-lo no navegador.';
 	@override String pendingRequests({required Object n}) => 'Solicitações pendentes: ${n}';
 }
@@ -281,6 +296,7 @@ class _StringsAboutPagePtBr extends _StringsAboutPageEn {
 	];
 	@override String get author => 'Autor';
 	@override String get contributors => 'Contribuidores';
+	@override String get packagers => 'Empacotadores';
 	@override String get translators => 'Tradutores';
 }
 
@@ -404,8 +420,22 @@ class _StringsDialogsPtBr extends _StringsDialogsEn {
 	@override late final _StringsDialogsNotAvailableOnPlatformPtBr notAvailableOnPlatform = _StringsDialogsNotAvailableOnPlatformPtBr._(_root);
 	@override late final _StringsDialogsQrPtBr qr = _StringsDialogsQrPtBr._(_root);
 	@override late final _StringsDialogsQuickActionsPtBr quickActions = _StringsDialogsQuickActionsPtBr._(_root);
+	@override late final _StringsDialogsQuickSaveFromFavoritesNoticePtBr quickSaveFromFavoritesNotice = _StringsDialogsQuickSaveFromFavoritesNoticePtBr._(_root);
 	@override late final _StringsDialogsQuickSaveNoticePtBr quickSaveNotice = _StringsDialogsQuickSaveNoticePtBr._(_root);
+	@override late final _StringsDialogsPinPtBr pin = _StringsDialogsPinPtBr._(_root);
 	@override late final _StringsDialogsSendModeHelpPtBr sendModeHelp = _StringsDialogsSendModeHelpPtBr._(_root);
+	@override late final _StringsDialogsZoomPtBr zoom = _StringsDialogsZoomPtBr._(_root);
+}
+
+// Path: sanitization
+class _StringsSanitizationPtBr extends _StringsSanitizationEn {
+	_StringsSanitizationPtBr._(_StringsPtBr root) : this._root = root, super._(root);
+
+	@override final _StringsPtBr _root; // ignore: unused_field
+
+	// Translations
+	@override String get empty => 'O nome do arquivo não pode estar vazio';
+	@override String get invalid => 'O nome do arquivo contém caracteres inválidos';
 }
 
 // Path: tray
@@ -415,8 +445,9 @@ class _StringsTrayPtBr extends _StringsTrayEn {
 	@override final _StringsPtBr _root; // ignore: unused_field
 
 	// Translations
-	@override String get open => '${_root.general.open}';
+	@override String get open => _root.general.open;
 	@override String get close => 'Fechar LocalSend';
+	@override String get closeWindows => 'Sair';
 }
 
 // Path: web
@@ -426,7 +457,10 @@ class _StringsWebPtBr extends _StringsWebEn {
 	@override final _StringsPtBr _root; // ignore: unused_field
 
 	// Translations
-	@override String get waiting => '${_root.sendPage.waiting}';
+	@override String get waiting => _root.sendPage.waiting;
+	@override String get enterPin => 'Digite o PIN';
+	@override String get invalidPin => 'PIN inválido';
+	@override String get tooManyAttempts => 'Muitas tentativas';
 	@override String get rejected => 'Conexão Rejeitada';
 	@override String get files => 'Arquivos';
 	@override String get fileName => 'Nome do arquivo';
@@ -536,9 +570,11 @@ class _StringsSettingsTabGeneralPtBr extends _StringsSettingsTabGeneralEn {
 	@override String get language => 'Idioma';
 	@override late final _StringsSettingsTabGeneralLanguageOptionsPtBr languageOptions = _StringsSettingsTabGeneralLanguageOptionsPtBr._(_root);
 	@override String get saveWindowPlacement => 'Salvar a posição da janela ao fechar';
+	@override String get saveWindowPlacementWindows => 'Salvar posição da janela ao sair';
 	@override String get minimizeToTray => 'Minimizar para a bandeja ao fechar';
 	@override String get launchAtStartup => 'Abrir automaticamente após o login';
 	@override String get launchMinimized => 'Início automático: Abrir minimizado';
+	@override String get showInContextMenu => 'Mostrar LocalSend no menu de contexto';
 	@override String get animations => 'Animações';
 }
 
@@ -550,12 +586,25 @@ class _StringsSettingsTabReceivePtBr extends _StringsSettingsTabReceiveEn {
 
 	// Translations
 	@override String get title => 'Recebimento';
-	@override String get quickSave => '${_root.general.quickSave}';
+	@override String get quickSave => _root.general.quickSave;
+	@override String get requirePin => _root.webSharePage.requirePin;
 	@override String get autoFinish => 'Concluir Automaticamente';
 	@override String get destination => 'Destino';
 	@override String get downloads => '(Downloads)';
+	@override String get quickSaveFromFavorites => 'Salvar rapidamente dos "Favoritos"';
 	@override String get saveToGallery => 'Salvar mídia na Galeria';
 	@override String get saveToHistory => 'Salvar no histórico';
+}
+
+// Path: settingsTab.send
+class _StringsSettingsTabSendPtBr extends _StringsSettingsTabSendEn {
+	_StringsSettingsTabSendPtBr._(_StringsPtBr root) : this._root = root, super._(root);
+
+	@override final _StringsPtBr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Enviar';
+	@override String get shareViaLinkAutoAccept => 'Aceitar automaticamente pedidos no modo "Compartilhar por link"';
 }
 
 // Path: settingsTab.network
@@ -572,6 +621,7 @@ class _StringsSettingsTabNetworkPtBr extends _StringsSettingsTabNetworkEn {
 	@override String get deviceType => 'Tipo de dispositivo';
 	@override String get deviceModel => 'Modelo do dispositivo';
 	@override String get port => 'Porta';
+	@override String get discoveryTimeout => 'Tempo limite de descoberta';
 	@override String portWarning({required Object defaultPort}) => 'Você pode estar indetectável para outros dispositivos por estar usando uma porta customizada. (Padrão: ${defaultPort})';
 	@override String get encryption => 'Criptografia';
 	@override String get multicastGroup => 'Multicast';
@@ -604,6 +654,17 @@ class _StringsTroubleshootPageFirewallPtBr extends _StringsTroubleshootPageFirew
 	@override String get openFirewall => 'Abrir o Firewall';
 }
 
+// Path: troubleshootPage.noDiscovery
+class _StringsTroubleshootPageNoDiscoveryPtBr extends _StringsTroubleshootPageNoDiscoveryEn {
+	_StringsTroubleshootPageNoDiscoveryPtBr._(_StringsPtBr root) : this._root = root, super._(root);
+
+	@override final _StringsPtBr _root; // ignore: unused_field
+
+	// Translations
+	@override String get symptom => 'Este dispositivo não consegue descobrir outros dispositivos.';
+	@override String get solution => 'Certifique-se de que todos os dispositivos estão na mesma rede Wi-Fi e compartilham as mesmas configurações (porta, endereço multicast, criptografia). Você pode tentar digitar o endereço IP do dispositivo de destino manualmente. Se isto funcionar, considere adicionar este dispositivo aos favoritos, assim ele será descoberto automaticamente no futuro.';
+}
+
 // Path: troubleshootPage.noConnection
 class _StringsTroubleshootPageNoConnectionPtBr extends _StringsTroubleshootPageNoConnectionEn {
 	_StringsTroubleshootPageNoConnectionPtBr._(_StringsPtBr root) : this._root = root, super._(root);
@@ -612,7 +673,7 @@ class _StringsTroubleshootPageNoConnectionPtBr extends _StringsTroubleshootPageN
 
 	// Translations
 	@override String get symptom => 'Ambos os dispositivos não se detectam nem podem compartilhar arquivos entre si.';
-	@override String get solution => 'O problema existe em ambos os lados? Então você precisa ter certeza de que os dispositivos estão na mesma rede wifi e possuem a mesma configuração (porta, endereço multicast, criptografia). A rede wifi pode não permitir a comunicação entre os participantes. Neste caso, esta opção deve ser habilitada no roteador.';
+	@override String get solution => 'O problema existe em ambos os lados? Então você precisa ter certeza de que os dispositivos estão na mesma rede Wi-Fi e possuem a mesma configuração (porta, endereço multicast, criptografia). A rede Wi-Fi pode não permitir a comunicação entre os participantes. Neste caso, esta opção deve ser habilitada no roteador.';
 }
 
 // Path: receiveHistoryPage.entryActions
@@ -623,6 +684,7 @@ class _StringsReceiveHistoryPageEntryActionsPtBr extends _StringsReceiveHistoryP
 
 	// Translations
 	@override String get open => 'Abrir arquivo';
+	@override String get showInFolder => 'Mostrar na pasta';
 	@override String get info => 'Informações';
 	@override String get deleteFromHistory => 'Remover do histórico';
 }
@@ -704,7 +766,7 @@ class _StringsDialogsErrorDialogPtBr extends _StringsDialogsErrorDialogEn {
 	@override final _StringsPtBr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.general.error}';
+	@override String get title => _root.general.error;
 }
 
 // Path: dialogs.favoriteDialog
@@ -726,7 +788,7 @@ class _StringsDialogsFavoriteDeleteDialogPtBr extends _StringsDialogsFavoriteDel
 	@override final _StringsPtBr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Deletar favorito';
+	@override String get title => 'Excluir favorito';
 	@override String content({required Object name}) => 'Você realmente deseja excluir "${name}" dos favoritos?';
 }
 
@@ -779,7 +841,7 @@ class _StringsDialogsHistoryClearDialogPtBr extends _StringsDialogsHistoryClearD
 
 	// Translations
 	@override String get title => 'Limpar histórico';
-	@override String get content => 'Você realmente deseja deletar todo o histórico?';
+	@override String get content => 'Você realmente deseja excluir todo o histórico?';
 }
 
 // Path: dialogs.localNetworkUnauthorized
@@ -789,7 +851,7 @@ class _StringsDialogsLocalNetworkUnauthorizedPtBr extends _StringsDialogsLocalNe
 	@override final _StringsPtBr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.dialogs.noPermission.title}';
+	@override String get title => _root.dialogs.noPermission.title;
 	@override String get description => 'O LocalSend não consegue encontrar outros dispositivos sem ter a permissão para escanear a rede local. Por favor, conceda esta permissão nas configurações.';
 	@override String get gotoSettings => 'Configurações';
 }
@@ -863,6 +925,17 @@ class _StringsDialogsQuickActionsPtBr extends _StringsDialogsQuickActionsEn {
 	@override String get random => 'Aleatório';
 }
 
+// Path: dialogs.quickSaveFromFavoritesNotice
+class _StringsDialogsQuickSaveFromFavoritesNoticePtBr extends _StringsDialogsQuickSaveFromFavoritesNoticeEn {
+	_StringsDialogsQuickSaveFromFavoritesNoticePtBr._(_StringsPtBr root) : this._root = root, super._(root);
+
+	@override final _StringsPtBr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Salvar rapidamento dos "Favoritos"';
+	@override String get content => 'As solicitações de arquivos agora são aceitas automaticamente nos dispositivos da sua lista de favoritos.';
+}
+
 // Path: dialogs.quickSaveNotice
 class _StringsDialogsQuickSaveNoticePtBr extends _StringsDialogsQuickSaveNoticeEn {
 	_StringsDialogsQuickSaveNoticePtBr._(_StringsPtBr root) : this._root = root, super._(root);
@@ -870,8 +943,18 @@ class _StringsDialogsQuickSaveNoticePtBr extends _StringsDialogsQuickSaveNoticeE
 	@override final _StringsPtBr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.general.quickSave}';
+	@override String get title => _root.general.quickSave;
 	@override String get content => 'Solicitações de arquivos são aceitas automaticamente. Tenha em mente que qualquer pessoa na rede local pode enviar arquivos para você.';
+}
+
+// Path: dialogs.pin
+class _StringsDialogsPinPtBr extends _StringsDialogsPinEn {
+	_StringsDialogsPinPtBr._(_StringsPtBr root) : this._root = root, super._(root);
+
+	@override final _StringsPtBr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Digite o PIN';
 }
 
 // Path: dialogs.sendModeHelp
@@ -885,6 +968,16 @@ class _StringsDialogsSendModeHelpPtBr extends _StringsDialogsSendModeHelpEn {
 	@override String get single => 'Envia arquivos para um destinatário. A seleção será apagada após a conclusão da transferência dos arquivos.';
 	@override String get multiple => 'Envia arquivos para múltiplos destinatários. A seleção não será apagada.';
 	@override String get link => 'Os destinatários que não têm o LocalSend instalado podem baixar os arquivos selecionados abrindo o link fornecido no navegador.';
+}
+
+// Path: dialogs.zoom
+class _StringsDialogsZoomPtBr extends _StringsDialogsZoomEn {
+	_StringsDialogsZoomPtBr._(_StringsPtBr root) : this._root = root, super._(root);
+
+	@override final _StringsPtBr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'URL';
 }
 
 // Path: settingsTab.general.brightnessOptions

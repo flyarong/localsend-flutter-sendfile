@@ -1,6 +1,7 @@
+import 'package:common/isolate.dart';
+import 'package:common/model/device.dart';
 import 'package:flutter/material.dart';
 import 'package:localsend_app/gen/strings.g.dart';
-import 'package:localsend_app/model/device.dart';
 import 'package:localsend_app/model/persistence/color_mode.dart';
 import 'package:localsend_app/model/send_mode.dart';
 import 'package:localsend_app/model/state/settings_state.dart';
@@ -9,6 +10,16 @@ import 'package:refena_flutter/refena_flutter.dart';
 
 final settingsProvider = NotifierProvider<SettingsService, SettingsState>((ref) {
   return SettingsService(ref.read(persistenceProvider));
+}, onChanged: (_, next, ref) {
+  final syncState = ref.read(parentIsolateProvider).syncState;
+  if (syncState.multicastGroup == next.multicastGroup && syncState.discoveryTimeout == next.discoveryTimeout) {
+    return;
+  }
+
+  ref.redux(parentIsolateProvider).dispatch(IsolateSyncSettingsAction(
+        multicastGroup: next.multicastGroup,
+        discoveryTimeout: next.discoveryTimeout,
+      ));
 });
 
 class SettingsService extends PureNotifier<SettingsState> {
@@ -29,16 +40,19 @@ class SettingsService extends PureNotifier<SettingsState> {
         saveToGallery: _persistence.isSaveToGallery(),
         saveToHistory: _persistence.isSaveToHistory(),
         quickSave: _persistence.isQuickSave(),
+        quickSaveFromFavorites: _persistence.isQuickSaveFromFavorites(),
+        receivePin: _persistence.getReceivePin(),
         autoFinish: _persistence.isAutoFinish(),
         minimizeToTray: _persistence.isMinimizeToTray(),
-        launchAtStartup: _persistence.isLaunchAtStartup(),
-        autoStartLaunchMinimized: _persistence.isAutoStartLaunchMinimized(),
         https: _persistence.isHttps(),
         sendMode: _persistence.getSendMode(),
         saveWindowPlacement: _persistence.getSaveWindowPlacement(),
         enableAnimations: _persistence.getEnableAnimations(),
         deviceType: _persistence.getDeviceType(),
         deviceModel: _persistence.getDeviceModel(),
+        shareViaLinkAutoAccept: _persistence.getShareViaLinkAutoAccept(),
+        discoveryTimeout: _persistence.getDiscoveryTimeout(),
+        advancedSettings: _persistence.getAdvancedSettingsEnabled(),
       );
 
   Future<void> setAlias(String alias) async {
@@ -62,6 +76,13 @@ class SettingsService extends PureNotifier<SettingsState> {
     );
   }
 
+  Future<void> setAdvancedSettingsEnabled(bool isEnabled) async {
+    await _persistence.setAdvancedSettingsEnabled(isEnabled);
+    state = state.copyWith(
+      advancedSettings: isEnabled,
+    );
+  }
+
   Future<void> setLocale(AppLocale? locale) async {
     await _persistence.setLocale(locale);
     state = state.copyWith(
@@ -73,6 +94,13 @@ class SettingsService extends PureNotifier<SettingsState> {
     await _persistence.setPort(port);
     state = state.copyWith(
       port: port,
+    );
+  }
+
+  Future<void> setDiscoveryTimeout(int timeout) async {
+    await _persistence.setDiscoveryTimeout(timeout);
+    state = state.copyWith(
+      discoveryTimeout: timeout,
     );
   }
 
@@ -111,6 +139,20 @@ class SettingsService extends PureNotifier<SettingsState> {
     );
   }
 
+  Future<void> setQuickSaveFromFavorites(bool quickSaveFromFavorites) async {
+    await _persistence.setQuickSaveFromFavorites(quickSaveFromFavorites);
+    state = state.copyWith(
+      quickSaveFromFavorites: quickSaveFromFavorites,
+    );
+  }
+
+  Future<void> setReceivePin(String? receivePin) async {
+    await _persistence.setReceivePin(receivePin);
+    state = state.copyWith(
+      receivePin: receivePin,
+    );
+  }
+
   Future<void> setAutoFinish(bool autoFinish) async {
     await _persistence.setAutoFinish(autoFinish);
     state = state.copyWith(
@@ -122,20 +164,6 @@ class SettingsService extends PureNotifier<SettingsState> {
     await _persistence.setMinimizeToTray(minimizeToTray);
     state = state.copyWith(
       minimizeToTray: minimizeToTray,
-    );
-  }
-
-  Future<void> setLaunchAtStartup(bool launchAtStartup) async {
-    await _persistence.setLaunchAtStartup(launchAtStartup);
-    state = state.copyWith(
-      launchAtStartup: launchAtStartup,
-    );
-  }
-
-  Future<void> setAutoStartLaunchMinimized(bool launchMinimized) async {
-    await _persistence.setAutoStartLaunchMinimized(launchMinimized);
-    state = state.copyWith(
-      autoStartLaunchMinimized: launchMinimized,
     );
   }
 
@@ -178,6 +206,14 @@ class SettingsService extends PureNotifier<SettingsState> {
     await _persistence.setDeviceModel(deviceModel);
     state = state.copyWith(
       deviceModel: deviceModel,
+    );
+  }
+
+  Future<void> setShareViaLinkAutoAccept(bool shareViaLinkAutoAccept) async {
+    await _persistence.setShareViaLinkAutoAccept(shareViaLinkAutoAccept);
+
+    state = state.copyWith(
+      shareViaLinkAutoAccept: shareViaLinkAutoAccept,
     );
   }
 }

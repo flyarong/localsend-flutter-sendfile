@@ -1,3 +1,9 @@
+///
+/// Generated file. Do not edit.
+///
+// coverage:ignore-file
+// ignore_for_file: type=lint
+
 part of 'strings.g.dart';
 
 // Path: <root>
@@ -45,6 +51,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	late final _StringsChangelogPageEn changelogPage = _StringsChangelogPageEn._(_root);
 	late final _StringsAliasGeneratorEn aliasGenerator = _StringsAliasGeneratorEn._(_root);
 	late final _StringsDialogsEn dialogs = _StringsDialogsEn._(_root);
+	late final _StringsSanitizationEn sanitization = _StringsSanitizationEn._(_root);
 	late final _StringsTrayEn tray = _StringsTrayEn._(_root);
 	late final _StringsWebEn web = _StringsWebEn._(_root);
 	late final _StringsAssetPickerEn assetPicker = _StringsAssetPickerEn._(_root);
@@ -83,8 +90,9 @@ class _StringsGeneralEn {
 	String get open => 'Open';
 	String get queue => 'Queue';
 	String get quickSave => 'Quick Save';
+	String get quickSaveFromFavorites => 'Quick Save for "Favorites"';
 	String get renamed => 'Renamed';
-	String get reset => 'Reset';
+	String get reset => 'Undo changes';
 	String get restart => 'Restart';
 	String get settings => 'Settings';
 	String get skipped => 'Skipped';
@@ -93,7 +101,7 @@ class _StringsGeneralEn {
 	String get save => 'Save';
 	String get unchanged => 'Unchanged';
 	String get unknown => 'Unknown';
-	String get noItemInClipboard => 'No item in Clipboard';
+	String get noItemInClipboard => 'No items in Clipboard.';
 }
 
 // Path: receiveTab
@@ -120,11 +128,12 @@ class _StringsSendTabEn {
 	String get shareIntentInfo => 'You can also use the "Share" feature of your mobile device to select files more easily.';
 	String get nearbyDevices => 'Nearby devices';
 	String get thisDevice => 'This Device';
-	String get scan => 'Look for devices';
+	String get scan => 'Search devices';
+	String get manualSending => 'Manual sending';
 	String get sendMode => 'Send mode';
 	late final _StringsSendTabSendModesEn sendModes = _StringsSendTabSendModesEn._(_root);
 	String get sendModeHelp => 'Explanation';
-	String get help => 'Please ensure that the desired target is also in the same wifi network.';
+	String get help => 'Please ensure that the desired target is also on the same Wi-Fi network.';
 	String get placeItems => 'Place items to share.';
 }
 
@@ -138,6 +147,7 @@ class _StringsSettingsTabEn {
 	String get title => 'Settings';
 	late final _StringsSettingsTabGeneralEn general = _StringsSettingsTabGeneralEn._(_root);
 	late final _StringsSettingsTabReceiveEn receive = _StringsSettingsTabReceiveEn._(_root);
+	late final _StringsSettingsTabSendEn send = _StringsSettingsTabSendEn._(_root);
 	late final _StringsSettingsTabNetworkEn network = _StringsSettingsTabNetworkEn._(_root);
 	late final _StringsSettingsTabOtherEn other = _StringsSettingsTabOtherEn._(_root);
 	String get advancedSettings => 'Advanced settings';
@@ -151,10 +161,11 @@ class _StringsTroubleshootPageEn {
 
 	// Translations
 	String get title => 'Troubleshoot';
-	String get subTitle => 'This app does not work as expected? Here you can find common solutions.';
+	String get subTitle => 'Does the app not work as expected? Here you can find some common solutions to problems.';
 	String get solution => 'Solution:';
 	String get fixButton => 'Fix automatically';
 	late final _StringsTroubleshootPageFirewallEn firewall = _StringsTroubleshootPageFirewallEn._(_root);
+	late final _StringsTroubleshootPageNoDiscoveryEn noDiscovery = _StringsTroubleshootPageNoDiscoveryEn._(_root);
 	late final _StringsTroubleshootPageNoConnectionEn noConnection = _StringsTroubleshootPageNoConnectionEn._(_root);
 }
 
@@ -203,8 +214,8 @@ class _StringsReceivePageEn {
 
 	// Translations
 	String subTitle({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
-		one: 'wants to send you a file.',
-		other: 'wants to send you ${n} files.',
+		one: 'wants to send you a file',
+		other: 'wants to send you ${n} files',
 	);
 	String get subTitleMessage => 'sent you a message:';
 	String get subTitleLink => 'sent you a link:';
@@ -219,10 +230,10 @@ class _StringsReceiveOptionsPageEn {
 
 	// Translations
 	String get title => 'Options';
-	String get destination => '${_root.settingsTab.receive.destination}';
+	String get destination => _root.settingsTab.receive.destination;
 	String get appDirectory => '(LocalSend folder)';
-	String get saveToGallery => '${_root.settingsTab.receive.saveToGallery}';
-	String get saveToGalleryOff => 'Turned off automatically because there are directories.';
+	String get saveToGallery => _root.settingsTab.receive.saveToGallery;
+	String get saveToGalleryOff => 'Turned off automatically because there are folders.';
 }
 
 // Path: sendPage
@@ -234,6 +245,7 @@ class _StringsSendPageEn {
 	// Translations
 	String get waiting => 'Waiting for response...';
 	String get rejected => 'The recipient has rejected the request.';
+	String get tooManyAttempts => _root.web.tooManyAttempts;
 	String get busy => 'The recipient is busy with another request.';
 }
 
@@ -262,13 +274,16 @@ class _StringsWebSharePageEn {
 	String get stopping => 'Stopping server...';
 	String get error => 'An error occurred while starting the server.';
 	String openLink({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
-		one: 'Open this link in the browser:',
-		other: 'Open one of these links in the browser:',
+		one: 'Open this link in your browser:',
+		other: 'Open one of these links in your browser:',
 	);
 	String get requests => 'Requests';
 	String get noRequests => 'No requests yet.';
-	String get encryption => '${_root.settingsTab.network.encryption}';
-	String get encryptionHint => 'LocalSend uses a self-signed certificate. You need to accept it in the browser.';
+	String get encryption => _root.settingsTab.network.encryption;
+	String get autoAccept => 'Automatically accept requests';
+	String get requirePin => 'Require PIN';
+	String pinHint({required Object pin}) => 'The PIN is "${pin}"';
+	String get encryptionHint => 'LocalSend uses a self-signed certificate. You need to accept it in your browser.';
 	String pendingRequests({required Object n}) => 'Pending requests: ${n}';
 }
 
@@ -286,6 +301,7 @@ class _StringsAboutPageEn {
 	];
 	String get author => 'Author';
 	String get contributors => 'Contributors';
+	String get packagers => 'Packagers';
 	String get translators => 'Translators';
 }
 
@@ -420,7 +436,21 @@ class _StringsDialogsEn {
 	late final _StringsDialogsQrEn qr = _StringsDialogsQrEn._(_root);
 	late final _StringsDialogsQuickActionsEn quickActions = _StringsDialogsQuickActionsEn._(_root);
 	late final _StringsDialogsQuickSaveNoticeEn quickSaveNotice = _StringsDialogsQuickSaveNoticeEn._(_root);
+	late final _StringsDialogsQuickSaveFromFavoritesNoticeEn quickSaveFromFavoritesNotice = _StringsDialogsQuickSaveFromFavoritesNoticeEn._(_root);
+	late final _StringsDialogsPinEn pin = _StringsDialogsPinEn._(_root);
 	late final _StringsDialogsSendModeHelpEn sendModeHelp = _StringsDialogsSendModeHelpEn._(_root);
+	late final _StringsDialogsZoomEn zoom = _StringsDialogsZoomEn._(_root);
+}
+
+// Path: sanitization
+class _StringsSanitizationEn {
+	_StringsSanitizationEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get empty => 'Filename cannot be empty';
+	String get invalid => 'Filename contains invalid characters';
 }
 
 // Path: tray
@@ -430,8 +460,9 @@ class _StringsTrayEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-	String get open => '${_root.general.open}';
+	String get open => _root.general.open;
 	String get close => 'Quit LocalSend';
+	String get closeWindows => 'Exit';
 }
 
 // Path: web
@@ -441,7 +472,10 @@ class _StringsWebEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-	String get waiting => '${_root.sendPage.waiting}';
+	String get waiting => _root.sendPage.waiting;
+	String get enterPin => 'Enter PIN';
+	String get invalidPin => 'Invalid PIN';
+	String get tooManyAttempts => 'Too many attempts';
 	String get rejected => 'Rejected';
 	String get files => 'Files';
 	String get fileName => 'File name';
@@ -550,10 +584,12 @@ class _StringsSettingsTabGeneralEn {
 	late final _StringsSettingsTabGeneralColorOptionsEn colorOptions = _StringsSettingsTabGeneralColorOptionsEn._(_root);
 	String get language => 'Language';
 	late final _StringsSettingsTabGeneralLanguageOptionsEn languageOptions = _StringsSettingsTabGeneralLanguageOptionsEn._(_root);
-	String get saveWindowPlacement => 'Quit: Save window placement';
-	String get minimizeToTray => 'Quit: Minimize to Tray/Menu Bar';
+	String get saveWindowPlacement => 'Save window position after quit';
+	String get saveWindowPlacementWindows => 'Save window position after exit';
+	String get minimizeToTray => 'Minimize to the System Tray/Menu Bar when closing';
 	String get launchAtStartup => 'Autostart after login';
 	String get launchMinimized => 'Autostart: Start hidden';
+	String get showInContextMenu => 'Show LocalSend in context menu';
 	String get animations => 'Animations';
 }
 
@@ -565,12 +601,25 @@ class _StringsSettingsTabReceiveEn {
 
 	// Translations
 	String get title => 'Receive';
-	String get quickSave => '${_root.general.quickSave}';
+	String get quickSave => _root.general.quickSave;
+	String get quickSaveFromFavorites => _root.general.quickSaveFromFavorites;
+	String get requirePin => _root.webSharePage.requirePin;
 	String get autoFinish => 'Auto Finish';
-	String get destination => 'Destination';
+	String get destination => 'Save to folder';
 	String get downloads => '(Downloads)';
 	String get saveToGallery => 'Save media to gallery';
 	String get saveToHistory => 'Save to history';
+}
+
+// Path: settingsTab.send
+class _StringsSettingsTabSendEn {
+	_StringsSettingsTabSendEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Send';
+	String get shareViaLinkAutoAccept => 'Automatically accept requests in "Share via link" mode';
 }
 
 // Path: settingsTab.network
@@ -587,9 +636,12 @@ class _StringsSettingsTabNetworkEn {
 	String get deviceType => 'Device type';
 	String get deviceModel => 'Device model';
 	String get port => 'Port';
+	String get discoveryTimeout => 'Discovery Timeout';
+	String get useSystemName => 'Use system name';
+	String get generateRandomAlias => 'Generate random alias';
 	String portWarning({required Object defaultPort}) => 'You might not be detected by other devices because you are using a custom port. (default: ${defaultPort})';
 	String get encryption => 'Encryption';
-	String get multicastGroup => 'Multicast';
+	String get multicastGroup => 'Multicast address';
 	String multicastGroupWarning({required Object defaultMulticast}) => 'You might not be detected by other devices because you are using a custom multicast address. (default: ${defaultMulticast})';
 }
 
@@ -614,9 +666,20 @@ class _StringsTroubleshootPageFirewallEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-	String get symptom => 'This app can send files to other devices but other devices cannot send files to this device.';
+	String get symptom => 'This device can send files to other devices but other devices cannot send files to this device.';
 	String solution({required Object port}) => 'This is most likely a firewall issue. You can solve this by allowing incoming connections (UDP and TCP) on port ${port}.';
 	String get openFirewall => 'Open Firewall';
+}
+
+// Path: troubleshootPage.noDiscovery
+class _StringsTroubleshootPageNoDiscoveryEn {
+	_StringsTroubleshootPageNoDiscoveryEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get symptom => 'This device cannot discover other devices.';
+	String get solution => 'Please make sure that all devices are on the same Wi-Fi network and share the same configuration (port, multicast address, encryption). You can try to type the IP address of the target device manually. If this works, consider adding this device to the favorites so it can be automatically discovered in the future.';
 }
 
 // Path: troubleshootPage.noConnection
@@ -627,7 +690,7 @@ class _StringsTroubleshootPageNoConnectionEn {
 
 	// Translations
 	String get symptom => 'Both devices cannot discover each other nor can they share files.';
-	String get solution => 'The problem exists on both sides? Then you need to make sure that both devices are in the same wifi network and share the same configuration (port, multicast address, encryption). The wifi may not allow communication between participants. In this case, this option must be enabled on the router.';
+	String get solution => 'Does the problem exist on both sides? If so, you need to make sure that both devices are on the same Wi-Fi network and share the same configuration (port, multicast address, encryption). The Wi-Fi network may not allow communication between participants (AP isolation). In this case, this option must be enabled on the router.';
 }
 
 // Path: receiveHistoryPage.entryActions
@@ -638,6 +701,7 @@ class _StringsReceiveHistoryPageEntryActionsEn {
 
 	// Translations
 	String get open => 'Open file';
+	String get showInFolder => 'Show in folder';
 	String get info => 'Information';
 	String get deleteFromHistory => 'Delete from history';
 }
@@ -686,8 +750,8 @@ class _StringsDialogsCancelSessionEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-	String get title => 'Cancel file transfer';
-	String get content => 'Do you really want to cancel the file transfer?';
+	String get title => 'Cancel files transfer';
+	String get content => 'Do you really want to cancel the files transfer?';
 }
 
 // Path: dialogs.cannotOpenFile
@@ -709,7 +773,7 @@ class _StringsDialogsEncryptionDisabledNoticeEn {
 
 	// Translations
 	String get title => 'Encryption disabled';
-	String get content => 'Communication now takes place via the unencrypted HTTP protocol. To use HTTPS, enable encryption again.';
+	String get content => 'Communication now takes place via the unencrypted HTTP protocol. To use HTTPS protocol, enable encryption again.';
 }
 
 // Path: dialogs.errorDialog
@@ -719,7 +783,7 @@ class _StringsDialogsErrorDialogEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-	String get title => '${_root.general.error}';
+	String get title => _root.general.error;
 }
 
 // Path: dialogs.favoriteDialog
@@ -730,7 +794,7 @@ class _StringsDialogsFavoriteDialogEn {
 
 	// Translations
 	String get title => 'Favorites';
-	String get noFavorites => 'No favorites devices yet.';
+	String get noFavorites => 'No favorite devices yet.';
 	String get addFavorite => 'Add';
 }
 
@@ -804,7 +868,7 @@ class _StringsDialogsLocalNetworkUnauthorizedEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-	String get title => '${_root.dialogs.noPermission.title}';
+	String get title => _root.dialogs.noPermission.title;
 	String get description => 'LocalSend can\'t find other devices without having the permission to scan the local network. Please grant this permission in the settings.';
 	String get gotoSettings => 'Settings';
 }
@@ -827,7 +891,7 @@ class _StringsDialogsNoFilesEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-	String get title => 'No file selected';
+	String get title => 'No files selected';
 	String get content => 'Please select at least one file.';
 }
 
@@ -874,7 +938,7 @@ class _StringsDialogsQuickActionsEn {
 	String get counter => 'Counter';
 	String get prefix => 'Prefix';
 	String get padZero => 'Pad with zeros';
-	String get sortBeforeCount => 'Sort alphabetically beforehand';
+	String get sortBeforeCount => 'Sort alphabetically beforehand (A-Z)';
 	String get random => 'Random';
 }
 
@@ -885,8 +949,29 @@ class _StringsDialogsQuickSaveNoticeEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-	String get title => '${_root.general.quickSave}';
-	String get content => 'File requests are automatically accepted. Be aware that everyone in the local network can send you files.';
+	String get title => _root.general.quickSave;
+	String get content => 'File requests are now accepted automatically. Be aware that everyone on the local network can send you files.';
+}
+
+// Path: dialogs.quickSaveFromFavoritesNotice
+class _StringsDialogsQuickSaveFromFavoritesNoticeEn {
+	_StringsDialogsQuickSaveFromFavoritesNoticeEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => _root.general.quickSaveFromFavorites;
+	String get content => 'File requests are now accepted automatically from devices in your favorites list.';
+}
+
+// Path: dialogs.pin
+class _StringsDialogsPinEn {
+	_StringsDialogsPinEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Enter PIN';
 }
 
 // Path: dialogs.sendModeHelp
@@ -897,9 +982,19 @@ class _StringsDialogsSendModeHelpEn {
 
 	// Translations
 	String get title => 'Send modes';
-	String get single => 'Sends files to one recipient. Selection will be cleared after finished file transfer.';
-	String get multiple => 'Sends files to multiple recipients. Selection will not be cleared.';
+	String get single => 'Sends files to one recipient. Selection will be cleared after finished files transfer.';
+	String get multiple => 'Sends files to multiple recipients. Selection will not be cleared after finished files transfer.';
 	String get link => 'Recipients who do not have LocalSend installed can download the selected files by opening the link in their browser.';
+}
+
+// Path: dialogs.zoom
+class _StringsDialogsZoomEn {
+	_StringsDialogsZoomEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'URL';
 }
 
 // Path: settingsTab.general.brightnessOptions

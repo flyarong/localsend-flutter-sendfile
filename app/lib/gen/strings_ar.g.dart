@@ -1,3 +1,9 @@
+///
+/// Generated file. Do not edit.
+///
+// coverage:ignore-file
+// ignore_for_file: type=lint
+
 part of 'strings.g.dart';
 
 // Path: <root>
@@ -36,9 +42,11 @@ class _StringsAr extends Translations {
 	@override late final _StringsProgressPageAr progressPage = _StringsProgressPageAr._(_root);
 	@override late final _StringsWebSharePageAr webSharePage = _StringsWebSharePageAr._(_root);
 	@override late final _StringsAboutPageAr aboutPage = _StringsAboutPageAr._(_root);
+	@override late final _StringsDonationPageAr donationPage = _StringsDonationPageAr._(_root);
 	@override late final _StringsChangelogPageAr changelogPage = _StringsChangelogPageAr._(_root);
 	@override late final _StringsAliasGeneratorAr aliasGenerator = _StringsAliasGeneratorAr._(_root);
 	@override late final _StringsDialogsAr dialogs = _StringsDialogsAr._(_root);
+	@override late final _StringsSanitizationAr sanitization = _StringsSanitizationAr._(_root);
 	@override late final _StringsTrayAr tray = _StringsTrayAr._(_root);
 	@override late final _StringsWebAr web = _StringsWebAr._(_root);
 	@override late final _StringsAssetPickerAr assetPicker = _StringsAssetPickerAr._(_root);
@@ -77,6 +85,7 @@ class _StringsGeneralAr extends _StringsGeneralEn {
 	@override String get open => 'مفتوح';
 	@override String get queue => 'طابور';
 	@override String get quickSave => 'حفظ سريع';
+	@override String get quickSaveFromFavorites => 'حفظ سريع لـ "Favorites"';
 	@override String get renamed => 'اعادة تسمية';
 	@override String get reset => 'إعادة ضبط';
 	@override String get restart => 'إعادة تشغيل';
@@ -115,6 +124,7 @@ class _StringsSendTabAr extends _StringsSendTabEn {
 	@override String get nearbyDevices => 'الأجهزة القريبة';
 	@override String get thisDevice => 'هذا الجهاز';
 	@override String get scan => 'ابحث عن أجهزة';
+	@override String get manualSending => 'الإرسال اليدوي';
 	@override String get sendMode => 'وضع الإرسال';
 	@override late final _StringsSendTabSendModesAr sendModes = _StringsSendTabSendModesAr._(_root);
 	@override String get sendModeHelp => 'شرح';
@@ -132,7 +142,9 @@ class _StringsSettingsTabAr extends _StringsSettingsTabEn {
 	@override String get title => 'إعدادات';
 	@override late final _StringsSettingsTabGeneralAr general = _StringsSettingsTabGeneralAr._(_root);
 	@override late final _StringsSettingsTabReceiveAr receive = _StringsSettingsTabReceiveAr._(_root);
+	@override late final _StringsSettingsTabSendAr send = _StringsSettingsTabSendAr._(_root);
 	@override late final _StringsSettingsTabNetworkAr network = _StringsSettingsTabNetworkAr._(_root);
+	@override late final _StringsSettingsTabOtherAr other = _StringsSettingsTabOtherAr._(_root);
 	@override String get advancedSettings => 'الإعدادات المتقدمة';
 }
 
@@ -148,6 +160,7 @@ class _StringsTroubleshootPageAr extends _StringsTroubleshootPageEn {
 	@override String get solution => 'الحل:';
 	@override String get fixButton => 'إصلاح تلقائيًا';
 	@override late final _StringsTroubleshootPageFirewallAr firewall = _StringsTroubleshootPageFirewallAr._(_root);
+	@override late final _StringsTroubleshootPageNoDiscoveryAr noDiscovery = _StringsTroubleshootPageNoDiscoveryAr._(_root);
 	@override late final _StringsTroubleshootPageNoConnectionAr noConnection = _StringsTroubleshootPageNoConnectionAr._(_root);
 }
 
@@ -196,8 +209,8 @@ class _StringsReceivePageAr extends _StringsReceivePageEn {
 
 	// Translations
 	@override String subTitle({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ar'))(n,
-		one: 'يريد أن يرسل لك ملف.',
-		other: 'يريد أن يرسل لك ${n} ملفات.',
+		one: 'يريد أن يرسل لك ملف',
+		other: 'يريد أن يرسل لك ${n} ملفات',
 	);
 	@override String get subTitleMessage => 'أرسل لك رسالة:';
 	@override String get subTitleLink => 'أرسل لك ارتباط:';
@@ -212,9 +225,9 @@ class _StringsReceiveOptionsPageAr extends _StringsReceiveOptionsPageEn {
 
 	// Translations
 	@override String get title => 'خيارات';
-	@override String get destination => '${_root.settingsTab.receive.destination}';
+	@override String get destination => _root.settingsTab.receive.destination;
 	@override String get appDirectory => '(LocalSend folder)';
-	@override String get saveToGallery => '${_root.settingsTab.receive.saveToGallery}';
+	@override String get saveToGallery => _root.settingsTab.receive.saveToGallery;
 	@override String get saveToGalleryOff => 'تم إيقافه تلقائيًا لوجود دلائل.';
 }
 
@@ -227,6 +240,7 @@ class _StringsSendPageAr extends _StringsSendPageEn {
 	// Translations
 	@override String get waiting => 'بإنتظار الرد...';
 	@override String get rejected => 'المستلم رفض الطلب.';
+	@override String get tooManyAttempts => _root.web.tooManyAttempts;
 	@override String get busy => 'المستلم مشغول بطلب آخر.';
 }
 
@@ -260,7 +274,10 @@ class _StringsWebSharePageAr extends _StringsWebSharePageEn {
 	);
 	@override String get requests => 'الطلبات';
 	@override String get noRequests => 'لا يوجد طلبات حتى الآن.';
-	@override String get encryption => '${_root.settingsTab.network.encryption}';
+	@override String get encryption => _root.settingsTab.network.encryption;
+	@override String get autoAccept => 'قبول الطلبات تلقائيا';
+	@override String get requirePin => 'يتطلب رمز PIN';
+	@override String pinHint({required Object pin}) => 'رمز PIN هو "${pin}"';
 	@override String get encryptionHint => 'يستخدم تطبيق LocalSend شهادة موقع ذاتية التوقيع. يجب عليك قبولها في المتصفح.';
 	@override String pendingRequests({required Object n}) => 'الطلبات المعلقة: ${n}';
 }
@@ -273,6 +290,28 @@ class _StringsAboutPageAr extends _StringsAboutPageEn {
 
 	// Translations
 	@override String get title => 'عن LocalSend';
+	@override List<String> get description => [
+		'LocalSend هو تطبيق مجاني مفتوح المصدر يسمح لك بمشاركة الملفات والرسائل بشكل آمن مع الأجهزة القريبة عبر شبكتك المحلية دون الحاجة إلى اتصال بالإنترنت.',
+		'هذا التطبيق متاح على أنظمة Android وiOS وmacOS وWindows وLinux. يمكنك العثور على جميع خيارات التنزيل على الصفحة الرئيسية الرسمية.',
+	];
+	@override String get author => 'المؤلف';
+	@override String get contributors => 'المساهمون';
+	@override String get packagers => 'الحزم';
+	@override String get translators => 'المترجمون';
+}
+
+// Path: donationPage
+class _StringsDonationPageAr extends _StringsDonationPageEn {
+	_StringsDonationPageAr._(_StringsAr root) : this._root = root, super._(root);
+
+	@override final _StringsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'تبرّع';
+	@override String get info => 'LocalSend مجاني ومفتوح المصدر وبدون أي إعلانات. إذا أعجبك التطبيق، يمكنك دعم التطوير بالتبرع.';
+	@override String donate({required Object amount}) => 'تبرّع ${amount}';
+	@override String get thanks => 'شكراً جزيلاً!';
+	@override String get restore => 'استعادة شراء';
 }
 
 // Path: changelogPage
@@ -392,7 +431,21 @@ class _StringsDialogsAr extends _StringsDialogsEn {
 	@override late final _StringsDialogsQrAr qr = _StringsDialogsQrAr._(_root);
 	@override late final _StringsDialogsQuickActionsAr quickActions = _StringsDialogsQuickActionsAr._(_root);
 	@override late final _StringsDialogsQuickSaveNoticeAr quickSaveNotice = _StringsDialogsQuickSaveNoticeAr._(_root);
+	@override late final _StringsDialogsQuickSaveFromFavoritesNoticeAr quickSaveFromFavoritesNotice = _StringsDialogsQuickSaveFromFavoritesNoticeAr._(_root);
+	@override late final _StringsDialogsPinAr pin = _StringsDialogsPinAr._(_root);
 	@override late final _StringsDialogsSendModeHelpAr sendModeHelp = _StringsDialogsSendModeHelpAr._(_root);
+	@override late final _StringsDialogsZoomAr zoom = _StringsDialogsZoomAr._(_root);
+}
+
+// Path: sanitization
+class _StringsSanitizationAr extends _StringsSanitizationEn {
+	_StringsSanitizationAr._(_StringsAr root) : this._root = root, super._(root);
+
+	@override final _StringsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get empty => 'لا يمكن أن يكون اسم الملف فارغًا';
+	@override String get invalid => 'يحتوي اسم الملف على أحرف غير صالحة';
 }
 
 // Path: tray
@@ -402,8 +455,9 @@ class _StringsTrayAr extends _StringsTrayEn {
 	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
-	@override String get open => '${_root.general.open}';
+	@override String get open => _root.general.open;
 	@override String get close => 'أغلق LocalSend';
+	@override String get closeWindows => 'خروج';
 }
 
 // Path: web
@@ -413,7 +467,10 @@ class _StringsWebAr extends _StringsWebEn {
 	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
-	@override String get waiting => '${_root.sendPage.waiting}';
+	@override String get waiting => _root.sendPage.waiting;
+	@override String get enterPin => 'أدخل رمز PIN';
+	@override String get invalidPin => 'رمز PIN غير صالح';
+	@override String get tooManyAttempts => 'محاولات كثيرة جدًا';
 	@override String get rejected => 'مرفوضة';
 	@override String get files => 'الملفات';
 	@override String get fileName => 'اسم الملف';
@@ -523,9 +580,11 @@ class _StringsSettingsTabGeneralAr extends _StringsSettingsTabGeneralEn {
 	@override String get language => 'لغة';
 	@override late final _StringsSettingsTabGeneralLanguageOptionsAr languageOptions = _StringsSettingsTabGeneralLanguageOptionsAr._(_root);
 	@override String get saveWindowPlacement => 'إنهاء: حفظ موقع النافذة';
+	@override String get saveWindowPlacementWindows => 'حفظ موضع النافذة بعد الخروج';
 	@override String get minimizeToTray => 'إنهاء : أخفاء في شريط المهام';
 	@override String get launchAtStartup => 'تشغيل تلقائي بعد تسجيل الدخول';
 	@override String get launchMinimized => 'تشغيل تلقائي: ابدأ مخفيًا';
+	@override String get showInContextMenu => 'إظهار LocalSend في قائمة السياق';
 	@override String get animations => 'الرسوم المتحركة';
 }
 
@@ -537,11 +596,25 @@ class _StringsSettingsTabReceiveAr extends _StringsSettingsTabReceiveEn {
 
 	// Translations
 	@override String get title => 'استلم';
-	@override String get quickSave => '${_root.general.quickSave}';
+	@override String get quickSave => _root.general.quickSave;
+	@override String get quickSaveFromFavorites => _root.general.quickSaveFromFavorites;
+	@override String get requirePin => _root.webSharePage.requirePin;
+	@override String get autoFinish => 'إنهاء تلقائي';
 	@override String get destination => 'حفظ في';
 	@override String get downloads => '(التنزيلات)';
 	@override String get saveToGallery => 'حفظ الوسائط في المعرض';
 	@override String get saveToHistory => 'حفظ في التاريخ';
+}
+
+// Path: settingsTab.send
+class _StringsSettingsTabSendAr extends _StringsSettingsTabSendEn {
+	_StringsSettingsTabSendAr._(_StringsAr root) : this._root = root, super._(root);
+
+	@override final _StringsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'أرسِل';
+	@override String get shareViaLinkAutoAccept => 'المشاركة عبر الرابط: قبول تلقائي';
 }
 
 // Path: settingsTab.network
@@ -558,10 +631,25 @@ class _StringsSettingsTabNetworkAr extends _StringsSettingsTabNetworkEn {
 	@override String get deviceType => 'نوع الجهاز';
 	@override String get deviceModel => 'نموذج الجهاز';
 	@override String get port => 'منفذ';
+	@override String get discoveryTimeout => 'مهلة الاكتشاف';
 	@override String portWarning({required Object defaultPort}) => 'ربما لا يتم الكشف عنك من قبل الأجهزة الأخرى لأنك تستخدم منفذ مخصص. (الافتراضي: ${defaultPort})';
 	@override String get encryption => 'التشفير';
 	@override String get multicastGroup => 'فرق البث المتعدد';
 	@override String multicastGroupWarning({required Object defaultMulticast}) => 'ربما لا يتم الكشف عنك من قبل الأجهزة الأخرى لأنك تستخدم عنوان بث متعدد مخصص. (الافتراضي: ${defaultMulticast})';
+}
+
+// Path: settingsTab.other
+class _StringsSettingsTabOtherAr extends _StringsSettingsTabOtherEn {
+	_StringsSettingsTabOtherAr._(_StringsAr root) : this._root = root, super._(root);
+
+	@override final _StringsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'أخرى';
+	@override String get support => 'دعم LocalSend';
+	@override String get donate => 'تبرّع';
+	@override String get privacyPolicy => 'سياسة الخصوصيّة';
+	@override String get termsOfUse => 'شروط الاستخدام';
 }
 
 // Path: troubleshootPage.firewall
@@ -574,6 +662,17 @@ class _StringsTroubleshootPageFirewallAr extends _StringsTroubleshootPageFirewal
 	@override String get symptom => 'يمكن لهذا التطبيق إرسال الملفات إلى الأجهزة الأخرى ولكن الأجهزة الأخرى لا يمكنها إرسال الملفات إلى هذا الجهاز.';
 	@override String solution({required Object port}) => 'هذه المشكلة عادة ما تكون مشكلة في جدار الحماية. يمكنك حل هذه المشكلة عن طريق السماح بالاتصالات الواردة (UDP و TCP) على المنفذ ${port}.';
 	@override String get openFirewall => 'افتح جدار الحماية';
+}
+
+// Path: troubleshootPage.noDiscovery
+class _StringsTroubleshootPageNoDiscoveryAr extends _StringsTroubleshootPageNoDiscoveryEn {
+	_StringsTroubleshootPageNoDiscoveryAr._(_StringsAr root) : this._root = root, super._(root);
+
+	@override final _StringsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get symptom => 'هذا الجهاز لا يمكنه اكتشاف الأجهزة الأخرى.';
+	@override String get solution => 'يرجى التأكد من أن جميع الأجهزة متصلة بنفس شبكة Wi-Fi وتشارك نفس التكوين (المنفذ، عنوان البث المتعدد، التشفير). يمكنك محاولة كتابة عنوان IP للجهاز المستهدف يدويًا. إذا نجح ذلك، فكر في إضافة هذا الجهاز إلى قائمة المفضلة حتى يتم اكتشافه تلقائيًا في المستقبل.';
 }
 
 // Path: troubleshootPage.noConnection
@@ -595,6 +694,7 @@ class _StringsReceiveHistoryPageEntryActionsAr extends _StringsReceiveHistoryPag
 
 	// Translations
 	@override String get open => 'فتح الملف';
+	@override String get showInFolder => 'عرض في المجلد';
 	@override String get info => 'معلومات';
 	@override String get deleteFromHistory => 'حذف من السجل';
 }
@@ -676,7 +776,7 @@ class _StringsDialogsErrorDialogAr extends _StringsDialogsErrorDialogEn {
 	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.general.error}';
+	@override String get title => _root.general.error;
 }
 
 // Path: dialogs.favoriteDialog
@@ -761,7 +861,7 @@ class _StringsDialogsLocalNetworkUnauthorizedAr extends _StringsDialogsLocalNetw
 	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.dialogs.noPermission.title}';
+	@override String get title => _root.dialogs.noPermission.title;
 	@override String get description => 'لا يمكن ل LocalSend العثور على الأجهزة الأخرى بدون الإذن بفحص الشبكة المحلية. يرجى منح هذا الإذن في الإعدادات.';
 	@override String get gotoSettings => 'الإعدادات';
 }
@@ -842,8 +942,29 @@ class _StringsDialogsQuickSaveNoticeAr extends _StringsDialogsQuickSaveNoticeEn 
 	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.general.quickSave}';
+	@override String get title => _root.general.quickSave;
 	@override String get content => 'يتم قبول طلبات الملفات تلقائيًا. اعلم أن كل فرد في الشبكة المحلية يمكنه إرسال الملفات إليك.';
+}
+
+// Path: dialogs.quickSaveFromFavoritesNotice
+class _StringsDialogsQuickSaveFromFavoritesNoticeAr extends _StringsDialogsQuickSaveFromFavoritesNoticeEn {
+	_StringsDialogsQuickSaveFromFavoritesNoticeAr._(_StringsAr root) : this._root = root, super._(root);
+
+	@override final _StringsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => _root.general.quickSaveFromFavorites;
+	@override String get content => 'لقد تم قبول طلبات الملفات تلقائيًا من الأجهزة الموجودة في قائمة المفضلة لديك.';
+}
+
+// Path: dialogs.pin
+class _StringsDialogsPinAr extends _StringsDialogsPinEn {
+	_StringsDialogsPinAr._(_StringsAr root) : this._root = root, super._(root);
+
+	@override final _StringsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'أدخل رمز PIN';
 }
 
 // Path: dialogs.sendModeHelp
@@ -857,6 +978,16 @@ class _StringsDialogsSendModeHelpAr extends _StringsDialogsSendModeHelpEn {
 	@override String get single => 'يقوم بإرسال الملفات إلى مستلم واحد. ستتم مسح الاختيار بعد انتهاء نقل الملف.';
 	@override String get multiple => 'يقوم بإرسال الملفات إلى مستلمين متعددين. لن يتم مسح الاختيار.';
 	@override String get link => 'يمكن للمستلمين الذين لا يحتوون على LocalSend تنزيل الملفات المحددة عن طريق فتح الرابط في متصفحهم.';
+}
+
+// Path: dialogs.zoom
+class _StringsDialogsZoomAr extends _StringsDialogsZoomEn {
+	_StringsDialogsZoomAr._(_StringsAr root) : this._root = root, super._(root);
+
+	@override final _StringsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'URL';
 }
 
 // Path: settingsTab.general.brightnessOptions

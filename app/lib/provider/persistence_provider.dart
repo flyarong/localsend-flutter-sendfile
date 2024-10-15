@@ -2,30 +2,43 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:common/constants.dart';
+import 'package:common/model/device.dart';
+import 'package:common/model/stored_security_context.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:localsend_app/constants.dart';
 import 'package:localsend_app/gen/strings.g.dart';
-import 'package:localsend_app/model/device.dart';
 import 'package:localsend_app/model/persistence/color_mode.dart';
 import 'package:localsend_app/model/persistence/favorite_device.dart';
 import 'package:localsend_app/model/persistence/receive_history_entry.dart';
-import 'package:localsend_app/model/persistence/stored_security_context.dart';
 import 'package:localsend_app/model/send_mode.dart';
 import 'package:localsend_app/provider/window_dimensions_provider.dart';
 import 'package:localsend_app/util/alias_generator.dart';
+import 'package:localsend_app/util/native/autostart_helper.dart';
+import 'package:localsend_app/util/native/context_menu_helper.dart';
 import 'package:localsend_app/util/native/platform_check.dart';
 import 'package:localsend_app/util/security_helper.dart';
-import 'package:localsend_app/util/shared_preferences_portable.dart';
-import 'package:localsend_app/util/ui/dynamic_colors.dart';
+import 'package:localsend_app/util/shared_preferences/shared_preferences_file.dart';
+import 'package:localsend_app/util/shared_preferences/shared_preferences_portable.dart';
 import 'package:logging/logging.dart';
-import 'package:path/path.dart' as p;
-import 'package:path_provider/path_provider.dart' as path;
 import 'package:refena_flutter/refena_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart';
 import 'package:uuid/uuid.dart';
 
+part 'persistence_provider_migrations.dart';
+
 final _logger = Logger('PersistenceService');
+
+String get _windowsFile {
+  final appData = Platform.environment['APPDATA'];
+  return '$appData\\LocalSend\\settings.json';
+}
+
+String get _windowsLegacyFile {
+  final appData = Platform.environment['APPDATA'];
+  return '$appData\\org.localsend\\localsend_app\\shared_preferences.json';
+}
 
 // Version of the storage
 const _version = 'ls_version';
@@ -53,20 +66,23 @@ const _themeKey = 'ls_theme'; // now called brightness
 const _colorKey = 'ls_color';
 const _localeKey = 'ls_locale';
 const _portKey = 'ls_port';
+const _timeoutKey = 'ls_timeout';
 const _multicastGroupKey = 'ls_multicast_group';
 const _destinationKey = 'ls_destination';
 const _saveToGallery = 'ls_save_to_gallery';
 const _saveToHistory = 'ls_save_to_history';
 const _quickSave = 'ls_quick_save';
+const _quickSaveFromFavorites = 'ls_quick_save_from_favorites';
+const _receivePin = 'ls_receive_pin';
 const _autoFinish = 'ls_auto_finish';
 const _minimizeToTray = 'ls_minimize_to_tray';
-const _launchAtStartup = 'ls_launch_at_startup';
-const _autoStartLaunchMinimized = 'ls_auto_start_launch_minimized';
 const _https = 'ls_https';
 const _sendMode = 'ls_send_mode';
 const _enableAnimations = 'ls_enable_animations';
 const _deviceType = 'ls_device_type';
 const _deviceModel = 'ls_device_model';
+const _shareViaLinkAutoAccept = 'ls_share_via_link_auto_accept';
+const _advancedSettingsKey = 'ls_advanced_settings';
 
 final persistenceProvider = Provider<PersistenceService>((ref) {
   throw Exception('persistenceProvider not initialized');
@@ -75,25 +91,51 @@ final persistenceProvider = Provider<PersistenceService>((ref) {
 /// This service abstracts the persistence layer.
 class PersistenceService {
   final SharedPreferences _prefs;
+  final bool isFirstAppStart;
 
-  PersistenceService._(this._prefs);
+  PersistenceService._(this._prefs, this.isFirstAppStart);
 
-  static Future<PersistenceService> initialize(DynamicColors? dynamicColors) async {
+  static Future<PersistenceService> initialize({
+    required bool supportsDynamicColors,
+  }) async {
     SharedPreferences prefs;
 
-    if (checkPlatform([TargetPlatform.windows]) && SharedPreferencesPortable.exists()) {
+    final portableStore = SharedPreferencesPortable();
+    bool usingLegacyStore = false;
+    if (checkPlatform(const [TargetPlatform.windows, TargetPlatform.linux, TargetPlatform.macOS]) && portableStore.exists()) {
       _logger.info('Using portable settings.');
-      SharedPreferencesStorePlatform.instance = SharedPreferencesPortable();
+      SharedPreferencesStorePlatform.instance = portableStore;
+    } else if (defaultTargetPlatform == TargetPlatform.windows) {
+      final legacyStore = SharedPreferencesFile(filePath: _windowsLegacyFile);
+      if (legacyStore.exists()) {
+        _logger.info('Using legacy settings. Will migrate in the next step.');
+        SharedPreferencesStorePlatform.instance = legacyStore;
+        usingLegacyStore = true;
+      } else {
+        SharedPreferencesStorePlatform.instance = SharedPreferencesFile(filePath: _windowsFile);
+      }
+    }
+
+    final bool isFirstAppStart;
+    final existingVersion = (await SharedPreferencesStorePlatform.instance.getAll())['flutter.$_version'] as int?;
+    _logger.info('Existing version: $existingVersion');
+    if (existingVersion == null && !usingLegacyStore) {
+      isFirstAppStart = true;
+      await SharedPreferencesStorePlatform.instance.setValue('Int', 'flutter.$_version', _latestVersion);
+    } else {
+      isFirstAppStart = false;
+      final fromVersion = existingVersion ?? 1;
+      if (fromVersion < _latestVersion) {
+        await _runMigrations(fromVersion);
+      }
     }
 
     try {
       prefs = await SharedPreferences.getInstance();
     } catch (e) {
       if (checkPlatform([TargetPlatform.windows])) {
-        _logger.info('Could not initialize SharedPreferences, trying to delete corrupted settings file');
-        final settingsDir = await path.getApplicationSupportDirectory();
-        final prefsFile = p.join(settingsDir.path, 'shared_preferences.json');
-        File(prefsFile).deleteSync();
+        _logger.info('Could not initialize SharedPreferences, trying to delete corrupted settings file', e);
+        File(_windowsFile).deleteSync();
         prefs = await SharedPreferences.getInstance();
       } else {
         throw Exception('Could not initialize SharedPreferences');
@@ -108,10 +150,6 @@ class PersistenceService {
       LocaleSettings.setLocaleRaw(persistedLocale);
     }
 
-    if (prefs.getInt(_version) == null) {
-      await prefs.setInt(_version, 1);
-    }
-
     if (prefs.getString(_showToken) == null) {
       await prefs.setString(_showToken, const Uuid().v4());
     }
@@ -124,7 +162,6 @@ class PersistenceService {
       await prefs.setString(_securityContext, jsonEncode(generateSecurityContext()));
     }
 
-    final supportsDynamicColors = dynamicColors != null;
     if (prefs.getString(_colorKey) == null) {
       await _initColorSetting(prefs, supportsDynamicColors);
     } else {
@@ -136,12 +173,28 @@ class PersistenceService {
       }
     }
 
-    return PersistenceService._(prefs);
+    // migrate legacy auto start settings (current implementation is stateless and relies on the Windows registry / file system)
+    const launchAtStartupLegacyKey = 'ls_launch_at_startup';
+    const launchMinimizedLegacyKey = 'ls_auto_start_launch_minimized';
+    if (prefs.getBool(launchAtStartupLegacyKey) == true) {
+      _logger.info('Enable auto start on legacy settings');
+      await prefs.remove(launchAtStartupLegacyKey);
+      await enableAutoStart(startHidden: prefs.getBool(launchMinimizedLegacyKey) == true);
+      await prefs.remove(launchMinimizedLegacyKey);
+    }
+
+    return PersistenceService._(prefs, isFirstAppStart);
   }
 
   static Future<void> _initColorSetting(SharedPreferences prefs, bool supportsDynamicColors) async {
     await prefs.setString(
-        _colorKey, checkPlatform([TargetPlatform.android]) && supportsDynamicColors ? ColorMode.system.name : ColorMode.localsend.name);
+      _colorKey,
+      checkPlatform([TargetPlatform.android]) && supportsDynamicColors ? ColorMode.system.name : ColorMode.localsend.name,
+    );
+  }
+
+  bool isPortableMode() {
+    return SharedPreferencesStorePlatform.instance is SharedPreferencesPortable;
   }
 
   StoredSecurityContext getSecurityContext() {
@@ -233,6 +286,22 @@ class PersistenceService {
     await _prefs.setInt(_portKey, port);
   }
 
+  int getDiscoveryTimeout() {
+    return _prefs.getInt(_timeoutKey) ?? defaultDiscoveryTimeout;
+  }
+
+  Future<void> setDiscoveryTimeout(int timeout) async {
+    await _prefs.setInt(_timeoutKey, timeout);
+  }
+
+  bool getShareViaLinkAutoAccept() {
+    return _prefs.getBool(_shareViaLinkAutoAccept) ?? false;
+  }
+
+  Future<void> setShareViaLinkAutoAccept(bool shareViaLinkAutoAccept) async {
+    await _prefs.setBool(_shareViaLinkAutoAccept, shareViaLinkAutoAccept);
+  }
+
   String getMulticastGroup() {
     return _prefs.getString(_multicastGroupKey) ?? defaultMulticastGroup;
   }
@@ -269,12 +338,40 @@ class PersistenceService {
     await _prefs.setBool(_saveToHistory, saveToHistory);
   }
 
+  bool getAdvancedSettingsEnabled() {
+    return _prefs.getBool(_advancedSettingsKey) ?? false;
+  }
+
+  Future<void> setAdvancedSettingsEnabled(bool isEnabled) async {
+    await _prefs.setBool(_advancedSettingsKey, isEnabled);
+  }
+
   bool isQuickSave() {
     return _prefs.getBool(_quickSave) ?? false;
   }
 
   Future<void> setQuickSave(bool quickSave) async {
     await _prefs.setBool(_quickSave, quickSave);
+  }
+
+  bool isQuickSaveFromFavorites() {
+    return _prefs.getBool(_quickSaveFromFavorites) ?? false;
+  }
+
+  Future<void> setQuickSaveFromFavorites(bool quickSaveFromFavorites) async {
+    await _prefs.setBool(_quickSaveFromFavorites, quickSaveFromFavorites);
+  }
+
+  String? getReceivePin() {
+    return _prefs.getString(_receivePin);
+  }
+
+  Future<void> setReceivePin(String? pin) async {
+    if (pin == null) {
+      await _prefs.remove(_receivePin);
+    } else {
+      await _prefs.setString(_receivePin, pin);
+    }
   }
 
   bool isAutoFinish() {
@@ -291,22 +388,6 @@ class PersistenceService {
 
   Future<void> setMinimizeToTray(bool minimizeToTray) async {
     await _prefs.setBool(_minimizeToTray, minimizeToTray);
-  }
-
-  bool isLaunchAtStartup() {
-    return _prefs.getBool(_launchAtStartup) ?? false;
-  }
-
-  Future<void> setLaunchAtStartup(bool launchAtStartup) async {
-    await _prefs.setBool(_launchAtStartup, launchAtStartup);
-  }
-
-  bool isAutoStartLaunchMinimized() {
-    return _prefs.getBool(_autoStartLaunchMinimized) ?? true;
-  }
-
-  Future<void> setAutoStartLaunchMinimized(bool launchMinimized) async {
-    await _prefs.setBool(_autoStartLaunchMinimized, launchMinimized);
   }
 
   bool isHttps() {
@@ -341,18 +422,30 @@ class PersistenceService {
     await _prefs.setDouble(_windowWidth, width);
   }
 
-  WindowDimensions getWindowLastDimensions() {
+  WindowDimensions? getWindowLastDimensions() {
     Size? size;
     Offset? position;
     final offsetX = _prefs.getDouble(_windowOffsetX);
     final offsetY = _prefs.getDouble(_windowOffsetY);
     final width = _prefs.getDouble(_windowWidth);
     final height = _prefs.getDouble(_windowHeight);
-    if (width != null && height != null) size = Size(width, height);
-    if (offsetX != null && offsetY != null) position = Offset(offsetX, offsetY);
 
-    final dimensions = {'size': size, 'position': position};
-    return dimensions;
+    if (width != null && height != null) {
+      size = Size(width, height);
+    }
+
+    if (offsetX != null && offsetY != null) {
+      position = Offset(offsetX, offsetY);
+    }
+
+    if (size == null || position == null) {
+      return null;
+    }
+
+    return WindowDimensions(
+      position: position,
+      size: size,
+    );
   }
 
   Future<void> setSaveWindowPlacement(bool savePlacement) async {

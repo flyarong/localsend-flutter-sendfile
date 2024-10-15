@@ -1,3 +1,9 @@
+///
+/// Generated file. Do not edit.
+///
+// coverage:ignore-file
+// ignore_for_file: type=lint
+
 part of 'strings.g.dart';
 
 // Path: <root>
@@ -40,6 +46,7 @@ class _StringsHe extends Translations {
 	@override late final _StringsChangelogPageHe changelogPage = _StringsChangelogPageHe._(_root);
 	@override late final _StringsAliasGeneratorHe aliasGenerator = _StringsAliasGeneratorHe._(_root);
 	@override late final _StringsDialogsHe dialogs = _StringsDialogsHe._(_root);
+	@override late final _StringsSanitizationHe sanitization = _StringsSanitizationHe._(_root);
 	@override late final _StringsTrayHe tray = _StringsTrayHe._(_root);
 	@override late final _StringsWebHe web = _StringsWebHe._(_root);
 	@override late final _StringsAssetPickerHe assetPicker = _StringsAssetPickerHe._(_root);
@@ -72,12 +79,13 @@ class _StringsGeneralHe extends _StringsGeneralEn {
 	@override String get finished => 'הסתיים';
 	@override String get hide => 'הסתרה';
 	@override String get off => 'כבויה';
-	@override String get offline => 'אין אינטרנט';
+	@override String get offline => 'כבוי';
 	@override String get on => 'פעילה';
 	@override String get online => 'מקוון';
 	@override String get open => 'פתח';
 	@override String get queue => 'תור';
 	@override String get quickSave => 'שמירה מהירה';
+	@override String get quickSaveFromFavorites => 'שמירה מהירה מהמועדפים';
 	@override String get renamed => 'שונה שם';
 	@override String get reset => 'איפוס';
 	@override String get restart => 'הפעל מחדש';
@@ -116,6 +124,7 @@ class _StringsSendTabHe extends _StringsSendTabEn {
 	@override String get nearbyDevices => 'מכשירים בקרבת מקום';
 	@override String get thisDevice => 'המכשיר הזה';
 	@override String get scan => 'חפש מכשירים';
+	@override String get manualSending => 'שליחה ידנית';
 	@override String get sendMode => 'מצב שליחה';
 	@override late final _StringsSendTabSendModesHe sendModes = _StringsSendTabSendModesHe._(_root);
 	@override String get sendModeHelp => 'עזרה';
@@ -133,6 +142,7 @@ class _StringsSettingsTabHe extends _StringsSettingsTabEn {
 	@override String get title => 'הגדרות';
 	@override late final _StringsSettingsTabGeneralHe general = _StringsSettingsTabGeneralHe._(_root);
 	@override late final _StringsSettingsTabReceiveHe receive = _StringsSettingsTabReceiveHe._(_root);
+	@override late final _StringsSettingsTabSendHe send = _StringsSettingsTabSendHe._(_root);
 	@override late final _StringsSettingsTabNetworkHe network = _StringsSettingsTabNetworkHe._(_root);
 	@override late final _StringsSettingsTabOtherHe other = _StringsSettingsTabOtherHe._(_root);
 	@override String get advancedSettings => 'הגדרות מתקדמות';
@@ -150,6 +160,7 @@ class _StringsTroubleshootPageHe extends _StringsTroubleshootPageEn {
 	@override String get solution => 'פתרון:';
 	@override String get fixButton => 'תקן אוטומטית';
 	@override late final _StringsTroubleshootPageFirewallHe firewall = _StringsTroubleshootPageFirewallHe._(_root);
+	@override late final _StringsTroubleshootPageNoDiscoveryHe noDiscovery = _StringsTroubleshootPageNoDiscoveryHe._(_root);
 	@override late final _StringsTroubleshootPageNoConnectionHe noConnection = _StringsTroubleshootPageNoConnectionHe._(_root);
 }
 
@@ -198,8 +209,8 @@ class _StringsReceivePageHe extends _StringsReceivePageEn {
 
 	// Translations
 	@override String subTitle({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('he'))(n,
-		one: 'רוצה לשלוח לך קובץ.',
-		other: 'רוצה לשלוח לך ${n} קבצים.',
+		one: 'רוצה לשלוח לך קובץ',
+		other: 'רוצה לשלוח לך ${n} קבצים',
 	);
 	@override String get subTitleMessage => 'שלח לך הודעה:';
 	@override String get subTitleLink => 'שלח לך קישור:';
@@ -214,9 +225,9 @@ class _StringsReceiveOptionsPageHe extends _StringsReceiveOptionsPageEn {
 
 	// Translations
 	@override String get title => 'אפשרויות';
-	@override String get destination => '${_root.settingsTab.receive.destination}';
+	@override String get destination => _root.settingsTab.receive.destination;
 	@override String get appDirectory => '(תיקיית LocalSend)';
-	@override String get saveToGallery => '${_root.settingsTab.receive.saveToGallery}';
+	@override String get saveToGallery => _root.settingsTab.receive.saveToGallery;
 	@override String get saveToGalleryOff => 'כבוי באופן אוטומטי בשל קיום ספריות.';
 }
 
@@ -229,6 +240,7 @@ class _StringsSendPageHe extends _StringsSendPageEn {
 	// Translations
 	@override String get waiting => 'ממתין לתגובה...';
 	@override String get rejected => 'הנמען דחה את הבקשה.';
+	@override String get tooManyAttempts => _root.web.tooManyAttempts;
 	@override String get busy => 'הנמען תפוס בבקשה אחרת.';
 }
 
@@ -262,7 +274,10 @@ class _StringsWebSharePageHe extends _StringsWebSharePageEn {
 	);
 	@override String get requests => 'בקשות';
 	@override String get noRequests => 'אין כרגע בקשות.';
-	@override String get encryption => '${_root.settingsTab.network.encryption}';
+	@override String get encryption => _root.settingsTab.network.encryption;
+	@override String get autoAccept => 'אישור בקשות באופן אוטומטי';
+	@override String get requirePin => 'דרוש סיסמה';
+	@override String pinHint({required Object pin}) => 'הסיסמה היא "${pin}"';
 	@override String get encryptionHint => 'LocalSend משתמש בתעודה עצמית. עליך לאשר אותה בדפדפן.';
 	@override String pendingRequests({required Object n}) => 'בקשות בהמתנה: ${n}';
 }
@@ -281,6 +296,7 @@ class _StringsAboutPageHe extends _StringsAboutPageEn {
 	];
 	@override String get author => 'יוצר';
 	@override String get contributors => 'תורמים';
+	@override String get packagers => 'אורזים';
 	@override String get translators => 'מתרגמים';
 }
 
@@ -344,7 +360,21 @@ class _StringsDialogsHe extends _StringsDialogsEn {
 	@override late final _StringsDialogsQrHe qr = _StringsDialogsQrHe._(_root);
 	@override late final _StringsDialogsQuickActionsHe quickActions = _StringsDialogsQuickActionsHe._(_root);
 	@override late final _StringsDialogsQuickSaveNoticeHe quickSaveNotice = _StringsDialogsQuickSaveNoticeHe._(_root);
+	@override late final _StringsDialogsQuickSaveFromFavoritesNoticeHe quickSaveFromFavoritesNotice = _StringsDialogsQuickSaveFromFavoritesNoticeHe._(_root);
+	@override late final _StringsDialogsPinHe pin = _StringsDialogsPinHe._(_root);
 	@override late final _StringsDialogsSendModeHelpHe sendModeHelp = _StringsDialogsSendModeHelpHe._(_root);
+	@override late final _StringsDialogsZoomHe zoom = _StringsDialogsZoomHe._(_root);
+}
+
+// Path: sanitization
+class _StringsSanitizationHe extends _StringsSanitizationEn {
+	_StringsSanitizationHe._(_StringsHe root) : this._root = root, super._(root);
+
+	@override final _StringsHe _root; // ignore: unused_field
+
+	// Translations
+	@override String get empty => 'שם הקובץ לא יכול להיות ריק';
+	@override String get invalid => 'שם הקובץ מכיל תווים לא חוקיים';
 }
 
 // Path: tray
@@ -354,8 +384,9 @@ class _StringsTrayHe extends _StringsTrayEn {
 	@override final _StringsHe _root; // ignore: unused_field
 
 	// Translations
-	@override String get open => '${_root.general.open}';
+	@override String get open => _root.general.open;
 	@override String get close => 'צא מ-LocalSend';
+	@override String get closeWindows => 'יציאה';
 }
 
 // Path: web
@@ -365,7 +396,10 @@ class _StringsWebHe extends _StringsWebEn {
 	@override final _StringsHe _root; // ignore: unused_field
 
 	// Translations
-	@override String get waiting => '${_root.sendPage.waiting}';
+	@override String get waiting => _root.sendPage.waiting;
+	@override String get enterPin => 'הזן סיסמה';
+	@override String get invalidPin => 'סיסמה לא חוקית';
+	@override String get tooManyAttempts => 'בוצעו יותר מידי ניסיונות כושלים';
 	@override String get rejected => 'נדחה';
 	@override String get files => 'קבצים';
 	@override String get fileName => 'שם קובץ';
@@ -475,9 +509,11 @@ class _StringsSettingsTabGeneralHe extends _StringsSettingsTabGeneralEn {
 	@override String get language => 'שפה';
 	@override late final _StringsSettingsTabGeneralLanguageOptionsHe languageOptions = _StringsSettingsTabGeneralLanguageOptionsHe._(_root);
 	@override String get saveWindowPlacement => 'יציאה: שמירת מיקום החלון';
+	@override String get saveWindowPlacementWindows => 'שמור את מיקום החלון בעת יציאה';
 	@override String get minimizeToTray => 'יציאה: מזעור למגש';
 	@override String get launchAtStartup => 'הפעלה אוטומטית לאחר הכניסה';
 	@override String get launchMinimized => 'הפעלה אוטומטית: התחל מוסתר';
+	@override String get showInContextMenu => 'הצג את LocalSend בתפריט ההקשר';
 	@override String get animations => 'אנימציות';
 }
 
@@ -489,12 +525,25 @@ class _StringsSettingsTabReceiveHe extends _StringsSettingsTabReceiveEn {
 
 	// Translations
 	@override String get title => 'קבלה';
-	@override String get quickSave => '${_root.general.quickSave}';
+	@override String get quickSave => _root.general.quickSave;
+	@override String get quickSaveFromFavorites => _root.general.quickSaveFromFavorites;
+	@override String get requirePin => _root.webSharePage.requirePin;
 	@override String get autoFinish => 'סיום אוטומטי';
 	@override String get destination => 'יעד';
 	@override String get downloads => '(הורדות)';
 	@override String get saveToGallery => 'שמור מדיה לגלריה';
 	@override String get saveToHistory => 'שמור בהיסטוריה';
+}
+
+// Path: settingsTab.send
+class _StringsSettingsTabSendHe extends _StringsSettingsTabSendEn {
+	_StringsSettingsTabSendHe._(_StringsHe root) : this._root = root, super._(root);
+
+	@override final _StringsHe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'שליחה';
+	@override String get shareViaLinkAutoAccept => 'שיתוף באמצעות קישור: אישור אוטומטי';
 }
 
 // Path: settingsTab.network
@@ -511,6 +560,9 @@ class _StringsSettingsTabNetworkHe extends _StringsSettingsTabNetworkEn {
 	@override String get deviceType => 'סוג המכשיר';
 	@override String get deviceModel => 'דגם המכשיר';
 	@override String get port => 'יציאה';
+	@override String get discoveryTimeout => 'זמן קצוב לגילוי';
+	@override String get useSystemName => 'השתמש בשם מערכת';
+	@override String get generateRandomAlias => 'צור כינוי אקראי';
 	@override String portWarning({required Object defaultPort}) => 'יתכן שלא יזוהו מכשירים אחרים בגלל שאתה משתמש ביציאה מותאמת אישית. (ברירת־מחדל: ${defaultPort})';
 	@override String get encryption => 'הצפנה';
 	@override String get multicastGroup => 'מולטיקאסט';
@@ -543,6 +595,17 @@ class _StringsTroubleshootPageFirewallHe extends _StringsTroubleshootPageFirewal
 	@override String get openFirewall => 'פתח את חומת האש';
 }
 
+// Path: troubleshootPage.noDiscovery
+class _StringsTroubleshootPageNoDiscoveryHe extends _StringsTroubleshootPageNoDiscoveryEn {
+	_StringsTroubleshootPageNoDiscoveryHe._(_StringsHe root) : this._root = root, super._(root);
+
+	@override final _StringsHe _root; // ignore: unused_field
+
+	// Translations
+	@override String get symptom => 'המכשיר הזה לא מצליח לגלות מכשירים אחרים.';
+	@override String get solution => 'אנא ודא שכל המכשירים נמצאים באותה רשת Wi-Fi וחולקים את אותה תצורה (יציאה, כתובת ריבוי שידור, הצפנה). אתה יכול לנסות להקליד את כתובת ה-IP של מכשיר היעד באופן ידני. אם זה יעבוד, שקול להוסיף את המכשיר למועדפים כדי שניתן יהיה לגלות אותו אוטומטית בעתיד.';
+}
+
 // Path: troubleshootPage.noConnection
 class _StringsTroubleshootPageNoConnectionHe extends _StringsTroubleshootPageNoConnectionEn {
 	_StringsTroubleshootPageNoConnectionHe._(_StringsHe root) : this._root = root, super._(root);
@@ -562,6 +625,7 @@ class _StringsReceiveHistoryPageEntryActionsHe extends _StringsReceiveHistoryPag
 
 	// Translations
 	@override String get open => 'פתח קובץ';
+	@override String get showInFolder => 'הצג בתיקייה';
 	@override String get info => 'מידע';
 	@override String get deleteFromHistory => 'מחק מההיסטוריה';
 }
@@ -643,7 +707,7 @@ class _StringsDialogsErrorDialogHe extends _StringsDialogsErrorDialogEn {
 	@override final _StringsHe _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.general.error}';
+	@override String get title => _root.general.error;
 }
 
 // Path: dialogs.favoriteDialog
@@ -728,7 +792,7 @@ class _StringsDialogsLocalNetworkUnauthorizedHe extends _StringsDialogsLocalNetw
 	@override final _StringsHe _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.dialogs.noPermission.title}';
+	@override String get title => _root.dialogs.noPermission.title;
 	@override String get description => 'ל־LocalSend אין אפשרות למצוא מכשירים אחרים ללא הרשאה לסריקת הרשת המקומית. אנא הענק את ההרשאה הזו בהגדרות.';
 	@override String get gotoSettings => 'הגדרות';
 }
@@ -763,7 +827,7 @@ class _StringsDialogsNoPermissionHe extends _StringsDialogsNoPermissionEn {
 
 	// Translations
 	@override String get title => 'אין הרשאה';
-	@override String get content => 'אתה לא נתת הרשאות הנדרשות. אנא הענק את הרשאות בהגדרות.';
+	@override String get content => 'לא הענקת את ההרשאות הנדרשות. אנא הענק את ההרשאות בהגדרות.';
 }
 
 // Path: dialogs.notAvailableOnPlatform
@@ -809,8 +873,29 @@ class _StringsDialogsQuickSaveNoticeHe extends _StringsDialogsQuickSaveNoticeEn 
 	@override final _StringsHe _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.general.quickSave}';
+	@override String get title => _root.general.quickSave;
 	@override String get content => 'בקשות שליחה מתקבלות אוטומטית. שים לב שכל אחד ברשת המקומית יוכל לשלוח לך קבצים.';
+}
+
+// Path: dialogs.quickSaveFromFavoritesNotice
+class _StringsDialogsQuickSaveFromFavoritesNoticeHe extends _StringsDialogsQuickSaveFromFavoritesNoticeEn {
+	_StringsDialogsQuickSaveFromFavoritesNoticeHe._(_StringsHe root) : this._root = root, super._(root);
+
+	@override final _StringsHe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => _root.general.quickSaveFromFavorites;
+	@override String get content => 'בקשות שליחה מתקבלות אוטומטית ממכשירים ברשימת המועדפים שלך.';
+}
+
+// Path: dialogs.pin
+class _StringsDialogsPinHe extends _StringsDialogsPinEn {
+	_StringsDialogsPinHe._(_StringsHe root) : this._root = root, super._(root);
+
+	@override final _StringsHe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'הזן סיסמה';
 }
 
 // Path: dialogs.sendModeHelp
@@ -824,6 +909,16 @@ class _StringsDialogsSendModeHelpHe extends _StringsDialogsSendModeHelpEn {
 	@override String get single => 'שליחת קבצים למקבל בודד. בחירת הקבצים תתאפס לאחר השליחה.';
 	@override String get multiple => 'שליחת קבצים למקבלים מרובים. בחירת הקבצים לא תתאפס.';
 	@override String get link => 'מקבלים ש-LocalSend לא מותקן אצלם יוכלו להוריד את הקבצים שנבחרו על ידי פתיחת הקישור בדפדפן שלהם.';
+}
+
+// Path: dialogs.zoom
+class _StringsDialogsZoomHe extends _StringsDialogsZoomEn {
+	_StringsDialogsZoomHe._(_StringsHe root) : this._root = root, super._(root);
+
+	@override final _StringsHe _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'URL';
 }
 
 // Path: settingsTab.general.brightnessOptions

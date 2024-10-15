@@ -1,3 +1,9 @@
+///
+/// Generated file. Do not edit.
+///
+// coverage:ignore-file
+// ignore_for_file: type=lint
+
 part of 'strings.g.dart';
 
 // Path: <root>
@@ -40,6 +46,7 @@ class _StringsFilPh extends Translations {
 	@override late final _StringsChangelogPageFilPh changelogPage = _StringsChangelogPageFilPh._(_root);
 	@override late final _StringsAliasGeneratorFilPh aliasGenerator = _StringsAliasGeneratorFilPh._(_root);
 	@override late final _StringsDialogsFilPh dialogs = _StringsDialogsFilPh._(_root);
+	@override late final _StringsSanitizationFilPh sanitization = _StringsSanitizationFilPh._(_root);
 	@override late final _StringsTrayFilPh tray = _StringsTrayFilPh._(_root);
 	@override late final _StringsWebFilPh web = _StringsWebFilPh._(_root);
 	@override late final _StringsAssetPickerFilPh assetPicker = _StringsAssetPickerFilPh._(_root);
@@ -78,6 +85,7 @@ class _StringsGeneralFilPh extends _StringsGeneralEn {
 	@override String get open => 'Buksan';
 	@override String get queue => 'Pila';
 	@override String get quickSave => 'Quick Save';
+	@override String get quickSaveFromFavorites => 'I-save agad kapag galing sa "Favorites"';
 	@override String get renamed => 'Pinangalanan';
 	@override String get reset => 'Reset';
 	@override String get restart => 'Restart';
@@ -116,6 +124,7 @@ class _StringsSendTabFilPh extends _StringsSendTabEn {
 	@override String get nearbyDevices => 'Malalapit na mga device';
 	@override String get thisDevice => 'Ang Device na Ito';
 	@override String get scan => 'Maghanap ng mga device';
+	@override String get manualSending => 'Mano-manong pagpapadala';
 	@override String get sendMode => 'Send mode';
 	@override late final _StringsSendTabSendModesFilPh sendModes = _StringsSendTabSendModesFilPh._(_root);
 	@override String get sendModeHelp => 'Paliwanag';
@@ -133,6 +142,7 @@ class _StringsSettingsTabFilPh extends _StringsSettingsTabEn {
 	@override String get title => 'Settings';
 	@override late final _StringsSettingsTabGeneralFilPh general = _StringsSettingsTabGeneralFilPh._(_root);
 	@override late final _StringsSettingsTabReceiveFilPh receive = _StringsSettingsTabReceiveFilPh._(_root);
+	@override late final _StringsSettingsTabSendFilPh send = _StringsSettingsTabSendFilPh._(_root);
 	@override late final _StringsSettingsTabNetworkFilPh network = _StringsSettingsTabNetworkFilPh._(_root);
 	@override late final _StringsSettingsTabOtherFilPh other = _StringsSettingsTabOtherFilPh._(_root);
 	@override String get advancedSettings => 'Advanced settings';
@@ -150,6 +160,7 @@ class _StringsTroubleshootPageFilPh extends _StringsTroubleshootPageEn {
 	@override String get solution => 'Solusyon:';
 	@override String get fixButton => 'Awtomatikong ayusin';
 	@override late final _StringsTroubleshootPageFirewallFilPh firewall = _StringsTroubleshootPageFirewallFilPh._(_root);
+	@override late final _StringsTroubleshootPageNoDiscoveryFilPh noDiscovery = _StringsTroubleshootPageNoDiscoveryFilPh._(_root);
 	@override late final _StringsTroubleshootPageNoConnectionFilPh noConnection = _StringsTroubleshootPageNoConnectionFilPh._(_root);
 }
 
@@ -198,8 +209,8 @@ class _StringsReceivePageFilPh extends _StringsReceivePageEn {
 
 	// Translations
 	@override String subTitle({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fil'))(n,
-		one: 'ay gustong magpadala sa iyo ng file.',
-		other: 'ay gustong magpadala sa iyo ng ${n} na mga file.',
+		one: 'ay gustong magpadala sa iyo ng file',
+		other: 'ay gustong magpadala sa iyo ng ${n} na mga file',
 	);
 	@override String get subTitleMessage => 'ay nagpadala sa iyo ng mensahe:';
 	@override String get subTitleLink => 'ay nagpadala sa iyo ng link:';
@@ -214,9 +225,9 @@ class _StringsReceiveOptionsPageFilPh extends _StringsReceiveOptionsPageEn {
 
 	// Translations
 	@override String get title => 'Options';
-	@override String get destination => '${_root.settingsTab.receive.destination}';
+	@override String get destination => _root.settingsTab.receive.destination;
 	@override String get appDirectory => '(LocalSend folder)';
-	@override String get saveToGallery => '${_root.settingsTab.receive.saveToGallery}';
+	@override String get saveToGallery => _root.settingsTab.receive.saveToGallery;
 	@override String get saveToGalleryOff => 'Awtomatikong pinatay dahil mayroong mga directories.';
 }
 
@@ -229,6 +240,7 @@ class _StringsSendPageFilPh extends _StringsSendPageEn {
 	// Translations
 	@override String get waiting => 'Naghihintay ng response...';
 	@override String get rejected => 'Tinanggihan ng recipient ang request.';
+	@override String get tooManyAttempts => _root.web.tooManyAttempts;
 	@override String get busy => 'Ang recipient ay abala pa sa ibang request.';
 }
 
@@ -262,7 +274,10 @@ class _StringsWebSharePageFilPh extends _StringsWebSharePageEn {
 	);
 	@override String get requests => 'Requests';
 	@override String get noRequests => 'Wala pang mga request.';
-	@override String get encryption => '${_root.settingsTab.network.encryption}';
+	@override String get encryption => _root.settingsTab.network.encryption;
+	@override String get autoAccept => 'Kusang I-accept ang request';
+	@override String get requirePin => 'I-require ang Pin';
+	@override String pinHint({required Object pin}) => 'Ang Pin ay "${pin}"';
 	@override String get encryptionHint => 'Ang LocalSend ay gumagamit ng self-signed certificate. Kailangan mo itong i-accept sa browser.';
 	@override String pendingRequests({required Object n}) => 'Mga naka-pending na request: ${n}';
 }
@@ -281,6 +296,7 @@ class _StringsAboutPageFilPh extends _StringsAboutPageEn {
 	];
 	@override String get author => 'Author';
 	@override String get contributors => 'Mga Contributor';
+	@override String get packagers => 'Mga Packagers';
 	@override String get translators => 'Mga Translator';
 }
 
@@ -415,7 +431,21 @@ class _StringsDialogsFilPh extends _StringsDialogsEn {
 	@override late final _StringsDialogsQrFilPh qr = _StringsDialogsQrFilPh._(_root);
 	@override late final _StringsDialogsQuickActionsFilPh quickActions = _StringsDialogsQuickActionsFilPh._(_root);
 	@override late final _StringsDialogsQuickSaveNoticeFilPh quickSaveNotice = _StringsDialogsQuickSaveNoticeFilPh._(_root);
+	@override late final _StringsDialogsQuickSaveFromFavoritesNoticeFilPh quickSaveFromFavoritesNotice = _StringsDialogsQuickSaveFromFavoritesNoticeFilPh._(_root);
+	@override late final _StringsDialogsPinFilPh pin = _StringsDialogsPinFilPh._(_root);
 	@override late final _StringsDialogsSendModeHelpFilPh sendModeHelp = _StringsDialogsSendModeHelpFilPh._(_root);
+	@override late final _StringsDialogsZoomFilPh zoom = _StringsDialogsZoomFilPh._(_root);
+}
+
+// Path: sanitization
+class _StringsSanitizationFilPh extends _StringsSanitizationEn {
+	_StringsSanitizationFilPh._(_StringsFilPh root) : this._root = root, super._(root);
+
+	@override final _StringsFilPh _root; // ignore: unused_field
+
+	// Translations
+	@override String get empty => 'Ang Filename ay hindi maaaring walang laman';
+	@override String get invalid => 'Ang Filename ay naglalaman ng hindi suportado na characters';
 }
 
 // Path: tray
@@ -425,8 +455,9 @@ class _StringsTrayFilPh extends _StringsTrayEn {
 	@override final _StringsFilPh _root; // ignore: unused_field
 
 	// Translations
-	@override String get open => '${_root.general.open}';
+	@override String get open => _root.general.open;
 	@override String get close => 'Isara ang LocalSend';
+	@override String get closeWindows => 'Isara';
 }
 
 // Path: web
@@ -436,7 +467,10 @@ class _StringsWebFilPh extends _StringsWebEn {
 	@override final _StringsFilPh _root; // ignore: unused_field
 
 	// Translations
-	@override String get waiting => '${_root.sendPage.waiting}';
+	@override String get waiting => _root.sendPage.waiting;
+	@override String get enterPin => 'Ilagay ang PIN';
+	@override String get invalidPin => 'Ang PIN ay invalid';
+	@override String get tooManyAttempts => 'Marami nang pagsubok';
 	@override String get rejected => 'Hindi Tinanggap';
 	@override String get files => 'Files';
 	@override String get fileName => 'Pangalan ng file';
@@ -546,9 +580,11 @@ class _StringsSettingsTabGeneralFilPh extends _StringsSettingsTabGeneralEn {
 	@override String get language => 'Wika';
 	@override late final _StringsSettingsTabGeneralLanguageOptionsFilPh languageOptions = _StringsSettingsTabGeneralLanguageOptionsFilPh._(_root);
 	@override String get saveWindowPlacement => 'Quit: I-save ang window placement';
+	@override String get saveWindowPlacementWindows => 'I-save ang posisyon ng window pagkasara';
 	@override String get minimizeToTray => 'Quit: Paliitin sa Tray/Menu Bar';
 	@override String get launchAtStartup => 'I-autostart pagkatapos mag-login';
 	@override String get launchMinimized => 'Autostart: I-start nang nakatago';
+	@override String get showInContextMenu => 'Ipakita ang LocalSend sa context menu';
 	@override String get animations => 'Animations';
 }
 
@@ -560,12 +596,25 @@ class _StringsSettingsTabReceiveFilPh extends _StringsSettingsTabReceiveEn {
 
 	// Translations
 	@override String get title => 'Tumanggap';
-	@override String get quickSave => '${_root.general.quickSave}';
+	@override String get quickSave => _root.general.quickSave;
+	@override String get quickSaveFromFavorites => _root.general.quickSaveFromFavorites;
+	@override String get requirePin => _root.webSharePage.requirePin;
 	@override String get autoFinish => 'Auto Finish';
 	@override String get destination => 'Patutunguhan';
 	@override String get downloads => '(Downloads)';
 	@override String get saveToGallery => 'I-save ang media sa gallery';
 	@override String get saveToHistory => 'I-save sa history';
+}
+
+// Path: settingsTab.send
+class _StringsSettingsTabSendFilPh extends _StringsSettingsTabSendEn {
+	_StringsSettingsTabSendFilPh._(_StringsFilPh root) : this._root = root, super._(root);
+
+	@override final _StringsFilPh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ipasa';
+	@override String get shareViaLinkAutoAccept => 'Kusang tanggapin ang request sa "Share via link" mode';
 }
 
 // Path: settingsTab.network
@@ -582,6 +631,7 @@ class _StringsSettingsTabNetworkFilPh extends _StringsSettingsTabNetworkEn {
 	@override String get deviceType => 'Device type';
 	@override String get deviceModel => 'Device model';
 	@override String get port => 'Port';
+	@override String get discoveryTimeout => 'Nag Timeout ang Discovery';
 	@override String portWarning({required Object defaultPort}) => 'Maaaring hindi ka ma-detect ng ibang devices dahil ikaw ay gumagamit ng ibang port. (default: ${defaultPort})';
 	@override String get encryption => 'Encryption';
 	@override String get multicastGroup => 'Multicast';
@@ -614,6 +664,17 @@ class _StringsTroubleshootPageFirewallFilPh extends _StringsTroubleshootPageFire
 	@override String get openFirewall => 'Buksan ang Firewall';
 }
 
+// Path: troubleshootPage.noDiscovery
+class _StringsTroubleshootPageNoDiscoveryFilPh extends _StringsTroubleshootPageNoDiscoveryEn {
+	_StringsTroubleshootPageNoDiscoveryFilPh._(_StringsFilPh root) : this._root = root, super._(root);
+
+	@override final _StringsFilPh _root; // ignore: unused_field
+
+	// Translations
+	@override String get symptom => 'Ang device na\'to ay hindi maka-discover ng ibang devices.';
+	@override String get solution => 'Siguraduhing lahat ng device ay nasa same WI-FI network at i-share ang parehong configuration (port, multicast address, encryption). Pwedeng i-type manually ang IP address ng target device. Kung gumana, i-consider na i-dagdag ang device sa favorites upang automatic na ma discover sa susunod na paggamit.';
+}
+
 // Path: troubleshootPage.noConnection
 class _StringsTroubleshootPageNoConnectionFilPh extends _StringsTroubleshootPageNoConnectionEn {
 	_StringsTroubleshootPageNoConnectionFilPh._(_StringsFilPh root) : this._root = root, super._(root);
@@ -633,6 +694,7 @@ class _StringsReceiveHistoryPageEntryActionsFilPh extends _StringsReceiveHistory
 
 	// Translations
 	@override String get open => 'Buksan ang file';
+	@override String get showInFolder => 'Buksan sa folder';
 	@override String get info => 'Impormasyon';
 	@override String get deleteFromHistory => 'Burahin sa history';
 }
@@ -714,7 +776,7 @@ class _StringsDialogsErrorDialogFilPh extends _StringsDialogsErrorDialogEn {
 	@override final _StringsFilPh _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.general.error}';
+	@override String get title => _root.general.error;
 }
 
 // Path: dialogs.favoriteDialog
@@ -799,7 +861,7 @@ class _StringsDialogsLocalNetworkUnauthorizedFilPh extends _StringsDialogsLocalN
 	@override final _StringsFilPh _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.dialogs.noPermission.title}';
+	@override String get title => _root.dialogs.noPermission.title;
 	@override String get description => 'Hindi makikita ng LocalSend ang ibang devices hangga\'t hindi nabibigyan ng permission para mag-scan sa lokal na network. Mangyaring bigyan ito ng permission sa settings.';
 	@override String get gotoSettings => 'Settings';
 }
@@ -880,8 +942,29 @@ class _StringsDialogsQuickSaveNoticeFilPh extends _StringsDialogsQuickSaveNotice
 	@override final _StringsFilPh _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.general.quickSave}';
+	@override String get title => _root.general.quickSave;
 	@override String get content => 'Ang mga file request ay awtomatikong tinatanggap. Mabatid lamang na ang lahat ng nasa lokal na network ay maaaring magpadala sa iyo ng mga file.';
+}
+
+// Path: dialogs.quickSaveFromFavoritesNotice
+class _StringsDialogsQuickSaveFromFavoritesNoticeFilPh extends _StringsDialogsQuickSaveFromFavoritesNoticeEn {
+	_StringsDialogsQuickSaveFromFavoritesNoticeFilPh._(_StringsFilPh root) : this._root = root, super._(root);
+
+	@override final _StringsFilPh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => _root.general.quickSaveFromFavorites;
+	@override String get content => 'Ang mga pag-request ng file ay awtomatikong tinatatanggap na ngayon galing sa mga devices sa iyong listahan ng favorites.';
+}
+
+// Path: dialogs.pin
+class _StringsDialogsPinFilPh extends _StringsDialogsPinEn {
+	_StringsDialogsPinFilPh._(_StringsFilPh root) : this._root = root, super._(root);
+
+	@override final _StringsFilPh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ilagay ang PIN';
 }
 
 // Path: dialogs.sendModeHelp
@@ -895,6 +978,16 @@ class _StringsDialogsSendModeHelpFilPh extends _StringsDialogsSendModeHelpEn {
 	@override String get single => 'Magpadala ng mga file sa iisang recipient o tatanggap. Ang mga pagpipilian ay maaalis pagkatapos ipadala ang file.';
 	@override String get multiple => 'Magpadala ng mga file sa maraming recipient o tatanggap. Ang mga pagpipilian ay hindi maaalis.';
 	@override String get link => 'Ang mga recipient o tatanggap na walang nakainstall na LocalSend ay maaaring mag download nang mga napiling file sa pamamagitan ng pagbukas ng link sa kanilang browser.';
+}
+
+// Path: dialogs.zoom
+class _StringsDialogsZoomFilPh extends _StringsDialogsZoomEn {
+	_StringsDialogsZoomFilPh._(_StringsFilPh root) : this._root = root, super._(root);
+
+	@override final _StringsFilPh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'URL';
 }
 
 // Path: settingsTab.general.brightnessOptions

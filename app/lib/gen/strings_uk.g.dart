@@ -1,3 +1,9 @@
+///
+/// Generated file. Do not edit.
+///
+// coverage:ignore-file
+// ignore_for_file: type=lint
+
 part of 'strings.g.dart';
 
 // Path: <root>
@@ -40,6 +46,7 @@ class _StringsUk extends Translations {
 	@override late final _StringsChangelogPageUk changelogPage = _StringsChangelogPageUk._(_root);
 	@override late final _StringsAliasGeneratorUk aliasGenerator = _StringsAliasGeneratorUk._(_root);
 	@override late final _StringsDialogsUk dialogs = _StringsDialogsUk._(_root);
+	@override late final _StringsSanitizationUk sanitization = _StringsSanitizationUk._(_root);
 	@override late final _StringsTrayUk tray = _StringsTrayUk._(_root);
 	@override late final _StringsWebUk web = _StringsWebUk._(_root);
 	@override late final _StringsAssetPickerUk assetPicker = _StringsAssetPickerUk._(_root);
@@ -74,21 +81,22 @@ class _StringsGeneralUk extends _StringsGeneralEn {
 	@override String get off => 'Вимкнено';
 	@override String get offline => 'Не в мережі';
 	@override String get on => 'Увімкнено';
-	@override String get online => 'В мережі';
+	@override String get online => 'У мережі';
 	@override String get open => 'Відкрити';
 	@override String get queue => 'Черга';
 	@override String get quickSave => 'Швидке збереження';
+	@override String get quickSaveFromFavorites => 'Швидке збереження для "Улюблених"';
 	@override String get renamed => 'Перейменовано';
-	@override String get reset => 'Скидання налаштувань';
-	@override String get restart => 'Перезавантаження';
+	@override String get reset => 'Скасувати зміни';
+	@override String get restart => 'Перезапустити';
 	@override String get settings => 'Налаштування';
 	@override String get skipped => 'Відхилено';
-	@override String get start => 'Запуск';
+	@override String get start => 'Запустити';
 	@override String get stop => 'Зупинити';
 	@override String get save => 'Зберегти';
 	@override String get unchanged => 'Без змін';
 	@override String get unknown => 'Невідомо';
-	@override String get noItemInClipboard => 'Буфер обміну порожній';
+	@override String get noItemInClipboard => 'Буфер обміну порожній.';
 }
 
 // Path: receiveTab
@@ -112,15 +120,16 @@ class _StringsSendTabUk extends _StringsSendTabEn {
 	@override String get title => 'Надіслати';
 	@override late final _StringsSendTabSelectionUk selection = _StringsSendTabSelectionUk._(_root);
 	@override late final _StringsSendTabPickerUk picker = _StringsSendTabPickerUk._(_root);
-	@override String get shareIntentInfo => 'Ви також можете використовувати кнопку "Поділитися" на своєму мобільному пристрої для швидкого вибору файлів.';
+	@override String get shareIntentInfo => 'Ви також можете скористатися функцією "Поділитися" на своєму мобільному пристрої, щоб швидше вибирати файли.';
 	@override String get nearbyDevices => 'Пристрої поблизу';
 	@override String get thisDevice => 'Цей пристрій';
 	@override String get scan => 'Пошук пристроїв';
+	@override String get manualSending => 'Ручне надсилання';
 	@override String get sendMode => 'Режим надсилання';
 	@override late final _StringsSendTabSendModesUk sendModes = _StringsSendTabSendModesUk._(_root);
 	@override String get sendModeHelp => 'Довідка';
-	@override String get help => 'Будь ласка, переконайтесь, що одержувач перебуває в тій же ж Wi-Fi мережі, що і відправник.';
-	@override String get placeItems => 'Додайте сюди файли, щоб поділитися.';
+	@override String get help => 'Будь ласка, переконайтеся, що отримувач перебуває в тій же ж Wi-Fi мережі, що й відправник.';
+	@override String get placeItems => 'Додайте файли, щоб поділитися.';
 }
 
 // Path: settingsTab
@@ -133,6 +142,7 @@ class _StringsSettingsTabUk extends _StringsSettingsTabEn {
 	@override String get title => 'Налаштування';
 	@override late final _StringsSettingsTabGeneralUk general = _StringsSettingsTabGeneralUk._(_root);
 	@override late final _StringsSettingsTabReceiveUk receive = _StringsSettingsTabReceiveUk._(_root);
+	@override late final _StringsSettingsTabSendUk send = _StringsSettingsTabSendUk._(_root);
 	@override late final _StringsSettingsTabNetworkUk network = _StringsSettingsTabNetworkUk._(_root);
 	@override late final _StringsSettingsTabOtherUk other = _StringsSettingsTabOtherUk._(_root);
 	@override String get advancedSettings => 'Розширені налаштування';
@@ -146,10 +156,11 @@ class _StringsTroubleshootPageUk extends _StringsTroubleshootPageEn {
 
 	// Translations
 	@override String get title => 'Усунення несправностей';
-	@override String get subTitle => 'Цей додаток не працює належним чином? Тут можна знайти загальні рішення проблем.';
+	@override String get subTitle => 'Програма не працює належним чином? Тут ви можете знайти деякі поширені рішення проблем.';
 	@override String get solution => 'Рішення:';
 	@override String get fixButton => 'Виправити автоматично';
 	@override late final _StringsTroubleshootPageFirewallUk firewall = _StringsTroubleshootPageFirewallUk._(_root);
+	@override late final _StringsTroubleshootPageNoDiscoveryUk noDiscovery = _StringsTroubleshootPageNoDiscoveryUk._(_root);
 	@override late final _StringsTroubleshootPageNoConnectionUk noConnection = _StringsTroubleshootPageNoConnectionUk._(_root);
 }
 
@@ -161,7 +172,7 @@ class _StringsReceiveHistoryPageUk extends _StringsReceiveHistoryPageEn {
 
 	// Translations
 	@override String get title => 'Історія';
-	@override String get openFolder => 'Відкрити теку';
+	@override String get openFolder => 'Відкрити папку';
 	@override String get deleteHistory => 'Очистити історію';
 	@override String get empty => 'Історія порожня.';
 	@override late final _StringsReceiveHistoryPageEntryActionsUk entryActions = _StringsReceiveHistoryPageEntryActionsUk._(_root);
@@ -174,10 +185,10 @@ class _StringsApkPickerPageUk extends _StringsApkPickerPageEn {
 	@override final _StringsUk _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Додатки (APK)';
-	@override String get excludeSystemApps => 'Виключити системні додатки';
-	@override String get excludeAppsWithoutLaunchIntent => 'Виключити додатки, які не запускаються';
-	@override String apps({required Object n}) => '${n} додатків';
+	@override String get title => 'Програми (APK)';
+	@override String get excludeSystemApps => 'Виключити системні програми';
+	@override String get excludeAppsWithoutLaunchIntent => 'Виключити програми, що не запускаються';
+	@override String apps({required Object n}) => '${n} програм';
 }
 
 // Path: selectedFilesPage
@@ -198,11 +209,11 @@ class _StringsReceivePageUk extends _StringsReceivePageEn {
 
 	// Translations
 	@override String subTitle({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('uk'))(n,
-		one: 'хоче надіслати вам файл.',
-		other: 'хоче відправити ${n} файлів.',
+		one: 'хоче надіслати вам файл',
+		other: 'хоче надіслати вам ${n} файли (-ів)',
 	);
 	@override String get subTitleMessage => 'надіслав вам повідомлення:';
-	@override String get subTitleLink => 'відправив вам посилання:';
+	@override String get subTitleLink => 'надіслав вам посилання:';
 	@override String get canceled => 'Відправник скасував запит на передачу файлів.';
 }
 
@@ -214,10 +225,10 @@ class _StringsReceiveOptionsPageUk extends _StringsReceiveOptionsPageEn {
 
 	// Translations
 	@override String get title => 'Параметри отримання';
-	@override String get destination => '${_root.settingsTab.receive.destination}';
-	@override String get appDirectory => '(Тека LocalSend)';
-	@override String get saveToGallery => '${_root.settingsTab.receive.saveToGallery}';
-	@override String get saveToGalleryOff => 'Вимкнено автоматично, оскільки є каталоги.';
+	@override String get destination => _root.settingsTab.receive.destination;
+	@override String get appDirectory => '(Папка LocalSend)';
+	@override String get saveToGallery => _root.settingsTab.receive.saveToGallery;
+	@override String get saveToGalleryOff => 'Вимкнено автоматично, оскільки є папки.';
 }
 
 // Path: sendPage
@@ -229,7 +240,8 @@ class _StringsSendPageUk extends _StringsSendPageEn {
 	// Translations
 	@override String get waiting => 'Очікування відповіді...';
 	@override String get rejected => 'Отримувач відхилив запит.';
-	@override String get busy => 'Одержувач зайнятий іншим запитом.';
+	@override String get tooManyAttempts => _root.web.tooManyAttempts;
+	@override String get busy => 'Отримувач зайнятий іншим запитом.';
 }
 
 // Path: progressPage
@@ -241,7 +253,7 @@ class _StringsProgressPageUk extends _StringsProgressPageEn {
 	// Translations
 	@override String get titleSending => 'Надсилання файлів';
 	@override String get titleReceiving => 'Отримання файлів';
-	@override String get savedToGallery => 'Збережено у галереї';
+	@override String get savedToGallery => 'Збережено в галереї';
 	@override late final _StringsProgressPageTotalUk total = _StringsProgressPageTotalUk._(_root);
 }
 
@@ -262,7 +274,10 @@ class _StringsWebSharePageUk extends _StringsWebSharePageEn {
 	);
 	@override String get requests => 'Запити';
 	@override String get noRequests => 'Запитів поки що немає.';
-	@override String get encryption => '${_root.settingsTab.network.encryption}';
+	@override String get encryption => _root.settingsTab.network.encryption;
+	@override String get autoAccept => 'Автоматично приймати запити';
+	@override String get requirePin => 'Вимагати PIN-код';
+	@override String pinHint({required Object pin}) => 'PIN-код: "${pin}"';
 	@override String get encryptionHint => 'LocalSend використовує самопідписаний сертифікат. Вам потрібно прийняти його в браузері.';
 	@override String pendingRequests({required Object n}) => 'Запити, що очікують на розгляд: ${n}';
 }
@@ -276,11 +291,12 @@ class _StringsAboutPageUk extends _StringsAboutPageEn {
 	// Translations
 	@override String get title => 'Про LocalSend';
 	@override List<String> get description => [
-		'LocalSend — це безкоштовний додаток з відкритим вихідним кодом, який дозволяє безпечно обмінюватися файлами та повідомленнями з пристроями поблизу через локальну мережу без підключення до Інтернету.',
-		'Цей додаток доступний для Android, iOS, macOS, Windows і Linux. Ви можете знайти всі варіанти завантаження на офіційній домашній сторінці.',
+		'LocalSend — це безплатна програма з відкритим вихідним кодом, яка дозволяє вам безпечно обмінюватися файлами та повідомленнями з пристроями поблизу через локальну мережу, без необхідності підключення до Інтернету.',
+		'Ця програма доступна для Android, iOS, macOS, Windows та Linux. Ви можете знайти всі варіанти завантаження на офіційній домашній сторінці.',
 	];
 	@override String get author => 'Автор';
 	@override String get contributors => 'Учасники';
+	@override String get packagers => 'Пакувальники';
 	@override String get translators => 'Перекладачі';
 }
 
@@ -292,7 +308,7 @@ class _StringsDonationPageUk extends _StringsDonationPageEn {
 
 	// Translations
 	@override String get title => 'Пожертвувати';
-	@override String get info => 'LocalSend є безкоштовним, із відкритим вихідним кодом і без реклами. Якщо вам подобається додаток, ви можете підтримати його розробку пожертвою.';
+	@override String get info => 'LocalSend — це безплатна програма з відкритим вихідним кодом та без реклами. Якщо вона вам подобається, ви можете підтримати її розробку пожертвою.';
 	@override String donate({required Object amount}) => 'Пожертвувати ${amount}';
 	@override String get thanks => 'Велике спасибі!';
 	@override String get restore => 'Відновити покупку';
@@ -344,7 +360,21 @@ class _StringsDialogsUk extends _StringsDialogsEn {
 	@override late final _StringsDialogsQrUk qr = _StringsDialogsQrUk._(_root);
 	@override late final _StringsDialogsQuickActionsUk quickActions = _StringsDialogsQuickActionsUk._(_root);
 	@override late final _StringsDialogsQuickSaveNoticeUk quickSaveNotice = _StringsDialogsQuickSaveNoticeUk._(_root);
+	@override late final _StringsDialogsQuickSaveFromFavoritesNoticeUk quickSaveFromFavoritesNotice = _StringsDialogsQuickSaveFromFavoritesNoticeUk._(_root);
+	@override late final _StringsDialogsPinUk pin = _StringsDialogsPinUk._(_root);
 	@override late final _StringsDialogsSendModeHelpUk sendModeHelp = _StringsDialogsSendModeHelpUk._(_root);
+	@override late final _StringsDialogsZoomUk zoom = _StringsDialogsZoomUk._(_root);
+}
+
+// Path: sanitization
+class _StringsSanitizationUk extends _StringsSanitizationEn {
+	_StringsSanitizationUk._(_StringsUk root) : this._root = root, super._(root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get empty => 'Ім\'я файлу не може бути порожнім';
+	@override String get invalid => 'Ім\'я файлу містить недопустимі символи';
 }
 
 // Path: tray
@@ -354,8 +384,9 @@ class _StringsTrayUk extends _StringsTrayEn {
 	@override final _StringsUk _root; // ignore: unused_field
 
 	// Translations
-	@override String get open => '${_root.general.open}';
-	@override String get close => 'Вихід із LocalSend';
+	@override String get open => _root.general.open;
+	@override String get close => 'Вийти з LocalSend';
+	@override String get closeWindows => 'Вийти';
 }
 
 // Path: web
@@ -365,7 +396,10 @@ class _StringsWebUk extends _StringsWebEn {
 	@override final _StringsUk _root; // ignore: unused_field
 
 	// Translations
-	@override String get waiting => '${_root.sendPage.waiting}';
+	@override String get waiting => _root.sendPage.waiting;
+	@override String get enterPin => 'Введіть PIN-код';
+	@override String get invalidPin => 'Неправильний PIN-код';
+	@override String get tooManyAttempts => 'Забагато спроб';
 	@override String get rejected => 'Відхилено';
 	@override String get files => 'Файлів';
 	@override String get fileName => 'Ім\'я файлу';
@@ -383,16 +417,16 @@ class _StringsAssetPickerUk extends _StringsAssetPickerEn {
 	@override String get cancel => 'Скасувати';
 	@override String get edit => 'Редагувати';
 	@override String get gifIndicator => 'GIF';
-	@override String get loadFailed => 'Помилка завантаження';
+	@override String get loadFailed => 'Не вдалося завантажити';
 	@override String get original => 'Оригінал';
-	@override String get preview => 'Попередній перегляд';
+	@override String get preview => 'Передперегляд';
 	@override String get select => 'Вибрати';
 	@override String get emptyList => 'Список порожній';
 	@override String get unSupportedAssetType => 'Непідтримуваний тип файлу.';
-	@override String get unableToAccessAll => 'Неможливо отримати доступ до всіх файлів на пристрої';
-	@override String get viewingLimitedAssetsTip => 'Додаток може переглядати тільки файли та альбоми, до яких він має доступ.';
+	@override String get unableToAccessAll => 'Не вдалося отримати доступ до всіх файлів на пристрої';
+	@override String get viewingLimitedAssetsTip => 'Програма може переглядати тільки файли та альбоми, до яких вона має доступ.';
 	@override String get changeAccessibleLimitedAssets => 'Дозволити доступ до додаткових файлів';
-	@override String get accessAllTip => 'Додаток може отримати доступ тільки до деяких файлів на пристрої. Перейдіть до системних налаштувань та дозвольте додатку отримати доступ до всіх медіафайлів на пристрої.';
+	@override String get accessAllTip => 'Програма має доступ тільки до деяких файлів на пристрої. Перейдіть до системних налаштувань та дозвольте програмі отримати доступ до всіх медіафайлів на пристрої.';
 	@override String get goToSystemSettings => 'Перейти до системних налаштувань';
 	@override String get accessLimitedAssets => 'Продовжити з обмеженим доступом';
 	@override String get accessiblePathName => 'Доступні файли';
@@ -401,7 +435,7 @@ class _StringsAssetPickerUk extends _StringsAssetPickerEn {
 	@override String get sTypeVideoLabel => 'Відео';
 	@override String get sTypeOtherLabel => 'Інші медіафайли';
 	@override String get sActionPlayHint => 'відтворити';
-	@override String get sActionPreviewHint => 'попередній перегляд';
+	@override String get sActionPreviewHint => 'передперегляд';
 	@override String get sActionSelectHint => 'вибрати';
 	@override String get sActionSwitchPathLabel => 'змінити шлях';
 	@override String get sActionUseCameraHint => 'використати камеру';
@@ -441,10 +475,10 @@ class _StringsSendTabPickerUk extends _StringsSendTabPickerEn {
 
 	// Translations
 	@override String get file => 'Файл';
-	@override String get folder => 'Тека';
+	@override String get folder => 'Папка';
 	@override String get media => 'Медіа';
 	@override String get text => 'Текст';
-	@override String get app => 'Додаток';
+	@override String get app => 'Програма';
 	@override String get clipboard => 'Вставити';
 }
 
@@ -455,9 +489,9 @@ class _StringsSendTabSendModesUk extends _StringsSendTabSendModesEn {
 	@override final _StringsUk _root; // ignore: unused_field
 
 	// Translations
-	@override String get single => 'Один одержувач';
-	@override String get multiple => 'Кілька одержувачів';
-	@override String get link => 'Поділіться через посилання';
+	@override String get single => 'Один отримувач';
+	@override String get multiple => 'Декілька отримувачів';
+	@override String get link => 'Поділитися через посилання';
 }
 
 // Path: settingsTab.general
@@ -474,10 +508,12 @@ class _StringsSettingsTabGeneralUk extends _StringsSettingsTabGeneralEn {
 	@override late final _StringsSettingsTabGeneralColorOptionsUk colorOptions = _StringsSettingsTabGeneralColorOptionsUk._(_root);
 	@override String get language => 'Мова';
 	@override late final _StringsSettingsTabGeneralLanguageOptionsUk languageOptions = _StringsSettingsTabGeneralLanguageOptionsUk._(_root);
-	@override String get saveWindowPlacement => 'Зберегти розташування вікна після закриття';
-	@override String get minimizeToTray => 'Закрити: згорнути в системний трей/смугу меню';
+	@override String get saveWindowPlacement => 'Зберігати розташування вікна після виходу';
+	@override String get saveWindowPlacementWindows => 'Зберігати розташування вікна після виходу';
+	@override String get minimizeToTray => 'Згортати в системний трей/смугу меню при закритті';
 	@override String get launchAtStartup => 'Автозапуск';
 	@override String get launchMinimized => 'Прихований автозапуск';
+	@override String get showInContextMenu => 'Відображати LocalSend в контекстному меню';
 	@override String get animations => 'Анімації';
 }
 
@@ -489,12 +525,25 @@ class _StringsSettingsTabReceiveUk extends _StringsSettingsTabReceiveEn {
 
 	// Translations
 	@override String get title => 'Отримання';
-	@override String get quickSave => '${_root.general.quickSave}';
+	@override String get quickSave => _root.general.quickSave;
+	@override String get quickSaveFromFavorites => _root.general.quickSaveFromFavorites;
+	@override String get requirePin => _root.webSharePage.requirePin;
 	@override String get autoFinish => 'Автозавершення';
-	@override String get destination => 'Зберігати в теку';
+	@override String get destination => 'Зберігати в папку';
 	@override String get downloads => '(Завантаження)';
-	@override String get saveToGallery => 'Зберігати медіафайли до галереї';
+	@override String get saveToGallery => 'Зберігати медіафайли в галерею';
 	@override String get saveToHistory => 'Зберігати історію';
+}
+
+// Path: settingsTab.send
+class _StringsSettingsTabSendUk extends _StringsSettingsTabSendEn {
+	_StringsSettingsTabSendUk._(_StringsUk root) : this._root = root, super._(root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Надсилання';
+	@override String get shareViaLinkAutoAccept => 'Автоматично приймати запити в режимі "Поділитися через посилання"';
 }
 
 // Path: settingsTab.network
@@ -511,10 +560,13 @@ class _StringsSettingsTabNetworkUk extends _StringsSettingsTabNetworkEn {
 	@override String get deviceType => 'Тип пристрою';
 	@override String get deviceModel => 'Модель пристрою';
 	@override String get port => 'Порт';
-	@override String portWarning({required Object defaultPort}) => 'Інші пристрої можуть вас не виявити, оскільки ви використовуєте інший, власний порт. (default: ${defaultPort})';
+	@override String get discoveryTimeout => 'Тайм-аут пошуку';
+	@override String get useSystemName => 'Використати системне ім\'я';
+	@override String get generateRandomAlias => 'Згенерувати випадковий псевдонім';
+	@override String portWarning({required Object defaultPort}) => 'Інші пристрої можуть вас не знайти, оскільки ви використовуєте інший, власний порт. (default: ${defaultPort})';
 	@override String get encryption => 'Шифрування';
-	@override String get multicastGroup => 'Групова передача';
-	@override String multicastGroupWarning({required Object defaultMulticast}) => 'Інші пристрої можуть вас не виявити, оскільки ви використовуєте іншу, власну групову адресу. (default: ${defaultMulticast})';
+	@override String get multicastGroup => 'Адреса групової передачі';
+	@override String multicastGroupWarning({required Object defaultMulticast}) => 'Інші пристрої можуть вас не знайти, оскільки ви використовуєте іншу, власну адресу групової передачі. (default: ${defaultMulticast})';
 }
 
 // Path: settingsTab.other
@@ -538,9 +590,20 @@ class _StringsTroubleshootPageFirewallUk extends _StringsTroubleshootPageFirewal
 	@override final _StringsUk _root; // ignore: unused_field
 
 	// Translations
-	@override String get symptom => 'Цей додаток може надсилати файли на інші пристрої, але інші пристрої не можуть надсилати файли на цей пристрій.';
-	@override String solution({required Object port}) => 'Швидше за все, це проблема брандмауера. Ви можете вирішити цю проблему, дозволивши вхідні з’єднання (UDP та TCP) для порта: ${port}.';
+	@override String get symptom => 'Цей пристрій може надсилати файли на інші пристрої, але інші пристрої не можуть надсилати файли на цей пристрій.';
+	@override String solution({required Object port}) => 'Швидше за все, це проблема брандмауера. Ви можете вирішити дану проблему, дозволивши вхідні з\'єднання (UDP та TCP) для порта: ${port}.';
 	@override String get openFirewall => 'Відкрити брандмауер';
+}
+
+// Path: troubleshootPage.noDiscovery
+class _StringsTroubleshootPageNoDiscoveryUk extends _StringsTroubleshootPageNoDiscoveryEn {
+	_StringsTroubleshootPageNoDiscoveryUk._(_StringsUk root) : this._root = root, super._(root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get symptom => 'Цей пристрій не може знайти інші пристрої.';
+	@override String get solution => 'Будь ласка, переконайтеся, що обидва пристрої знаходяться в одній Wi-Fi мережі та мають однакову конфігурацію (порт, адресу групової передачі, шифрування). Ви можете спробувати ввести IP-адресу цільового пристрою вручну. Якщо це спрацює, подумайте про те, щоб додати цей пристрій до улюблених, щоб його можна було автоматично знаходити в майбутньому.';
 }
 
 // Path: troubleshootPage.noConnection
@@ -550,8 +613,8 @@ class _StringsTroubleshootPageNoConnectionUk extends _StringsTroubleshootPageNoC
 	@override final _StringsUk _root; // ignore: unused_field
 
 	// Translations
-	@override String get symptom => 'Обидва пристрої не можуть виявити один одного і не можуть обмінюватися файлами.';
-	@override String get solution => 'Проблема існує з обох сторін? Отже вам потрібно переконатися, що обидва пристрої знаходяться в одній мережі Wi-Fi і мають однакову конфігурацію (порт, групову адресу, шифрування). Wi-Fi може не дозволяти обмін (передачу) між учасниками. У цьому випадку вам необхідно увімкнути дану опцію на своєму маршрутизаторі.';
+	@override String get symptom => 'Обидва пристрої не можуть знайти один одного та не можуть обмінюватися файлами.';
+	@override String get solution => 'Проблема існує з обох сторін? Отже, вам потрібно переконатися, що обидва пристрої знаходяться в одній Wi-Fi мережі та мають однакову конфігурацію (порт, адресу групової передачі, шифрування). Мережа Wi-Fi може не дозволяти обмін (передачу) між учасниками. У такому разі, вам потрібно увімкнути дану опцію на своєму маршрутизаторі.';
 }
 
 // Path: receiveHistoryPage.entryActions
@@ -562,6 +625,7 @@ class _StringsReceiveHistoryPageEntryActionsUk extends _StringsReceiveHistoryPag
 
 	// Translations
 	@override String get open => 'Відкрити файл';
+	@override String get showInFolder => 'Показати в папці';
 	@override String get info => 'Інформація';
 	@override String get deleteFromHistory => 'Видалити з історії';
 }
@@ -586,8 +650,8 @@ class _StringsDialogsAddFileUk extends _StringsDialogsAddFileEn {
 	@override final _StringsUk _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Додати до обраних';
-	@override String get content => 'Що ви бажаєте додати?';
+	@override String get title => 'Додати у вибірку';
+	@override String get content => 'Що ви хочете додати?';
 }
 
 // Path: dialogs.addressInput
@@ -622,7 +686,7 @@ class _StringsDialogsCannotOpenFileUk extends _StringsDialogsCannotOpenFileEn {
 
 	// Translations
 	@override String get title => 'Не вдалося відкрити файл';
-	@override String content({required Object file}) => 'Не вдалося відкрити "${file}". Можливо цей файл було переміщено, перейменовано чи видалено?';
+	@override String content({required Object file}) => 'Не вдалося відкрити "${file}". Можливо, цей файл було переміщено, перейменовано або видалено?';
 }
 
 // Path: dialogs.encryptionDisabledNotice
@@ -633,7 +697,7 @@ class _StringsDialogsEncryptionDisabledNoticeUk extends _StringsDialogsEncryptio
 
 	// Translations
 	@override String get title => 'Шифрування вимкнено';
-	@override String get content => 'Зв\'язок тепер відбувається через незашифрований протокол HTTP. Щоб використовувати HTTPS, знову ввімкніть шифрування.';
+	@override String get content => 'Зв\'язок тепер відбувається через незашифрований HTTP протокол. Щоб використовувати протокол HTTPS, знову увімкніть шифрування.';
 }
 
 // Path: dialogs.errorDialog
@@ -643,7 +707,7 @@ class _StringsDialogsErrorDialogUk extends _StringsDialogsErrorDialogEn {
 	@override final _StringsUk _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.general.error}';
+	@override String get title => _root.general.error;
 }
 
 // Path: dialogs.favoriteDialog
@@ -653,8 +717,8 @@ class _StringsDialogsFavoriteDialogUk extends _StringsDialogsFavoriteDialogEn {
 	@override final _StringsUk _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Вибране';
-	@override String get noFavorites => 'Вибраних пристроїв ще немає.';
+	@override String get title => 'Улюблені';
+	@override String get noFavorites => 'Улюблених пристроїв поки що немає.';
 	@override String get addFavorite => 'Додати';
 }
 
@@ -665,8 +729,8 @@ class _StringsDialogsFavoriteDeleteDialogUk extends _StringsDialogsFavoriteDelet
 	@override final _StringsUk _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Видалити з вибраних';
-	@override String content({required Object name}) => 'Ви справді хочете видалити з вибраних "${name}"?';
+	@override String get title => 'Видалити з улюблених';
+	@override String content({required Object name}) => 'Ви справді хочете видалити з улюблених "${name}"?';
 }
 
 // Path: dialogs.favoriteEditDialog
@@ -676,7 +740,7 @@ class _StringsDialogsFavoriteEditDialogUk extends _StringsDialogsFavoriteEditDia
 	@override final _StringsUk _root; // ignore: unused_field
 
 	// Translations
-	@override String get titleAdd => 'Додати до вибраних';
+	@override String get titleAdd => 'Додати до улюблених';
 	@override String get titleEdit => 'Налаштування';
 	@override String get name => 'Ім\'я пристрою';
 	@override String get auto => '(автоматично)';
@@ -728,8 +792,8 @@ class _StringsDialogsLocalNetworkUnauthorizedUk extends _StringsDialogsLocalNetw
 	@override final _StringsUk _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.dialogs.noPermission.title}';
-	@override String get description => 'LocalSend не може знайти інші пристрої, не маючи дозволу на сканування в локальній мережі. Надайте цей дозвіл у налаштуваннях.';
+	@override String get title => _root.dialogs.noPermission.title;
+	@override String get description => 'LocalSend не може знайти інші пристрої без дозволу на сканування локальної мережі. Будь ласка, надайте цей дозвіл у налаштуваннях.';
 	@override String get gotoSettings => 'Налаштування';
 }
 
@@ -751,7 +815,7 @@ class _StringsDialogsNoFilesUk extends _StringsDialogsNoFilesEn {
 	@override final _StringsUk _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Файли не обрано';
+	@override String get title => 'Не вибрано жодного файлу';
 	@override String get content => 'Будь ласка, додайте як мінімум один файл.';
 }
 
@@ -774,7 +838,7 @@ class _StringsDialogsNotAvailableOnPlatformUk extends _StringsDialogsNotAvailabl
 
 	// Translations
 	@override String get title => 'Недоступно';
-	@override String get content => 'Ця функція доступна лише на:';
+	@override String get content => 'Ця функція доступна тільки на:';
 }
 
 // Path: dialogs.qr
@@ -809,8 +873,29 @@ class _StringsDialogsQuickSaveNoticeUk extends _StringsDialogsQuickSaveNoticeEn 
 	@override final _StringsUk _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.general.quickSave}';
+	@override String get title => _root.general.quickSave;
 	@override String get content => 'Запити на отримання файлів відтепер приймаються автоматично. Будьте обережні, всі користувачі цієї локальної мережі можуть надсилати вам файли.';
+}
+
+// Path: dialogs.quickSaveFromFavoritesNotice
+class _StringsDialogsQuickSaveFromFavoritesNoticeUk extends _StringsDialogsQuickSaveFromFavoritesNoticeEn {
+	_StringsDialogsQuickSaveFromFavoritesNoticeUk._(_StringsUk root) : this._root = root, super._(root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => _root.general.quickSaveFromFavorites;
+	@override String get content => 'Запити на отримання файлів відтепер приймаються автоматично від пристроїв з вашого списку улюблених.';
+}
+
+// Path: dialogs.pin
+class _StringsDialogsPinUk extends _StringsDialogsPinEn {
+	_StringsDialogsPinUk._(_StringsUk root) : this._root = root, super._(root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Введіть PIN-код';
 }
 
 // Path: dialogs.sendModeHelp
@@ -821,9 +906,19 @@ class _StringsDialogsSendModeHelpUk extends _StringsDialogsSendModeHelpEn {
 
 	// Translations
 	@override String get title => 'Режими надсилання';
-	@override String get single => 'Надсилає файли одному одержувачу. Після завершення передачі файлу (-ів), виділення буде знято.';
-	@override String get multiple => 'Надсилає файли кільком одержувачам. Виділення не буде знято.';
-	@override String get link => 'Одержувачі, у яких не встановлено LocalSend, можуть завантажити вибрані файли, відкривши посилання у своєму браузері.';
+	@override String get single => 'Надсилає файли одному отримувачу. Вибірку буде очищено після завершення передачі файлів.';
+	@override String get multiple => 'Надсилає файли декільком отримувачам. Вибірку не буде очищено після завершення передачі файлів.';
+	@override String get link => 'Отримувачі, у яких не встановлено LocalSend, можуть завантажити вибрані файли, відкривши посилання у своєму браузері.';
+}
+
+// Path: dialogs.zoom
+class _StringsDialogsZoomUk extends _StringsDialogsZoomEn {
+	_StringsDialogsZoomUk._(_StringsUk root) : this._root = root, super._(root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'URL-адреса';
 }
 
 // Path: settingsTab.general.brightnessOptions
@@ -869,5 +964,5 @@ class _StringsProgressPageTotalTitleUk extends _StringsProgressPageTotalTitleEn 
 	@override String sending({required Object time}) => 'Загальний час передачі (${time})';
 	@override String get finishedError => 'Завершено з помилкою';
 	@override String get canceledSender => 'Скасовано відправником';
-	@override String get canceledReceiver => 'Скасовано одержувачем';
+	@override String get canceledReceiver => 'Скасовано отримувачем';
 }

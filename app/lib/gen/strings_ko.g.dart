@@ -1,3 +1,9 @@
+///
+/// Generated file. Do not edit.
+///
+// coverage:ignore-file
+// ignore_for_file: type=lint
+
 part of 'strings.g.dart';
 
 // Path: <root>
@@ -36,9 +42,11 @@ class _StringsKo extends Translations {
 	@override late final _StringsProgressPageKo progressPage = _StringsProgressPageKo._(_root);
 	@override late final _StringsWebSharePageKo webSharePage = _StringsWebSharePageKo._(_root);
 	@override late final _StringsAboutPageKo aboutPage = _StringsAboutPageKo._(_root);
+	@override late final _StringsDonationPageKo donationPage = _StringsDonationPageKo._(_root);
 	@override late final _StringsChangelogPageKo changelogPage = _StringsChangelogPageKo._(_root);
 	@override late final _StringsAliasGeneratorKo aliasGenerator = _StringsAliasGeneratorKo._(_root);
 	@override late final _StringsDialogsKo dialogs = _StringsDialogsKo._(_root);
+	@override late final _StringsSanitizationKo sanitization = _StringsSanitizationKo._(_root);
 	@override late final _StringsTrayKo tray = _StringsTrayKo._(_root);
 	@override late final _StringsWebKo web = _StringsWebKo._(_root);
 	@override late final _StringsAssetPickerKo assetPicker = _StringsAssetPickerKo._(_root);
@@ -118,7 +126,7 @@ class _StringsSendTabKo extends _StringsSendTabEn {
 	@override String get sendMode => '전송 모드';
 	@override late final _StringsSendTabSendModesKo sendModes = _StringsSendTabSendModesKo._(_root);
 	@override String get sendModeHelp => '설명';
-	@override String get help => '보낼 기기가 같은 Wi-Fi 네트워크에 연결되었는지 확인해주세요';
+	@override String get help => '보내려는 기기가 동일한 Wi-Fi 네트워크에 연결되어 있는지 확인해 주세요';
 	@override String get placeItems => '드롭해서 공유';
 }
 
@@ -132,7 +140,9 @@ class _StringsSettingsTabKo extends _StringsSettingsTabEn {
 	@override String get title => '설정';
 	@override late final _StringsSettingsTabGeneralKo general = _StringsSettingsTabGeneralKo._(_root);
 	@override late final _StringsSettingsTabReceiveKo receive = _StringsSettingsTabReceiveKo._(_root);
+	@override late final _StringsSettingsTabSendKo send = _StringsSettingsTabSendKo._(_root);
 	@override late final _StringsSettingsTabNetworkKo network = _StringsSettingsTabNetworkKo._(_root);
+	@override late final _StringsSettingsTabOtherKo other = _StringsSettingsTabOtherKo._(_root);
 	@override String get advancedSettings => '고급 설정';
 }
 
@@ -143,11 +153,12 @@ class _StringsTroubleshootPageKo extends _StringsTroubleshootPageEn {
 	@override final _StringsKo _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '문제해결';
+	@override String get title => '문제 해결';
 	@override String get subTitle => '이 앱이 예상대로 작동하지 않나요? 여기에서 일반적인 해결 방법을 찾을 수 있습니다.';
-	@override String get solution => '해결방법:';
+	@override String get solution => '해결 방법:';
 	@override String get fixButton => '자동으로 수정하기';
 	@override late final _StringsTroubleshootPageFirewallKo firewall = _StringsTroubleshootPageFirewallKo._(_root);
+	@override late final _StringsTroubleshootPageNoDiscoveryKo noDiscovery = _StringsTroubleshootPageNoDiscoveryKo._(_root);
 	@override late final _StringsTroubleshootPageNoConnectionKo noConnection = _StringsTroubleshootPageNoConnectionKo._(_root);
 }
 
@@ -212,9 +223,9 @@ class _StringsReceiveOptionsPageKo extends _StringsReceiveOptionsPageEn {
 
 	// Translations
 	@override String get title => '옵션';
-	@override String get destination => '${_root.settingsTab.receive.destination}';
+	@override String get destination => _root.settingsTab.receive.destination;
 	@override String get appDirectory => '(LocalSend 폴더)';
-	@override String get saveToGallery => '${_root.settingsTab.receive.saveToGallery}';
+	@override String get saveToGallery => _root.settingsTab.receive.saveToGallery;
 	@override String get saveToGalleryOff => '디렉토리가 있어 자동으로 꺼집니다.';
 }
 
@@ -227,6 +238,7 @@ class _StringsSendPageKo extends _StringsSendPageEn {
 	// Translations
 	@override String get waiting => '답변을 기다리는 중…';
 	@override String get rejected => '받는 사람이 요청을 거부했습니다';
+	@override String get tooManyAttempts => _root.web.tooManyAttempts;
 	@override String get busy => '수신자가 다른 요청으로 바쁩니다.';
 }
 
@@ -260,7 +272,10 @@ class _StringsWebSharePageKo extends _StringsWebSharePageEn {
 	);
 	@override String get requests => '요청';
 	@override String get noRequests => '아직 요청이 없습니다.';
-	@override String get encryption => '${_root.settingsTab.network.encryption}';
+	@override String get encryption => _root.settingsTab.network.encryption;
+	@override String get autoAccept => '요청 자동 수락';
+	@override String get requirePin => 'PIN 번호 사용';
+	@override String pinHint({required Object pin}) => 'PIN 번호는 "${pin}" 입니다';
 	@override String get encryptionHint => 'LocalSend는 자체 서명된 인증서를 사용합니다. 브라우저에서 수락해야 합니다.';
 	@override String pendingRequests({required Object n}) => '대기중인 요청: ${n}';
 }
@@ -273,6 +288,28 @@ class _StringsAboutPageKo extends _StringsAboutPageEn {
 
 	// Translations
 	@override String get title => 'LocalSend에 대해';
+	@override List<String> get description => [
+		'LocalSend는 인터넷 연결이 필요 없이 로컬 네트워크를 통해 주변 기기와 파일 및 메시지를 안전하게 공유할 수 있는 무료 오픈소스 앱입니다.',
+		'이 앱은 Android, iOS, macOS, Windows 및 Linux에서 사용할 수 있습니다. 모든 다운로드 옵션은 공식 홈페이지에서 확인할 수 있습니다.',
+	];
+	@override String get author => '작성자';
+	@override String get contributors => '기여자';
+	@override String get packagers => '패키지 관리자';
+	@override String get translators => '번역자';
+}
+
+// Path: donationPage
+class _StringsDonationPageKo extends _StringsDonationPageEn {
+	_StringsDonationPageKo._(_StringsKo root) : this._root = root, super._(root);
+
+	@override final _StringsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '기부';
+	@override String get info => 'LocalSend는 광고 없이 무료이며 오픈소스입니다. 앱을 좋아하신다면 개발을 후원하는 기부를 해주세요.';
+	@override String donate({required Object amount}) => '${amount} 기부하기';
+	@override String get thanks => '정말 감사합니다!';
+	@override String get restore => '구매 복원';
 }
 
 // Path: changelogPage
@@ -321,7 +358,20 @@ class _StringsDialogsKo extends _StringsDialogsEn {
 	@override late final _StringsDialogsQrKo qr = _StringsDialogsQrKo._(_root);
 	@override late final _StringsDialogsQuickActionsKo quickActions = _StringsDialogsQuickActionsKo._(_root);
 	@override late final _StringsDialogsQuickSaveNoticeKo quickSaveNotice = _StringsDialogsQuickSaveNoticeKo._(_root);
+	@override late final _StringsDialogsPinKo pin = _StringsDialogsPinKo._(_root);
 	@override late final _StringsDialogsSendModeHelpKo sendModeHelp = _StringsDialogsSendModeHelpKo._(_root);
+	@override late final _StringsDialogsZoomKo zoom = _StringsDialogsZoomKo._(_root);
+}
+
+// Path: sanitization
+class _StringsSanitizationKo extends _StringsSanitizationEn {
+	_StringsSanitizationKo._(_StringsKo root) : this._root = root, super._(root);
+
+	@override final _StringsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get empty => '파일 이름은 비워 둘 수 없습니다';
+	@override String get invalid => '파일 이름에 잘못된 문자가 포함되어 있습니다';
 }
 
 // Path: tray
@@ -331,7 +381,7 @@ class _StringsTrayKo extends _StringsTrayEn {
 	@override final _StringsKo _root; // ignore: unused_field
 
 	// Translations
-	@override String get open => '${_root.general.open}';
+	@override String get open => _root.general.open;
 	@override String get close => 'LocalSend 종료';
 }
 
@@ -342,7 +392,10 @@ class _StringsWebKo extends _StringsWebEn {
 	@override final _StringsKo _root; // ignore: unused_field
 
 	// Translations
-	@override String get waiting => '${_root.sendPage.waiting}';
+	@override String get waiting => _root.sendPage.waiting;
+	@override String get enterPin => 'PIN 번호 입력';
+	@override String get invalidPin => 'PIN 번호가 올바르지 않습니다';
+	@override String get tooManyAttempts => '시도 횟수를 초과했습니다';
 	@override String get rejected => '거부됨';
 	@override String get files => '파일';
 	@override String get fileName => '파일 이름';
@@ -455,6 +508,7 @@ class _StringsSettingsTabGeneralKo extends _StringsSettingsTabGeneralEn {
 	@override String get minimizeToTray => '종료 시 시스템 트레이로 최소화';
 	@override String get launchAtStartup => '로그인 시 자동으로 시작';
 	@override String get launchMinimized => '최소화된 상태로 시작';
+	@override String get showInContextMenu => '컨텍스트 메뉴에 LocalSend 표시';
 	@override String get animations => '애니메이션';
 }
 
@@ -466,11 +520,24 @@ class _StringsSettingsTabReceiveKo extends _StringsSettingsTabReceiveEn {
 
 	// Translations
 	@override String get title => '수신';
-	@override String get quickSave => '${_root.general.quickSave}';
+	@override String get quickSave => _root.general.quickSave;
+	@override String get requirePin => _root.webSharePage.requirePin;
+	@override String get autoFinish => '자동 완료';
 	@override String get destination => '저장 위치';
 	@override String get downloads => '(다운로드 폴더)';
 	@override String get saveToGallery => '미디어를 갤러리에 저장';
 	@override String get saveToHistory => '히스토리에 저장';
+}
+
+// Path: settingsTab.send
+class _StringsSettingsTabSendKo extends _StringsSettingsTabSendEn {
+	_StringsSettingsTabSendKo._(_StringsKo root) : this._root = root, super._(root);
+
+	@override final _StringsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '전송';
+	@override String get shareViaLinkAutoAccept => '링크 공유: 자동 수락';
 }
 
 // Path: settingsTab.network
@@ -487,10 +554,25 @@ class _StringsSettingsTabNetworkKo extends _StringsSettingsTabNetworkEn {
 	@override String get deviceType => '기기 유형';
 	@override String get deviceModel => '기기 모델';
 	@override String get port => '포트';
+	@override String get discoveryTimeout => '탐색 제한시간';
 	@override String portWarning({required Object defaultPort}) => '커스텀 포트를 사용하면 이 디바이스가 다른 장치에서 감지되지 않을 수 있습니다. (기본값: ${defaultPort})';
 	@override String get encryption => '암호화';
 	@override String get multicastGroup => '멀티캐스트';
 	@override String multicastGroupWarning({required Object defaultMulticast}) => '사용자 지정 멀티캐스트 주소를 사용하고 있기 때문에 다른 기기에서 감지되지 않을 수 있습니다. (기본값: ${defaultMulticast})';
+}
+
+// Path: settingsTab.other
+class _StringsSettingsTabOtherKo extends _StringsSettingsTabOtherEn {
+	_StringsSettingsTabOtherKo._(_StringsKo root) : this._root = root, super._(root);
+
+	@override final _StringsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '기타';
+	@override String get support => 'LocalSend 지원';
+	@override String get donate => '기부';
+	@override String get privacyPolicy => '개인정보 처리 방침';
+	@override String get termsOfUse => '이용 약관';
 }
 
 // Path: troubleshootPage.firewall
@@ -503,6 +585,17 @@ class _StringsTroubleshootPageFirewallKo extends _StringsTroubleshootPageFirewal
 	@override String get symptom => '이 앱은 다른 기기로 파일을 보낼 수 있지만, 다른 기기에서 이 기기로 파일을 보낼 수 없습니다.';
 	@override String solution({required Object port}) => '방화벽 설정 때문일 가능성이 높습니다. ${port} 포트로 들어오는 연결(UDP 및 TCP)을 허용하여 이 문제를 해결할 수 있습니다.';
 	@override String get openFirewall => '방화벽 열기';
+}
+
+// Path: troubleshootPage.noDiscovery
+class _StringsTroubleshootPageNoDiscoveryKo extends _StringsTroubleshootPageNoDiscoveryEn {
+	_StringsTroubleshootPageNoDiscoveryKo._(_StringsKo root) : this._root = root, super._(root);
+
+	@override final _StringsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get symptom => '현재 기기에서 다른 기기를 찾을 수 없습니다.';
+	@override String get solution => '모든 장치가 동일한 Wi-Fi 네트워크에 연결되어 있고 동일한 설정(포트, 멀티캐스트 주소, 암호화)을 공유하는지 확인하세요. 기기의 IP 주소를 수동으로 입력해 볼 수도 있습니다. 이 방법이 작동하면, 해당 기기를 즐겨찾기에 추가하여 앞으로 자동으로 검색될 수 있도록 해 보세요.';
 }
 
 // Path: troubleshootPage.noConnection
@@ -524,6 +617,7 @@ class _StringsReceiveHistoryPageEntryActionsKo extends _StringsReceiveHistoryPag
 
 	// Translations
 	@override String get open => '파일 열기';
+	@override String get showInFolder => '폴더에서 보기';
 	@override String get info => '정보';
 	@override String get deleteFromHistory => '기록에서 삭제';
 }
@@ -605,7 +699,7 @@ class _StringsDialogsErrorDialogKo extends _StringsDialogsErrorDialogEn {
 	@override final _StringsKo _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.general.error}';
+	@override String get title => _root.general.error;
 }
 
 // Path: dialogs.favoriteDialog
@@ -690,7 +784,7 @@ class _StringsDialogsLocalNetworkUnauthorizedKo extends _StringsDialogsLocalNetw
 	@override final _StringsKo _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.dialogs.noPermission.title}';
+	@override String get title => _root.dialogs.noPermission.title;
 	@override String get description => '로컬 네트워크를 스캔할 권한이 없어 LocalSend가 다른 기기를 찾을 수 없습니다. 설정에서 권한을 부여해주세요.';
 	@override String get gotoSettings => '설정';
 }
@@ -771,8 +865,18 @@ class _StringsDialogsQuickSaveNoticeKo extends _StringsDialogsQuickSaveNoticeEn 
 	@override final _StringsKo _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '${_root.general.quickSave}';
+	@override String get title => _root.general.quickSave;
 	@override String get content => '파일 요청이 자동으로 수락됩니다. 로컬 네트워크의 누구나 파일을 보낼 수 있게되므로 주의해 주세요.';
+}
+
+// Path: dialogs.pin
+class _StringsDialogsPinKo extends _StringsDialogsPinEn {
+	_StringsDialogsPinKo._(_StringsKo root) : this._root = root, super._(root);
+
+	@override final _StringsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'PIN 번호 입력';
 }
 
 // Path: dialogs.sendModeHelp
@@ -786,6 +890,16 @@ class _StringsDialogsSendModeHelpKo extends _StringsDialogsSendModeHelpEn {
 	@override String get single => '파일을 한 명의 수신자에게 보냅니다. 파일 전송이 완료되면 선택이 지워집니다.';
 	@override String get multiple => '파일을 여러 명의 수신자에게 보냅니다. 선택이 지워지지 않습니다.';
 	@override String get link => 'LocalSend를 설치하지 않은 수신자는 브라우저에서 링크를 열어 선택한 파일을 다운로드할 수 있습니다.';
+}
+
+// Path: dialogs.zoom
+class _StringsDialogsZoomKo extends _StringsDialogsZoomEn {
+	_StringsDialogsZoomKo._(_StringsKo root) : this._root = root, super._(root);
+
+	@override final _StringsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'URL';
 }
 
 // Path: settingsTab.general.brightnessOptions

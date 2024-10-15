@@ -1,22 +1,23 @@
 import 'dart:async';
 import 'dart:typed_data';
 
+import 'package:common/model/dto/file_dto.dart';
+import 'package:common/model/file_status.dart';
+import 'package:common/model/session_status.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:localsend_app/config/theme.dart';
 import 'package:localsend_app/gen/strings.g.dart';
-import 'package:localsend_app/model/dto/file_dto.dart';
-import 'package:localsend_app/model/file_status.dart';
-import 'package:localsend_app/model/session_status.dart';
 import 'package:localsend_app/provider/network/send_provider.dart';
 import 'package:localsend_app/provider/network/server/server_provider.dart';
 import 'package:localsend_app/provider/progress_provider.dart';
 import 'package:localsend_app/provider/settings_provider.dart';
-import 'package:localsend_app/theme.dart';
 import 'package:localsend_app/util/file_size_helper.dart';
 import 'package:localsend_app/util/file_speed_helper.dart';
 import 'package:localsend_app/util/native/open_file.dart';
 import 'package:localsend_app/util/native/open_folder.dart';
 import 'package:localsend_app/util/native/platform_check.dart';
+import 'package:localsend_app/util/native/taskbar_helper.dart';
 import 'package:localsend_app/util/ui/nav_bar_padding.dart';
 import 'package:localsend_app/widget/custom_progress_bar.dart';
 import 'package:localsend_app/widget/dialogs/cancel_session_dialog.dart';
@@ -48,6 +49,7 @@ class _ProgressPageState extends State<ProgressPage> with Refena {
   String? _remainingTime;
   List<FileDto> _files = []; // also contains declined files (files without token)
   Set<String> _selectedFiles = {};
+  SessionStatus? _lastStatus;
 
   // If [autoFinish] is enabled, we wait a few seconds before automatically closing the session.
   int _finishCounter = 3;
@@ -67,7 +69,10 @@ class _ProgressPageState extends State<ProgressPage> with Refena {
 
       if (ref.read(settingsProvider).autoFinish) {
         _finishTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
-          if (ref.read(progressProvider).getFinishedCount(widget.sessionId) == _selectedFiles.length) {
+          final finished = ref.read(serverProvider)?.session?.files.values.map((e) => e.status).isFinishedOrSkipped ??
+              ref.read(sendProvider)[widget.sessionId]?.files.values.map((e) => e.status).isFinishedOrSkipped ??
+              true;
+          if (finished) {
             if (_finishCounter == 1) {
               timer.cancel();
               exit();
@@ -116,6 +121,7 @@ class _ProgressPageState extends State<ProgressPage> with Refena {
   void dispose() {
     super.dispose();
     _finishTimer?.cancel();
+    unawaited(TaskbarHelper.clearProgressBar());
     try {
       unawaited(WakelockPlus.disable());
     } catch (_) {}
@@ -168,6 +174,16 @@ class _ProgressPageState extends State<ProgressPage> with Refena {
     final sendSession = ref.watch(sendProvider)[widget.sessionId];
 
     final SessionStatus? status = receiveSession?.status ?? sendSession?.status;
+
+    if (status == SessionStatus.sending) {
+      // ignore: discarded_futures
+      TaskbarHelper.setProgressBar(currBytes, _totalBytes);
+    } else if (status != _lastStatus) {
+      _lastStatus = status;
+      // ignore: discarded_futures
+      TaskbarHelper.visualizeStatus(status);
+    }
+
     if (status == null) {
       return Scaffold(
         body: Container(),
@@ -190,13 +206,16 @@ class _ProgressPageState extends State<ProgressPage> with Refena {
       speedInBytes = null;
     }
 
-    return WillPopScope(
-      onWillPop: () async {
-        if (await _onWillPop() && mounted) {
-          return true;
+    final fileStatusMap = receiveSession?.files.map((k, f) => MapEntry(k, f.status)) ?? sendSession!.files.map((k, f) => MapEntry(k, f.status));
+    final finishedCount = fileStatusMap.values.where((s) => s == FileStatus.finished).length;
+
+    return PopScope(
+      onPopInvokedWithResult: (_, __) async {
+        if (await _onWillPop() && context.mounted) {
+          context.pop();
         }
-        return false;
       },
+      canPop: false,
       child: Scaffold(
         appBar: widget.showAppBar
             ? AppBar(
@@ -270,7 +289,7 @@ class _ProgressPageState extends State<ProgressPage> with Refena {
                 final file = _files[index - 2];
                 final String fileName = receiveSession?.files[file.id]?.desiredName ?? file.fileName;
 
-                final fileStatus = receiveSession?.files[file.id]?.status ?? sendSession!.files[file.id]!.status;
+                final fileStatus = fileStatusMap[file.id]!;
                 final savedToGallery = receiveSession?.files[file.id]?.savedToGallery ?? false;
 
                 final String? filePath;
@@ -374,6 +393,17 @@ class _ProgressPageState extends State<ProgressPage> with Refena {
                             ],
                           ),
                         ),
+                        if (sendSession != null && fileStatus == FileStatus.failed)
+                          IconButton(
+                            icon: const Icon(Icons.refresh),
+                            onPressed: () async {
+                              await ref.notifier(sendProvider).sendFile(
+                                    sessionId: widget.sessionId,
+                                    file: sendSession.files[file.id]!,
+                                    isRetry: true,
+                                  );
+                            },
+                          ),
                       ],
                     ),
                   ),
@@ -414,7 +444,7 @@ class _ProgressPageState extends State<ProgressPage> with Refena {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(t.progressPage.total.count(
-                                    curr: progressNotifier.getFinishedCount(widget.sessionId),
+                                    curr: finishedCount,
                                     n: _selectedFiles.length,
                                   )),
                                   Text(t.progressPage.total.size(

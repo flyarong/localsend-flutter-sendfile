@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:common/model/device.dart';
+import 'package:common/model/file_type.dart';
+import 'package:common/model/session_status.dart';
 import 'package:dart_mappable/dart_mappable.dart';
-import 'package:localsend_app/model/device.dart';
-import 'package:localsend_app/model/file_type.dart';
-import 'package:localsend_app/model/session_status.dart';
 import 'package:localsend_app/model/state/server/receiving_file.dart';
 
 part 'receive_session_state.mapper.dart';
@@ -21,7 +21,14 @@ class ReceiveSessionState with ReceiveSessionStateMappable {
   final int? startTime;
   final int? endTime;
   final String destinationDirectory;
+  final String cacheDirectory;
   final bool saveToGallery;
+
+  /// On Android, we need to manually create missing directories.
+  /// To improve performance, we cache the created directories so we don't need to check them again.
+  /// WARNING: This list is modified in-place!
+  final Set<String> createdDirectories;
+
   final StreamController<Map<String, String>?>? responseHandler;
 
   const ReceiveSessionState({
@@ -33,7 +40,9 @@ class ReceiveSessionState with ReceiveSessionStateMappable {
     required this.startTime,
     required this.endTime,
     required this.destinationDirectory,
+    required this.cacheDirectory,
     required this.saveToGallery,
+    required this.createdDirectories,
     required this.responseHandler,
   });
 
